@@ -32,6 +32,21 @@
   color: #FFFFFF;
 }
 
+#welcome {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+#welcome h1 {
+  color: $brand-primary;
+}
+#welcome .welcome-icon .fa {
+  color: $brand-primary;
+  margin-right: 10px;
+}
+#welcome .welcome-icon p {
+  margin-left: 40px;
+}
+
 #counter {
   width: 100%;
   min-height: 180px;
