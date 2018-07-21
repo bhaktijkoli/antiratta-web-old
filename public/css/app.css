@@ -10222,7 +10222,8 @@ button.bg-dark:focus {
   text-align: right !important;
 }
 
-.text-center {
+.text-center,
+#counter .counter-text {
   text-align: center !important;
 }
 
@@ -17190,7 +17191,9 @@ h2.title {
   padding: 24px;
 }
 
-.modal-dialog .modal-footer.text-center {
+.modal-dialog .modal-footer.text-center,
+.modal-dialog #counter .modal-footer.counter-text,
+#counter .modal-dialog .modal-footer.counter-text {
   text-align: center;
 }
 
@@ -20261,6 +20264,25 @@ footer .pull-center {
   color: #FFFFFF;
 }
 
+#counter {
+  width: 100%;
+  min-height: 180px;
+}
+
+#counter .counter-text {
+  color: #FFFFFF;
+}
+
+#counter .counter-text h3 {
+  font-size: 72px;
+  margin-bottom: 0px;
+}
+
+#counter .counter-text p {
+  font-size: 28px;
+  font-weight: 600;
+}
+
 .btn-primary {
   color: #FFFFFF !important;
 }
@@ -20295,5 +20317,9 @@ footer .pull-center {
   .nav-divider {
     display: none;
   }
+}
+
+.space {
+  height: 500px;
 }
 
