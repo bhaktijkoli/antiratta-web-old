@@ -12,7 +12,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
@@ -23,6 +23,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Blog</a>
+          </li>
+          <li class="nav-divider"></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
           </li>
         </ul>
       </div>

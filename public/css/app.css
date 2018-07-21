@@ -20257,3 +20257,31 @@ footer .pull-center {
   color: #FFFFFF !important;
 }
 
+.nav-link {
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+}
+
+.nav-link:hover {
+  background-color: #fbc02d;
+  color: #FFFFFF !important;
+}
+
+.navbar-transparent .nav-divider {
+  background-color: #FFFFFF;
+}
+
+.nav-divider {
+  background-color: #555;
+  width: 1px;
+  height: 18px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-divider {
+    display: none;
+  }
+}
+

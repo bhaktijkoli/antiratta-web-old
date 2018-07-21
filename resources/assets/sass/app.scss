@@ -8,6 +8,31 @@
 // Pages
 @import 'home';
 
+// Buttons
 .btn-primary {
   color: #FFFFFF !important;
+}
+
+// Navbar
+.nav-link {
+  transition-duration: 200ms;
+}
+.nav-link:hover {
+  background-color: $brand-primary;
+  color: #FFFFFF !important;
+}
+.navbar-transparent .nav-divider {
+  background-color: #FFFFFF;
+}
+.nav-divider {
+  background-color: #555;
+  width: 1px;
+  height: 18px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+@media only screen and (max-width: 600px) {
+  .nav-divider {
+    display: none;
+  }
 }
