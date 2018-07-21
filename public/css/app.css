@@ -20220,9 +20220,40 @@ footer .pull-center {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.banner {
+  background-image: url(/images/banner.png?aebd14507db2a164793fd69c1d2cbf17);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.banner .row {
+  padding-top: 160px;
+}
+
+.banner h1 {
+  color: #FFFFFF;
+}
+
+.banner .heading-1 {
+  font-size: 24px;
+}
+
+.banner .heading-2 {
+  font-size: 74px;
+}
+
+@media only screen and (max-width: 600px) {
+  .banner .heading-1 {
+    font-size: 18px;
+  }
+
+  .banner .heading-2 {
+    font-size: 64px;
+  }
+}
+
+.btn-primary {
+  color: #FFFFFF !important;
 }
 
