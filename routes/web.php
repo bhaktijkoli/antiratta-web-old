@@ -12,3 +12,11 @@
 */
 
 Route::get('/', 'HomeController@get');
+
+// Update
+Route::get('/update', function() {
+  chdir(base_path());
+  $res = exec('git reset --hard 2>&1', $output);
+  $res = $res . '<br />' . exec('git pull origin master 2>&1', $output);
+  return $res;
+});
