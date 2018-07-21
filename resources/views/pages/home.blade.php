@@ -17,6 +17,14 @@
       </div>
     </div>
   </div>
+  <section id="stutor">
+    <div class="container-fluid hero-content-colored">
+      <div class="text-center">
+        <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+        <a class="btn btn-white">BECOME STUTOR</a>
+      </div>
+    </div>
+  </section>
   <div class="container">
     <div style="min-height:2000px">
 

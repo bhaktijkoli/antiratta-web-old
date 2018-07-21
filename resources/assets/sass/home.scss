@@ -24,3 +24,11 @@
     font-size: 64px;
   }
 }
+
+.hero-content-colored {
+  width: 100%;
+  min-height: 180px;
+  background-color: $brand-primary;
+  padding: 10px 20px 10px 20px;
+  color: #FFFFFF;
+}

@@ -20253,8 +20253,20 @@ footer .pull-center {
   }
 }
 
+.hero-content-colored {
+  width: 100%;
+  min-height: 180px;
+  background-color: #fbc02d;
+  padding: 10px 20px 10px 20px;
+  color: #FFFFFF;
+}
+
 .btn-primary {
   color: #FFFFFF !important;
+}
+
+.btn-white {
+  color: #212529 !important;
 }
 
 .nav-link {
