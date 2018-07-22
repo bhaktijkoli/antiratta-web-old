@@ -68,29 +68,41 @@
   <section id="counter" data-parallax="scroll" data-image-src="{{asset('images/banner.png')}}">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
-          <div class="counter-text">
-            <h3 class="count">3</h3>
-            <p>Universities</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="counter-text">
-            <h3 class="count">56</h3>
-            <p>Online courses</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="counter-text">
-            <h3 class="count">425</h3>
-            <p>Students</p>
+        <div class="col-sm-12">
+          <div class="counter-title">
+            <h2>GET STARTED FOR FREE</h2>
+            <p>Tech you how to build a complete learning management system upcoming education for student</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section class="space">
-  </section>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="counter-up">
+          <i class="fa fa-university" aria-hidden="true"></i>
+          <p class="title">Universities</p>
+          <p class="count">3</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="counter-up">
+          <i class="fa fa-list-alt" aria-hidden="true"></i>
+          <p class="title">Courses completed</p>
+          <p class="count">56</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="counter-up">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <p class="title">Students Entrolled</p>
+          <p class="count">560</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="space">
+</section>
 @endsection
 @section('post')
   <script type="text/javascript">

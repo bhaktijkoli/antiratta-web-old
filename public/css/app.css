@@ -13288,7 +13288,8 @@ button.bg-dark:focus {
 }
 
 .text-center,
-#counter .counter-text {
+#counter .counter-title,
+#counter .counter-up {
   text-align: center !important;
 }
 
@@ -20257,8 +20258,10 @@ h2.title {
 }
 
 .modal-dialog .modal-footer.text-center,
-.modal-dialog #counter .modal-footer.counter-text,
-#counter .modal-dialog .modal-footer.counter-text {
+.modal-dialog #counter .modal-footer.counter-title,
+#counter .modal-dialog .modal-footer.counter-title,
+.modal-dialog #counter .modal-footer.counter-up,
+#counter .modal-dialog .modal-footer.counter-up {
   text-align: center;
 }
 
@@ -23348,20 +23351,38 @@ footer .pull-center {
 
 #counter {
   width: 100%;
-  min-height: 180px;
+  padding: 10px 20px 40px 20px;
 }
 
-#counter .counter-text {
+#counter .counter-title {
   color: #FFFFFF;
+  margin-bottom: 20px;
 }
 
-#counter .counter-text h3 {
-  font-size: 72px;
+#counter .counter-title h2 {
   margin-bottom: 0px;
 }
 
-#counter .counter-text p {
-  font-size: 28px;
+#counter .counter-title p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#counter .counter-up .fa {
+  color: #fbc02d;
+  font-size: 52px;
+}
+
+#counter .counter-up .title {
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+#counter .counter-up .count {
+  color: #FFFFFF;
+  font-size: 52px;
   font-weight: 600;
 }
 

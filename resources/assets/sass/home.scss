@@ -49,17 +49,35 @@
 
 #counter {
   width: 100%;
-  min-height: 180px;
+  padding: 10px 20px 40px 20px;
 }
-#counter .counter-text {
+#counter .counter-title {
   color: #FFFFFF;
   @extend .text-center;
+  margin-bottom: 20px;
 }
-#counter .counter-text h3{
-  font-size: 72px;
+#counter .counter-title h2 {
   margin-bottom: 0px;
 }
-#counter .counter-text p{
-  font-size: 28px;
+#counter .counter-title p{
+  font-size: 16px;
+  font-weight: 600;
+}
+#counter .counter-up {
+  @extend .text-center;
+}
+#counter .counter-up .fa{
+  color: $brand-primary;
+  font-size: 52px;
+}
+#counter .counter-up .title{
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+#counter .counter-up .count{
+  color: #FFFFFF;
+  font-size: 52px;
   font-weight: 600;
 }
