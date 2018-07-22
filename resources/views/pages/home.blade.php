@@ -30,7 +30,7 @@
       <div class="row">
         <div class="text-center">
           <h1>WELCOME TO ANTIRATTA</h1>
-          <h3>AWESOME SUCCESS WITH STUDENT</h3>
+          <h3>AWESOME SUCCESS WITH STUDENTS</h3>
           <p>
             Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
           </p>
@@ -71,7 +71,7 @@
         <div class="col-sm-12">
           <div class="counter-title">
             <h2>GET STARTED FOR FREE</h2>
-            <p>Tech you how to build a complete learning management system upcoming education for student</p>
+            <p>Teach you how to build a complete learning management system upcoming education for students</p>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
       <div class="col-sm-4">
         <div class="counter-up">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <p class="title">Students Entrolled</p>
+          <p class="title">Students Enrolled</p>
           <p class="count">560</p>
         </div>
       </div>
