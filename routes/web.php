@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@get');
+Route::get('/login', 'Auth\LoginController@getLogin');
 
 // Update
 Route::get('/update', function() {

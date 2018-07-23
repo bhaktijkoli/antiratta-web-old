@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('pre')
   @php
+  $transparent_nav = true;
   $title = config('app.name');
   $menu_item = 'home';
 @endphp
