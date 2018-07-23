@@ -29,6 +29,7 @@
                 @include('forms.login')
               </div>
               <div class="tab-pane" id="signup">
+                @include('forms.signup')
               </div>
             </div>
           </div>
