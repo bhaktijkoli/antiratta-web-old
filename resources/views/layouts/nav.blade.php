@@ -1,4 +1,4 @@
-<nav class="navbar {{isset($transparent_nav)?'navbar-transparent':''}} navbar-color-on-scroll fixed-top navbar-expand-lg bg-white" color-on-scroll="50" id="sectionsNav">
+<nav class="navbar {{isset($transparent_nav)?'navbar-transparent':''}} navbar-color-on-scroll fixed-top navbar-expand-lg bg-dark" color-on-scroll="50" id="sectionsNav">
   <div class="container">
     <div class="navbar-translate">
       <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">{{config('app.name')}}</a>
@@ -18,10 +18,13 @@
           <a class="nav-link" href="#">Courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Events</a>
+          <a class="nav-link" href="#">Candid charcha</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
+          <a class="nav-link" href="#">jfk</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About us</a>
         </li>
         <li class="nav-divider"></li>
         <li class="nav-item">
