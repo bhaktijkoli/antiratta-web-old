@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Http\Request;
+use App\Http\Requests\SignupRequest;
+
+use App\User;
+use App\ResponseBuilder;
 
 class LoginController extends Controller
 {
@@ -34,11 +41,20 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+      $this->middleware('guest')->except('logout');
     }
 
     public function getLogin() {
       return view('pages.login');
+    }
+    public function postSignup(SignupRequest $request) {
+      $user = new User();
+      $user->firstname = $request->input('signup_firstname');
+      $user->lastname = $request->input('signup_lastname');
+      $user->email = $request->input('signup_email');
+      $user->password = Hash::make($request->input('signup_password'));
+      $user->save();
+      return ResponseBuilder::send(true, "", '/');
     }
 
 }

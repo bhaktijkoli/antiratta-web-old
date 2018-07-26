@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(47);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
@@ -13883,7 +13883,7 @@ module.exports = __webpack_require__(47);
 
 __webpack_require__(13);
 
-window.Vue = __webpack_require__(40);
+window.Vue = __webpack_require__(37);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13891,11 +13891,20 @@ window.Vue = __webpack_require__(40);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(43));
+Vue.component('example-component', __webpack_require__(40));
 
 var app = new Vue({
   el: '#app'
 });
+
+// Modules
+__webpack_require__(44);
+__webpack_require__(45);
+__webpack_require__(46);
+__webpack_require__(47);
+
+// Pages
+__webpack_require__(48);
 
 /***/ }),
 /* 13 */
@@ -13941,11 +13950,6 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-// Modules
-__webpack_require__(37);
-__webpack_require__(38);
-__webpack_require__(39);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -33807,1136 +33811,6 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 37 */
-/***/ (function(module, exports) {
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/*!
- * parallax.js v1.5.0 (http://pixelcog.github.io/parallax.js/)
- * @copyright 2016 PixelCog, Inc.
- * @license MIT (https://github.com/pixelcog/parallax.js/blob/master/LICENSE)
- */
-
-;(function ($, window, document, undefined) {
-
-  // Polyfill for requestAnimationFrame
-  // via: https://gist.github.com/paulirish/1579671
-
-  (function () {
-    var lastTime = 0;
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-      window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-      window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
-    }
-
-    if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback) {
-      var currTime = new Date().getTime();
-      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-      var id = window.setTimeout(function () {
-        callback(currTime + timeToCall);
-      }, timeToCall);
-      lastTime = currTime + timeToCall;
-      return id;
-    };
-
-    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
-      clearTimeout(id);
-    };
-  })();
-
-  // Parallax Constructor
-
-  function Parallax(element, options) {
-    var self = this;
-
-    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) == 'object') {
-      delete options.refresh;
-      delete options.render;
-      $.extend(this, options);
-    }
-
-    this.$element = $(element);
-
-    if (!this.imageSrc && this.$element.is('img')) {
-      this.imageSrc = this.$element.attr('src');
-    }
-
-    var positions = (this.position + '').toLowerCase().match(/\S+/g) || [];
-
-    if (positions.length < 1) {
-      positions.push('center');
-    }
-    if (positions.length == 1) {
-      positions.push(positions[0]);
-    }
-
-    if (positions[0] == 'top' || positions[0] == 'bottom' || positions[1] == 'left' || positions[1] == 'right') {
-      positions = [positions[1], positions[0]];
-    }
-
-    if (this.positionX !== undefined) positions[0] = this.positionX.toLowerCase();
-    if (this.positionY !== undefined) positions[1] = this.positionY.toLowerCase();
-
-    self.positionX = positions[0];
-    self.positionY = positions[1];
-
-    if (this.positionX != 'left' && this.positionX != 'right') {
-      if (isNaN(parseInt(this.positionX))) {
-        this.positionX = 'center';
-      } else {
-        this.positionX = parseInt(this.positionX);
-      }
-    }
-
-    if (this.positionY != 'top' && this.positionY != 'bottom') {
-      if (isNaN(parseInt(this.positionY))) {
-        this.positionY = 'center';
-      } else {
-        this.positionY = parseInt(this.positionY);
-      }
-    }
-
-    this.position = this.positionX + (isNaN(this.positionX) ? '' : 'px') + ' ' + this.positionY + (isNaN(this.positionY) ? '' : 'px');
-
-    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-      if (this.imageSrc && this.iosFix && !this.$element.is('img')) {
-        this.$element.css({
-          backgroundImage: 'url(' + this.imageSrc + ')',
-          backgroundSize: 'cover',
-          backgroundPosition: this.position
-        });
-      }
-      return this;
-    }
-
-    if (navigator.userAgent.match(/(Android)/)) {
-      if (this.imageSrc && this.androidFix && !this.$element.is('img')) {
-        this.$element.css({
-          backgroundImage: 'url(' + this.imageSrc + ')',
-          backgroundSize: 'cover',
-          backgroundPosition: this.position
-        });
-      }
-      return this;
-    }
-
-    this.$mirror = $('<div />').prependTo(this.mirrorContainer);
-
-    var slider = this.$element.find('>.parallax-slider');
-    var sliderExisted = false;
-
-    if (slider.length == 0) this.$slider = $('<img />').prependTo(this.$mirror);else {
-      this.$slider = slider.prependTo(this.$mirror);
-      sliderExisted = true;
-    }
-
-    this.$mirror.addClass('parallax-mirror').css({
-      visibility: 'hidden',
-      zIndex: this.zIndex,
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      overflow: 'hidden'
-    });
-
-    this.$slider.addClass('parallax-slider').one('load', function () {
-      if (!self.naturalHeight || !self.naturalWidth) {
-        self.naturalHeight = this.naturalHeight || this.height || 1;
-        self.naturalWidth = this.naturalWidth || this.width || 1;
-      }
-      self.aspectRatio = self.naturalWidth / self.naturalHeight;
-
-      Parallax.isSetup || Parallax.setup();
-      Parallax.sliders.push(self);
-      Parallax.isFresh = false;
-      Parallax.requestRender();
-    });
-
-    if (!sliderExisted) this.$slider[0].src = this.imageSrc;
-
-    if (this.naturalHeight && this.naturalWidth || this.$slider[0].complete || slider.length > 0) {
-      this.$slider.trigger('load');
-    }
-  }
-
-  // Parallax Instance Methods
-
-  $.extend(Parallax.prototype, {
-    speed: 0.2,
-    bleed: 0,
-    zIndex: -100,
-    iosFix: true,
-    androidFix: true,
-    position: 'center',
-    overScrollFix: false,
-    mirrorContainer: 'body',
-
-    refresh: function refresh() {
-      this.boxWidth = this.$element.outerWidth();
-      this.boxHeight = this.$element.outerHeight() + this.bleed * 2;
-      this.boxOffsetTop = this.$element.offset().top - this.bleed;
-      this.boxOffsetLeft = this.$element.offset().left;
-      this.boxOffsetBottom = this.boxOffsetTop + this.boxHeight;
-
-      var winHeight = Parallax.winHeight;
-      var docHeight = Parallax.docHeight;
-      var maxOffset = Math.min(this.boxOffsetTop, docHeight - winHeight);
-      var minOffset = Math.max(this.boxOffsetTop + this.boxHeight - winHeight, 0);
-      var imageHeightMin = this.boxHeight + (maxOffset - minOffset) * (1 - this.speed) | 0;
-      var imageOffsetMin = (this.boxOffsetTop - maxOffset) * (1 - this.speed) | 0;
-      var margin;
-
-      if (imageHeightMin * this.aspectRatio >= this.boxWidth) {
-        this.imageWidth = imageHeightMin * this.aspectRatio | 0;
-        this.imageHeight = imageHeightMin;
-        this.offsetBaseTop = imageOffsetMin;
-
-        margin = this.imageWidth - this.boxWidth;
-
-        if (this.positionX == 'left') {
-          this.offsetLeft = 0;
-        } else if (this.positionX == 'right') {
-          this.offsetLeft = -margin;
-        } else if (!isNaN(this.positionX)) {
-          this.offsetLeft = Math.max(this.positionX, -margin);
-        } else {
-          this.offsetLeft = -margin / 2 | 0;
-        }
-      } else {
-        this.imageWidth = this.boxWidth;
-        this.imageHeight = this.boxWidth / this.aspectRatio | 0;
-        this.offsetLeft = 0;
-
-        margin = this.imageHeight - imageHeightMin;
-
-        if (this.positionY == 'top') {
-          this.offsetBaseTop = imageOffsetMin;
-        } else if (this.positionY == 'bottom') {
-          this.offsetBaseTop = imageOffsetMin - margin;
-        } else if (!isNaN(this.positionY)) {
-          this.offsetBaseTop = imageOffsetMin + Math.max(this.positionY, -margin);
-        } else {
-          this.offsetBaseTop = imageOffsetMin - margin / 2 | 0;
-        }
-      }
-    },
-
-    render: function render() {
-      var scrollTop = Parallax.scrollTop;
-      var scrollLeft = Parallax.scrollLeft;
-      var overScroll = this.overScrollFix ? Parallax.overScroll : 0;
-      var scrollBottom = scrollTop + Parallax.winHeight;
-
-      if (this.boxOffsetBottom > scrollTop && this.boxOffsetTop <= scrollBottom) {
-        this.visibility = 'visible';
-        this.mirrorTop = this.boxOffsetTop - scrollTop;
-        this.mirrorLeft = this.boxOffsetLeft - scrollLeft;
-        this.offsetTop = this.offsetBaseTop - this.mirrorTop * (1 - this.speed);
-      } else {
-        this.visibility = 'hidden';
-      }
-
-      this.$mirror.css({
-        transform: 'translate3d(' + this.mirrorLeft + 'px, ' + (this.mirrorTop - overScroll) + 'px, 0px)',
-        visibility: this.visibility,
-        height: this.boxHeight,
-        width: this.boxWidth
-      });
-
-      this.$slider.css({
-        transform: 'translate3d(' + this.offsetLeft + 'px, ' + this.offsetTop + 'px, 0px)',
-        position: 'absolute',
-        height: this.imageHeight,
-        width: this.imageWidth,
-        maxWidth: 'none'
-      });
-    }
-  });
-
-  // Parallax Static Methods
-
-  $.extend(Parallax, {
-    scrollTop: 0,
-    scrollLeft: 0,
-    winHeight: 0,
-    winWidth: 0,
-    docHeight: 1 << 30,
-    docWidth: 1 << 30,
-    sliders: [],
-    isReady: false,
-    isFresh: false,
-    isBusy: false,
-
-    setup: function setup() {
-      if (this.isReady) return;
-
-      var self = this;
-
-      var $doc = $(document),
-          $win = $(window);
-
-      var loadDimensions = function loadDimensions() {
-        Parallax.winHeight = $win.height();
-        Parallax.winWidth = $win.width();
-        Parallax.docHeight = $doc.height();
-        Parallax.docWidth = $doc.width();
-      };
-
-      var loadScrollPosition = function loadScrollPosition() {
-        var winScrollTop = $win.scrollTop();
-        var scrollTopMax = Parallax.docHeight - Parallax.winHeight;
-        var scrollLeftMax = Parallax.docWidth - Parallax.winWidth;
-        Parallax.scrollTop = Math.max(0, Math.min(scrollTopMax, winScrollTop));
-        Parallax.scrollLeft = Math.max(0, Math.min(scrollLeftMax, $win.scrollLeft()));
-        Parallax.overScroll = Math.max(winScrollTop - scrollTopMax, Math.min(winScrollTop, 0));
-      };
-
-      $win.on('resize.px.parallax load.px.parallax', function () {
-        loadDimensions();
-        self.refresh();
-        Parallax.isFresh = false;
-        Parallax.requestRender();
-      }).on('scroll.px.parallax load.px.parallax', function () {
-        loadScrollPosition();
-        Parallax.requestRender();
-      });
-
-      loadDimensions();
-      loadScrollPosition();
-
-      this.isReady = true;
-
-      var lastPosition = -1;
-
-      function frameLoop() {
-        if (lastPosition == window.pageYOffset) {
-          // Avoid overcalculations
-          window.requestAnimationFrame(frameLoop);
-          return false;
-        } else lastPosition = window.pageYOffset;
-
-        self.render();
-        window.requestAnimationFrame(frameLoop);
-      }
-
-      frameLoop();
-    },
-
-    configure: function configure(options) {
-      if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) == 'object') {
-        delete options.refresh;
-        delete options.render;
-        $.extend(this.prototype, options);
-      }
-    },
-
-    refresh: function refresh() {
-      $.each(this.sliders, function () {
-        this.refresh();
-      });
-      this.isFresh = true;
-    },
-
-    render: function render() {
-      this.isFresh || this.refresh();
-      $.each(this.sliders, function () {
-        this.render();
-      });
-    },
-
-    requestRender: function requestRender() {
-      var self = this;
-      self.render();
-      self.isBusy = false;
-    },
-    destroy: function destroy(el) {
-      var i,
-          parallaxElement = $(el).data('px.parallax');
-      parallaxElement.$mirror.remove();
-      for (i = 0; i < this.sliders.length; i += 1) {
-        if (this.sliders[i] == parallaxElement) {
-          this.sliders.splice(i, 1);
-        }
-      }
-      $(el).data('px.parallax', false);
-      if (this.sliders.length === 0) {
-        $(window).off('scroll.px.parallax resize.px.parallax load.px.parallax');
-        this.isReady = false;
-        Parallax.isSetup = false;
-      }
-    }
-  });
-
-  // Parallax Plugin Definition
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this);
-      var options = (typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object' && option;
-
-      if (this == window || this == document || $this.is('body')) {
-        Parallax.configure(options);
-      } else if (!$this.data('px.parallax')) {
-        options = $.extend({}, $this.data(), options);
-        $this.data('px.parallax', new Parallax(this, options));
-      } else if ((typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object') {
-        $.extend($this.data('px.parallax'), options);
-      }
-      if (typeof option == 'string') {
-        if (option == 'destroy') {
-          Parallax.destroy(this);
-        } else {
-          Parallax[option]();
-        }
-      }
-    });
-  }
-
-  var old = $.fn.parallax;
-
-  $.fn.parallax = Plugin;
-  $.fn.parallax.Constructor = Parallax;
-
-  // Parallax No Conflict
-
-  $.fn.parallax.noConflict = function () {
-    $.fn.parallax = old;
-    return this;
-  };
-
-  // Parallax Data-API
-
-  $(function () {
-    $('[data-parallax="scroll"]').parallax();
-  });
-})(jQuery, window, document);
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-/*!
-Waypoints - 4.0.1
-Copyright © 2011-2016 Caleb Troughton
-Licensed under the MIT license.
-https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
-*/
-(function () {
-  'use strict';
-
-  var keyCounter = 0;
-  var allWaypoints = {};
-
-  /* http://imakewebthings.com/waypoints/api/waypoint */
-  function Waypoint(options) {
-    if (!options) {
-      throw new Error('No options passed to Waypoint constructor');
-    }
-    if (!options.element) {
-      throw new Error('No element option passed to Waypoint constructor');
-    }
-    if (!options.handler) {
-      throw new Error('No handler option passed to Waypoint constructor');
-    }
-
-    this.key = 'waypoint-' + keyCounter;
-    this.options = Waypoint.Adapter.extend({}, Waypoint.defaults, options);
-    this.element = this.options.element;
-    this.adapter = new Waypoint.Adapter(this.element);
-    this.callback = options.handler;
-    this.axis = this.options.horizontal ? 'horizontal' : 'vertical';
-    this.enabled = this.options.enabled;
-    this.triggerPoint = null;
-    this.group = Waypoint.Group.findOrCreate({
-      name: this.options.group,
-      axis: this.axis
-    });
-    this.context = Waypoint.Context.findOrCreateByElement(this.options.context);
-
-    if (Waypoint.offsetAliases[this.options.offset]) {
-      this.options.offset = Waypoint.offsetAliases[this.options.offset];
-    }
-    this.group.add(this);
-    this.context.add(this);
-    allWaypoints[this.key] = this;
-    keyCounter += 1;
-  }
-
-  /* Private */
-  Waypoint.prototype.queueTrigger = function (direction) {
-    this.group.queueTrigger(this, direction);
-  };
-
-  /* Private */
-  Waypoint.prototype.trigger = function (args) {
-    if (!this.enabled) {
-      return;
-    }
-    if (this.callback) {
-      this.callback.apply(this, args);
-    }
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/destroy */
-  Waypoint.prototype.destroy = function () {
-    this.context.remove(this);
-    this.group.remove(this);
-    delete allWaypoints[this.key];
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/disable */
-  Waypoint.prototype.disable = function () {
-    this.enabled = false;
-    return this;
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/enable */
-  Waypoint.prototype.enable = function () {
-    this.context.refresh();
-    this.enabled = true;
-    return this;
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/next */
-  Waypoint.prototype.next = function () {
-    return this.group.next(this);
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/previous */
-  Waypoint.prototype.previous = function () {
-    return this.group.previous(this);
-  };
-
-  /* Private */
-  Waypoint.invokeAll = function (method) {
-    var allWaypointsArray = [];
-    for (var waypointKey in allWaypoints) {
-      allWaypointsArray.push(allWaypoints[waypointKey]);
-    }
-    for (var i = 0, end = allWaypointsArray.length; i < end; i++) {
-      allWaypointsArray[i][method]();
-    }
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/destroy-all */
-  Waypoint.destroyAll = function () {
-    Waypoint.invokeAll('destroy');
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/disable-all */
-  Waypoint.disableAll = function () {
-    Waypoint.invokeAll('disable');
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/enable-all */
-  Waypoint.enableAll = function () {
-    Waypoint.Context.refreshAll();
-    for (var waypointKey in allWaypoints) {
-      allWaypoints[waypointKey].enabled = true;
-    }
-    return this;
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/refresh-all */
-  Waypoint.refreshAll = function () {
-    Waypoint.Context.refreshAll();
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/viewport-height */
-  Waypoint.viewportHeight = function () {
-    return window.innerHeight || document.documentElement.clientHeight;
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/viewport-width */
-  Waypoint.viewportWidth = function () {
-    return document.documentElement.clientWidth;
-  };
-
-  Waypoint.adapters = [];
-
-  Waypoint.defaults = {
-    context: window,
-    continuous: true,
-    enabled: true,
-    group: 'default',
-    horizontal: false,
-    offset: 0
-  };
-
-  Waypoint.offsetAliases = {
-    'bottom-in-view': function bottomInView() {
-      return this.context.innerHeight() - this.adapter.outerHeight();
-    },
-    'right-in-view': function rightInView() {
-      return this.context.innerWidth() - this.adapter.outerWidth();
-    }
-  };
-
-  window.Waypoint = Waypoint;
-})();(function () {
-  'use strict';
-
-  function requestAnimationFrameShim(callback) {
-    window.setTimeout(callback, 1000 / 60);
-  }
-
-  var keyCounter = 0;
-  var contexts = {};
-  var Waypoint = window.Waypoint;
-  var oldWindowLoad = window.onload;
-
-  /* http://imakewebthings.com/waypoints/api/context */
-  function Context(element) {
-    this.element = element;
-    this.Adapter = Waypoint.Adapter;
-    this.adapter = new this.Adapter(element);
-    this.key = 'waypoint-context-' + keyCounter;
-    this.didScroll = false;
-    this.didResize = false;
-    this.oldScroll = {
-      x: this.adapter.scrollLeft(),
-      y: this.adapter.scrollTop()
-    };
-    this.waypoints = {
-      vertical: {},
-      horizontal: {}
-    };
-
-    element.waypointContextKey = this.key;
-    contexts[element.waypointContextKey] = this;
-    keyCounter += 1;
-    if (!Waypoint.windowContext) {
-      Waypoint.windowContext = true;
-      Waypoint.windowContext = new Context(window);
-    }
-
-    this.createThrottledScrollHandler();
-    this.createThrottledResizeHandler();
-  }
-
-  /* Private */
-  Context.prototype.add = function (waypoint) {
-    var axis = waypoint.options.horizontal ? 'horizontal' : 'vertical';
-    this.waypoints[axis][waypoint.key] = waypoint;
-    this.refresh();
-  };
-
-  /* Private */
-  Context.prototype.checkEmpty = function () {
-    var horizontalEmpty = this.Adapter.isEmptyObject(this.waypoints.horizontal);
-    var verticalEmpty = this.Adapter.isEmptyObject(this.waypoints.vertical);
-    var isWindow = this.element == this.element.window;
-    if (horizontalEmpty && verticalEmpty && !isWindow) {
-      this.adapter.off('.waypoints');
-      delete contexts[this.key];
-    }
-  };
-
-  /* Private */
-  Context.prototype.createThrottledResizeHandler = function () {
-    var self = this;
-
-    function resizeHandler() {
-      self.handleResize();
-      self.didResize = false;
-    }
-
-    this.adapter.on('resize.waypoints', function () {
-      if (!self.didResize) {
-        self.didResize = true;
-        Waypoint.requestAnimationFrame(resizeHandler);
-      }
-    });
-  };
-
-  /* Private */
-  Context.prototype.createThrottledScrollHandler = function () {
-    var self = this;
-    function scrollHandler() {
-      self.handleScroll();
-      self.didScroll = false;
-    }
-
-    this.adapter.on('scroll.waypoints', function () {
-      if (!self.didScroll || Waypoint.isTouch) {
-        self.didScroll = true;
-        Waypoint.requestAnimationFrame(scrollHandler);
-      }
-    });
-  };
-
-  /* Private */
-  Context.prototype.handleResize = function () {
-    Waypoint.Context.refreshAll();
-  };
-
-  /* Private */
-  Context.prototype.handleScroll = function () {
-    var triggeredGroups = {};
-    var axes = {
-      horizontal: {
-        newScroll: this.adapter.scrollLeft(),
-        oldScroll: this.oldScroll.x,
-        forward: 'right',
-        backward: 'left'
-      },
-      vertical: {
-        newScroll: this.adapter.scrollTop(),
-        oldScroll: this.oldScroll.y,
-        forward: 'down',
-        backward: 'up'
-      }
-    };
-
-    for (var axisKey in axes) {
-      var axis = axes[axisKey];
-      var isForward = axis.newScroll > axis.oldScroll;
-      var direction = isForward ? axis.forward : axis.backward;
-
-      for (var waypointKey in this.waypoints[axisKey]) {
-        var waypoint = this.waypoints[axisKey][waypointKey];
-        if (waypoint.triggerPoint === null) {
-          continue;
-        }
-        var wasBeforeTriggerPoint = axis.oldScroll < waypoint.triggerPoint;
-        var nowAfterTriggerPoint = axis.newScroll >= waypoint.triggerPoint;
-        var crossedForward = wasBeforeTriggerPoint && nowAfterTriggerPoint;
-        var crossedBackward = !wasBeforeTriggerPoint && !nowAfterTriggerPoint;
-        if (crossedForward || crossedBackward) {
-          waypoint.queueTrigger(direction);
-          triggeredGroups[waypoint.group.id] = waypoint.group;
-        }
-      }
-    }
-
-    for (var groupKey in triggeredGroups) {
-      triggeredGroups[groupKey].flushTriggers();
-    }
-
-    this.oldScroll = {
-      x: axes.horizontal.newScroll,
-      y: axes.vertical.newScroll
-    };
-  };
-
-  /* Private */
-  Context.prototype.innerHeight = function () {
-    /*eslint-disable eqeqeq */
-    if (this.element == this.element.window) {
-      return Waypoint.viewportHeight();
-    }
-    /*eslint-enable eqeqeq */
-    return this.adapter.innerHeight();
-  };
-
-  /* Private */
-  Context.prototype.remove = function (waypoint) {
-    delete this.waypoints[waypoint.axis][waypoint.key];
-    this.checkEmpty();
-  };
-
-  /* Private */
-  Context.prototype.innerWidth = function () {
-    /*eslint-disable eqeqeq */
-    if (this.element == this.element.window) {
-      return Waypoint.viewportWidth();
-    }
-    /*eslint-enable eqeqeq */
-    return this.adapter.innerWidth();
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/context-destroy */
-  Context.prototype.destroy = function () {
-    var allWaypoints = [];
-    for (var axis in this.waypoints) {
-      for (var waypointKey in this.waypoints[axis]) {
-        allWaypoints.push(this.waypoints[axis][waypointKey]);
-      }
-    }
-    for (var i = 0, end = allWaypoints.length; i < end; i++) {
-      allWaypoints[i].destroy();
-    }
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/context-refresh */
-  Context.prototype.refresh = function () {
-    /*eslint-disable eqeqeq */
-    var isWindow = this.element == this.element.window;
-    /*eslint-enable eqeqeq */
-    var contextOffset = isWindow ? undefined : this.adapter.offset();
-    var triggeredGroups = {};
-    var axes;
-
-    this.handleScroll();
-    axes = {
-      horizontal: {
-        contextOffset: isWindow ? 0 : contextOffset.left,
-        contextScroll: isWindow ? 0 : this.oldScroll.x,
-        contextDimension: this.innerWidth(),
-        oldScroll: this.oldScroll.x,
-        forward: 'right',
-        backward: 'left',
-        offsetProp: 'left'
-      },
-      vertical: {
-        contextOffset: isWindow ? 0 : contextOffset.top,
-        contextScroll: isWindow ? 0 : this.oldScroll.y,
-        contextDimension: this.innerHeight(),
-        oldScroll: this.oldScroll.y,
-        forward: 'down',
-        backward: 'up',
-        offsetProp: 'top'
-      }
-    };
-
-    for (var axisKey in axes) {
-      var axis = axes[axisKey];
-      for (var waypointKey in this.waypoints[axisKey]) {
-        var waypoint = this.waypoints[axisKey][waypointKey];
-        var adjustment = waypoint.options.offset;
-        var oldTriggerPoint = waypoint.triggerPoint;
-        var elementOffset = 0;
-        var freshWaypoint = oldTriggerPoint == null;
-        var contextModifier, wasBeforeScroll, nowAfterScroll;
-        var triggeredBackward, triggeredForward;
-
-        if (waypoint.element !== waypoint.element.window) {
-          elementOffset = waypoint.adapter.offset()[axis.offsetProp];
-        }
-
-        if (typeof adjustment === 'function') {
-          adjustment = adjustment.apply(waypoint);
-        } else if (typeof adjustment === 'string') {
-          adjustment = parseFloat(adjustment);
-          if (waypoint.options.offset.indexOf('%') > -1) {
-            adjustment = Math.ceil(axis.contextDimension * adjustment / 100);
-          }
-        }
-
-        contextModifier = axis.contextScroll - axis.contextOffset;
-        waypoint.triggerPoint = Math.floor(elementOffset + contextModifier - adjustment);
-        wasBeforeScroll = oldTriggerPoint < axis.oldScroll;
-        nowAfterScroll = waypoint.triggerPoint >= axis.oldScroll;
-        triggeredBackward = wasBeforeScroll && nowAfterScroll;
-        triggeredForward = !wasBeforeScroll && !nowAfterScroll;
-
-        if (!freshWaypoint && triggeredBackward) {
-          waypoint.queueTrigger(axis.backward);
-          triggeredGroups[waypoint.group.id] = waypoint.group;
-        } else if (!freshWaypoint && triggeredForward) {
-          waypoint.queueTrigger(axis.forward);
-          triggeredGroups[waypoint.group.id] = waypoint.group;
-        } else if (freshWaypoint && axis.oldScroll >= waypoint.triggerPoint) {
-          waypoint.queueTrigger(axis.forward);
-          triggeredGroups[waypoint.group.id] = waypoint.group;
-        }
-      }
-    }
-
-    Waypoint.requestAnimationFrame(function () {
-      for (var groupKey in triggeredGroups) {
-        triggeredGroups[groupKey].flushTriggers();
-      }
-    });
-
-    return this;
-  };
-
-  /* Private */
-  Context.findOrCreateByElement = function (element) {
-    return Context.findByElement(element) || new Context(element);
-  };
-
-  /* Private */
-  Context.refreshAll = function () {
-    for (var contextId in contexts) {
-      contexts[contextId].refresh();
-    }
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/context-find-by-element */
-  Context.findByElement = function (element) {
-    return contexts[element.waypointContextKey];
-  };
-
-  window.onload = function () {
-    if (oldWindowLoad) {
-      oldWindowLoad();
-    }
-    Context.refreshAll();
-  };
-
-  Waypoint.requestAnimationFrame = function (callback) {
-    var requestFn = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || requestAnimationFrameShim;
-    requestFn.call(window, callback);
-  };
-  Waypoint.Context = Context;
-})();(function () {
-  'use strict';
-
-  function byTriggerPoint(a, b) {
-    return a.triggerPoint - b.triggerPoint;
-  }
-
-  function byReverseTriggerPoint(a, b) {
-    return b.triggerPoint - a.triggerPoint;
-  }
-
-  var groups = {
-    vertical: {},
-    horizontal: {}
-  };
-  var Waypoint = window.Waypoint;
-
-  /* http://imakewebthings.com/waypoints/api/group */
-  function Group(options) {
-    this.name = options.name;
-    this.axis = options.axis;
-    this.id = this.name + '-' + this.axis;
-    this.waypoints = [];
-    this.clearTriggerQueues();
-    groups[this.axis][this.name] = this;
-  }
-
-  /* Private */
-  Group.prototype.add = function (waypoint) {
-    this.waypoints.push(waypoint);
-  };
-
-  /* Private */
-  Group.prototype.clearTriggerQueues = function () {
-    this.triggerQueues = {
-      up: [],
-      down: [],
-      left: [],
-      right: []
-    };
-  };
-
-  /* Private */
-  Group.prototype.flushTriggers = function () {
-    for (var direction in this.triggerQueues) {
-      var waypoints = this.triggerQueues[direction];
-      var reverse = direction === 'up' || direction === 'left';
-      waypoints.sort(reverse ? byReverseTriggerPoint : byTriggerPoint);
-      for (var i = 0, end = waypoints.length; i < end; i += 1) {
-        var waypoint = waypoints[i];
-        if (waypoint.options.continuous || i === waypoints.length - 1) {
-          waypoint.trigger([direction]);
-        }
-      }
-    }
-    this.clearTriggerQueues();
-  };
-
-  /* Private */
-  Group.prototype.next = function (waypoint) {
-    this.waypoints.sort(byTriggerPoint);
-    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints);
-    var isLast = index === this.waypoints.length - 1;
-    return isLast ? null : this.waypoints[index + 1];
-  };
-
-  /* Private */
-  Group.prototype.previous = function (waypoint) {
-    this.waypoints.sort(byTriggerPoint);
-    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints);
-    return index ? this.waypoints[index - 1] : null;
-  };
-
-  /* Private */
-  Group.prototype.queueTrigger = function (waypoint, direction) {
-    this.triggerQueues[direction].push(waypoint);
-  };
-
-  /* Private */
-  Group.prototype.remove = function (waypoint) {
-    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints);
-    if (index > -1) {
-      this.waypoints.splice(index, 1);
-    }
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/first */
-  Group.prototype.first = function () {
-    return this.waypoints[0];
-  };
-
-  /* Public */
-  /* http://imakewebthings.com/waypoints/api/last */
-  Group.prototype.last = function () {
-    return this.waypoints[this.waypoints.length - 1];
-  };
-
-  /* Private */
-  Group.findOrCreate = function (options) {
-    return groups[options.axis][options.name] || new Group(options);
-  };
-
-  Waypoint.Group = Group;
-})();(function () {
-  'use strict';
-
-  var $ = window.jQuery;
-  var Waypoint = window.Waypoint;
-
-  function JQueryAdapter(element) {
-    this.$element = $(element);
-  }
-
-  $.each(['innerHeight', 'innerWidth', 'off', 'offset', 'on', 'outerHeight', 'outerWidth', 'scrollLeft', 'scrollTop'], function (i, method) {
-    JQueryAdapter.prototype[method] = function () {
-      var args = Array.prototype.slice.call(arguments);
-      return this.$element[method].apply(this.$element, args);
-    };
-  });
-
-  $.each(['extend', 'inArray', 'isEmptyObject'], function (i, method) {
-    JQueryAdapter[method] = $[method];
-  });
-
-  Waypoint.adapters.push({
-    name: 'jquery',
-    Adapter: JQueryAdapter
-  });
-  Waypoint.Adapter = JQueryAdapter;
-})();(function () {
-  'use strict';
-
-  var Waypoint = window.Waypoint;
-
-  function createExtension(framework) {
-    return function () {
-      var waypoints = [];
-      var overrides = arguments[0];
-
-      if (framework.isFunction(arguments[0])) {
-        overrides = framework.extend({}, arguments[1]);
-        overrides.handler = arguments[0];
-      }
-
-      this.each(function () {
-        var options = framework.extend({}, overrides, {
-          element: this
-        });
-        if (typeof options.context === 'string') {
-          options.context = framework(this).closest(options.context)[0];
-        }
-        waypoints.push(new Waypoint(options));
-      });
-
-      return waypoints;
-    };
-  }
-
-  if (window.jQuery) {
-    window.jQuery.fn.waypoint = createExtension(window.jQuery);
-  }
-  if (window.Zepto) {
-    window.Zepto.fn.waypoint = createExtension(window.Zepto);
-  }
-})();
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-
-(function ($) {
-    "use strict";
-
-    $.fn.counterUp = function (options) {
-
-        // Defaults
-        var settings = $.extend({
-            'time': 400,
-            'delay': 10
-        }, options);
-
-        return this.each(function () {
-
-            // Store the object
-            var $this = $(this);
-            var $settings = settings;
-
-            var counterUpper = function counterUpper() {
-                var nums = [];
-                var divisions = $settings.time / $settings.delay;
-                var num = $this.text();
-                var isComma = /[0-9]+,[0-9]+/.test(num);
-                num = num.replace(/,/g, '');
-                var isInt = /^[0-9]+$/.test(num);
-                var isFloat = /^[0-9]+\.[0-9]+$/.test(num);
-                var decimalPlaces = isFloat ? (num.split('.')[1] || []).length : 0;
-
-                // Generate list of incremental numbers to display
-                for (var i = divisions; i >= 1; i--) {
-
-                    // Preserve as int if input was int
-                    var newNum = parseInt(num / divisions * i);
-
-                    // Preserve float if input was float
-                    if (isFloat) {
-                        newNum = parseFloat(num / divisions * i).toFixed(decimalPlaces);
-                    }
-
-                    // Preserve commas if input had commas
-                    if (isComma) {
-                        while (/(\d+)(\d{3})/.test(newNum.toString())) {
-                            newNum = newNum.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
-                        }
-                    }
-
-                    nums.unshift(newNum);
-                }
-
-                $this.data('counterup-nums', nums);
-                $this.text('0');
-
-                // Updates the number until we're done
-                var f = function f() {
-                    if (!$this.data('counterup-nums')) {
-                        return;
-                    }
-                    $this.text($this.data('counterup-nums').shift());
-                    if ($this.data('counterup-nums').length) {
-                        setTimeout($this.data('counterup-func'), $settings.delay);
-                    } else {
-                        delete $this.data('counterup-nums');
-                        $this.data('counterup-nums', null);
-                        $this.data('counterup-func', null);
-                    }
-                };
-                $this.data('counterup-func', f);
-
-                // Start the count up
-                setTimeout($this.data('counterup-func'), $settings.delay);
-            };
-
-            // Perform counts when the element gets into view
-            $this.waypoint(counterUpper, { offset: '100%', triggerOnce: true });
-        });
-    };
-})(jQuery);
-
-/***/ }),
-/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45899,10 +44773,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(41).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(38).setImmediate))
 
 /***/ }),
-/* 41 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -45958,7 +44832,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(42);
+__webpack_require__(39);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -45972,7 +44846,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -46165,15 +45039,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 43 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(44)
+var normalizeComponent = __webpack_require__(41)
 /* script */
-var __vue_script__ = __webpack_require__(45)
+var __vue_script__ = __webpack_require__(42)
 /* template */
-var __vue_template__ = __webpack_require__(46)
+var __vue_template__ = __webpack_require__(43)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -46212,7 +45086,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -46321,7 +45195,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 45 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46350,7 +45224,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46393,7 +45267,1236 @@ if (false) {
 }
 
 /***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*!
+ * parallax.js v1.5.0 (http://pixelcog.github.io/parallax.js/)
+ * @copyright 2016 PixelCog, Inc.
+ * @license MIT (https://github.com/pixelcog/parallax.js/blob/master/LICENSE)
+ */
+
+;(function ($, window, document, undefined) {
+
+  // Polyfill for requestAnimationFrame
+  // via: https://gist.github.com/paulirish/1579671
+
+  (function () {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+      window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+      window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      var id = window.setTimeout(function () {
+        callback(currTime + timeToCall);
+      }, timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
+
+    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
+      clearTimeout(id);
+    };
+  })();
+
+  // Parallax Constructor
+
+  function Parallax(element, options) {
+    var self = this;
+
+    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) == 'object') {
+      delete options.refresh;
+      delete options.render;
+      $.extend(this, options);
+    }
+
+    this.$element = $(element);
+
+    if (!this.imageSrc && this.$element.is('img')) {
+      this.imageSrc = this.$element.attr('src');
+    }
+
+    var positions = (this.position + '').toLowerCase().match(/\S+/g) || [];
+
+    if (positions.length < 1) {
+      positions.push('center');
+    }
+    if (positions.length == 1) {
+      positions.push(positions[0]);
+    }
+
+    if (positions[0] == 'top' || positions[0] == 'bottom' || positions[1] == 'left' || positions[1] == 'right') {
+      positions = [positions[1], positions[0]];
+    }
+
+    if (this.positionX !== undefined) positions[0] = this.positionX.toLowerCase();
+    if (this.positionY !== undefined) positions[1] = this.positionY.toLowerCase();
+
+    self.positionX = positions[0];
+    self.positionY = positions[1];
+
+    if (this.positionX != 'left' && this.positionX != 'right') {
+      if (isNaN(parseInt(this.positionX))) {
+        this.positionX = 'center';
+      } else {
+        this.positionX = parseInt(this.positionX);
+      }
+    }
+
+    if (this.positionY != 'top' && this.positionY != 'bottom') {
+      if (isNaN(parseInt(this.positionY))) {
+        this.positionY = 'center';
+      } else {
+        this.positionY = parseInt(this.positionY);
+      }
+    }
+
+    this.position = this.positionX + (isNaN(this.positionX) ? '' : 'px') + ' ' + this.positionY + (isNaN(this.positionY) ? '' : 'px');
+
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+      if (this.imageSrc && this.iosFix && !this.$element.is('img')) {
+        this.$element.css({
+          backgroundImage: 'url(' + this.imageSrc + ')',
+          backgroundSize: 'cover',
+          backgroundPosition: this.position
+        });
+      }
+      return this;
+    }
+
+    if (navigator.userAgent.match(/(Android)/)) {
+      if (this.imageSrc && this.androidFix && !this.$element.is('img')) {
+        this.$element.css({
+          backgroundImage: 'url(' + this.imageSrc + ')',
+          backgroundSize: 'cover',
+          backgroundPosition: this.position
+        });
+      }
+      return this;
+    }
+
+    this.$mirror = $('<div />').prependTo(this.mirrorContainer);
+
+    var slider = this.$element.find('>.parallax-slider');
+    var sliderExisted = false;
+
+    if (slider.length == 0) this.$slider = $('<img />').prependTo(this.$mirror);else {
+      this.$slider = slider.prependTo(this.$mirror);
+      sliderExisted = true;
+    }
+
+    this.$mirror.addClass('parallax-mirror').css({
+      visibility: 'hidden',
+      zIndex: this.zIndex,
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      overflow: 'hidden'
+    });
+
+    this.$slider.addClass('parallax-slider').one('load', function () {
+      if (!self.naturalHeight || !self.naturalWidth) {
+        self.naturalHeight = this.naturalHeight || this.height || 1;
+        self.naturalWidth = this.naturalWidth || this.width || 1;
+      }
+      self.aspectRatio = self.naturalWidth / self.naturalHeight;
+
+      Parallax.isSetup || Parallax.setup();
+      Parallax.sliders.push(self);
+      Parallax.isFresh = false;
+      Parallax.requestRender();
+    });
+
+    if (!sliderExisted) this.$slider[0].src = this.imageSrc;
+
+    if (this.naturalHeight && this.naturalWidth || this.$slider[0].complete || slider.length > 0) {
+      this.$slider.trigger('load');
+    }
+  }
+
+  // Parallax Instance Methods
+
+  $.extend(Parallax.prototype, {
+    speed: 0.2,
+    bleed: 0,
+    zIndex: -100,
+    iosFix: true,
+    androidFix: true,
+    position: 'center',
+    overScrollFix: false,
+    mirrorContainer: 'body',
+
+    refresh: function refresh() {
+      this.boxWidth = this.$element.outerWidth();
+      this.boxHeight = this.$element.outerHeight() + this.bleed * 2;
+      this.boxOffsetTop = this.$element.offset().top - this.bleed;
+      this.boxOffsetLeft = this.$element.offset().left;
+      this.boxOffsetBottom = this.boxOffsetTop + this.boxHeight;
+
+      var winHeight = Parallax.winHeight;
+      var docHeight = Parallax.docHeight;
+      var maxOffset = Math.min(this.boxOffsetTop, docHeight - winHeight);
+      var minOffset = Math.max(this.boxOffsetTop + this.boxHeight - winHeight, 0);
+      var imageHeightMin = this.boxHeight + (maxOffset - minOffset) * (1 - this.speed) | 0;
+      var imageOffsetMin = (this.boxOffsetTop - maxOffset) * (1 - this.speed) | 0;
+      var margin;
+
+      if (imageHeightMin * this.aspectRatio >= this.boxWidth) {
+        this.imageWidth = imageHeightMin * this.aspectRatio | 0;
+        this.imageHeight = imageHeightMin;
+        this.offsetBaseTop = imageOffsetMin;
+
+        margin = this.imageWidth - this.boxWidth;
+
+        if (this.positionX == 'left') {
+          this.offsetLeft = 0;
+        } else if (this.positionX == 'right') {
+          this.offsetLeft = -margin;
+        } else if (!isNaN(this.positionX)) {
+          this.offsetLeft = Math.max(this.positionX, -margin);
+        } else {
+          this.offsetLeft = -margin / 2 | 0;
+        }
+      } else {
+        this.imageWidth = this.boxWidth;
+        this.imageHeight = this.boxWidth / this.aspectRatio | 0;
+        this.offsetLeft = 0;
+
+        margin = this.imageHeight - imageHeightMin;
+
+        if (this.positionY == 'top') {
+          this.offsetBaseTop = imageOffsetMin;
+        } else if (this.positionY == 'bottom') {
+          this.offsetBaseTop = imageOffsetMin - margin;
+        } else if (!isNaN(this.positionY)) {
+          this.offsetBaseTop = imageOffsetMin + Math.max(this.positionY, -margin);
+        } else {
+          this.offsetBaseTop = imageOffsetMin - margin / 2 | 0;
+        }
+      }
+    },
+
+    render: function render() {
+      var scrollTop = Parallax.scrollTop;
+      var scrollLeft = Parallax.scrollLeft;
+      var overScroll = this.overScrollFix ? Parallax.overScroll : 0;
+      var scrollBottom = scrollTop + Parallax.winHeight;
+
+      if (this.boxOffsetBottom > scrollTop && this.boxOffsetTop <= scrollBottom) {
+        this.visibility = 'visible';
+        this.mirrorTop = this.boxOffsetTop - scrollTop;
+        this.mirrorLeft = this.boxOffsetLeft - scrollLeft;
+        this.offsetTop = this.offsetBaseTop - this.mirrorTop * (1 - this.speed);
+      } else {
+        this.visibility = 'hidden';
+      }
+
+      this.$mirror.css({
+        transform: 'translate3d(' + this.mirrorLeft + 'px, ' + (this.mirrorTop - overScroll) + 'px, 0px)',
+        visibility: this.visibility,
+        height: this.boxHeight,
+        width: this.boxWidth
+      });
+
+      this.$slider.css({
+        transform: 'translate3d(' + this.offsetLeft + 'px, ' + this.offsetTop + 'px, 0px)',
+        position: 'absolute',
+        height: this.imageHeight,
+        width: this.imageWidth,
+        maxWidth: 'none'
+      });
+    }
+  });
+
+  // Parallax Static Methods
+
+  $.extend(Parallax, {
+    scrollTop: 0,
+    scrollLeft: 0,
+    winHeight: 0,
+    winWidth: 0,
+    docHeight: 1 << 30,
+    docWidth: 1 << 30,
+    sliders: [],
+    isReady: false,
+    isFresh: false,
+    isBusy: false,
+
+    setup: function setup() {
+      if (this.isReady) return;
+
+      var self = this;
+
+      var $doc = $(document),
+          $win = $(window);
+
+      var loadDimensions = function loadDimensions() {
+        Parallax.winHeight = $win.height();
+        Parallax.winWidth = $win.width();
+        Parallax.docHeight = $doc.height();
+        Parallax.docWidth = $doc.width();
+      };
+
+      var loadScrollPosition = function loadScrollPosition() {
+        var winScrollTop = $win.scrollTop();
+        var scrollTopMax = Parallax.docHeight - Parallax.winHeight;
+        var scrollLeftMax = Parallax.docWidth - Parallax.winWidth;
+        Parallax.scrollTop = Math.max(0, Math.min(scrollTopMax, winScrollTop));
+        Parallax.scrollLeft = Math.max(0, Math.min(scrollLeftMax, $win.scrollLeft()));
+        Parallax.overScroll = Math.max(winScrollTop - scrollTopMax, Math.min(winScrollTop, 0));
+      };
+
+      $win.on('resize.px.parallax load.px.parallax', function () {
+        loadDimensions();
+        self.refresh();
+        Parallax.isFresh = false;
+        Parallax.requestRender();
+      }).on('scroll.px.parallax load.px.parallax', function () {
+        loadScrollPosition();
+        Parallax.requestRender();
+      });
+
+      loadDimensions();
+      loadScrollPosition();
+
+      this.isReady = true;
+
+      var lastPosition = -1;
+
+      function frameLoop() {
+        if (lastPosition == window.pageYOffset) {
+          // Avoid overcalculations
+          window.requestAnimationFrame(frameLoop);
+          return false;
+        } else lastPosition = window.pageYOffset;
+
+        self.render();
+        window.requestAnimationFrame(frameLoop);
+      }
+
+      frameLoop();
+    },
+
+    configure: function configure(options) {
+      if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) == 'object') {
+        delete options.refresh;
+        delete options.render;
+        $.extend(this.prototype, options);
+      }
+    },
+
+    refresh: function refresh() {
+      $.each(this.sliders, function () {
+        this.refresh();
+      });
+      this.isFresh = true;
+    },
+
+    render: function render() {
+      this.isFresh || this.refresh();
+      $.each(this.sliders, function () {
+        this.render();
+      });
+    },
+
+    requestRender: function requestRender() {
+      var self = this;
+      self.render();
+      self.isBusy = false;
+    },
+    destroy: function destroy(el) {
+      var i,
+          parallaxElement = $(el).data('px.parallax');
+      parallaxElement.$mirror.remove();
+      for (i = 0; i < this.sliders.length; i += 1) {
+        if (this.sliders[i] == parallaxElement) {
+          this.sliders.splice(i, 1);
+        }
+      }
+      $(el).data('px.parallax', false);
+      if (this.sliders.length === 0) {
+        $(window).off('scroll.px.parallax resize.px.parallax load.px.parallax');
+        this.isReady = false;
+        Parallax.isSetup = false;
+      }
+    }
+  });
+
+  // Parallax Plugin Definition
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this);
+      var options = (typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object' && option;
+
+      if (this == window || this == document || $this.is('body')) {
+        Parallax.configure(options);
+      } else if (!$this.data('px.parallax')) {
+        options = $.extend({}, $this.data(), options);
+        $this.data('px.parallax', new Parallax(this, options));
+      } else if ((typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object') {
+        $.extend($this.data('px.parallax'), options);
+      }
+      if (typeof option == 'string') {
+        if (option == 'destroy') {
+          Parallax.destroy(this);
+        } else {
+          Parallax[option]();
+        }
+      }
+    });
+  }
+
+  var old = $.fn.parallax;
+
+  $.fn.parallax = Plugin;
+  $.fn.parallax.Constructor = Parallax;
+
+  // Parallax No Conflict
+
+  $.fn.parallax.noConflict = function () {
+    $.fn.parallax = old;
+    return this;
+  };
+
+  // Parallax Data-API
+
+  $(function () {
+    $('[data-parallax="scroll"]').parallax();
+  });
+})(jQuery, window, document);
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+/*!
+Waypoints - 4.0.1
+Copyright © 2011-2016 Caleb Troughton
+Licensed under the MIT license.
+https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
+*/
+(function () {
+  'use strict';
+
+  var keyCounter = 0;
+  var allWaypoints = {};
+
+  /* http://imakewebthings.com/waypoints/api/waypoint */
+  function Waypoint(options) {
+    if (!options) {
+      throw new Error('No options passed to Waypoint constructor');
+    }
+    if (!options.element) {
+      throw new Error('No element option passed to Waypoint constructor');
+    }
+    if (!options.handler) {
+      throw new Error('No handler option passed to Waypoint constructor');
+    }
+
+    this.key = 'waypoint-' + keyCounter;
+    this.options = Waypoint.Adapter.extend({}, Waypoint.defaults, options);
+    this.element = this.options.element;
+    this.adapter = new Waypoint.Adapter(this.element);
+    this.callback = options.handler;
+    this.axis = this.options.horizontal ? 'horizontal' : 'vertical';
+    this.enabled = this.options.enabled;
+    this.triggerPoint = null;
+    this.group = Waypoint.Group.findOrCreate({
+      name: this.options.group,
+      axis: this.axis
+    });
+    this.context = Waypoint.Context.findOrCreateByElement(this.options.context);
+
+    if (Waypoint.offsetAliases[this.options.offset]) {
+      this.options.offset = Waypoint.offsetAliases[this.options.offset];
+    }
+    this.group.add(this);
+    this.context.add(this);
+    allWaypoints[this.key] = this;
+    keyCounter += 1;
+  }
+
+  /* Private */
+  Waypoint.prototype.queueTrigger = function (direction) {
+    this.group.queueTrigger(this, direction);
+  };
+
+  /* Private */
+  Waypoint.prototype.trigger = function (args) {
+    if (!this.enabled) {
+      return;
+    }
+    if (this.callback) {
+      this.callback.apply(this, args);
+    }
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/destroy */
+  Waypoint.prototype.destroy = function () {
+    this.context.remove(this);
+    this.group.remove(this);
+    delete allWaypoints[this.key];
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/disable */
+  Waypoint.prototype.disable = function () {
+    this.enabled = false;
+    return this;
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/enable */
+  Waypoint.prototype.enable = function () {
+    this.context.refresh();
+    this.enabled = true;
+    return this;
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/next */
+  Waypoint.prototype.next = function () {
+    return this.group.next(this);
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/previous */
+  Waypoint.prototype.previous = function () {
+    return this.group.previous(this);
+  };
+
+  /* Private */
+  Waypoint.invokeAll = function (method) {
+    var allWaypointsArray = [];
+    for (var waypointKey in allWaypoints) {
+      allWaypointsArray.push(allWaypoints[waypointKey]);
+    }
+    for (var i = 0, end = allWaypointsArray.length; i < end; i++) {
+      allWaypointsArray[i][method]();
+    }
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/destroy-all */
+  Waypoint.destroyAll = function () {
+    Waypoint.invokeAll('destroy');
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/disable-all */
+  Waypoint.disableAll = function () {
+    Waypoint.invokeAll('disable');
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/enable-all */
+  Waypoint.enableAll = function () {
+    Waypoint.Context.refreshAll();
+    for (var waypointKey in allWaypoints) {
+      allWaypoints[waypointKey].enabled = true;
+    }
+    return this;
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/refresh-all */
+  Waypoint.refreshAll = function () {
+    Waypoint.Context.refreshAll();
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/viewport-height */
+  Waypoint.viewportHeight = function () {
+    return window.innerHeight || document.documentElement.clientHeight;
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/viewport-width */
+  Waypoint.viewportWidth = function () {
+    return document.documentElement.clientWidth;
+  };
+
+  Waypoint.adapters = [];
+
+  Waypoint.defaults = {
+    context: window,
+    continuous: true,
+    enabled: true,
+    group: 'default',
+    horizontal: false,
+    offset: 0
+  };
+
+  Waypoint.offsetAliases = {
+    'bottom-in-view': function bottomInView() {
+      return this.context.innerHeight() - this.adapter.outerHeight();
+    },
+    'right-in-view': function rightInView() {
+      return this.context.innerWidth() - this.adapter.outerWidth();
+    }
+  };
+
+  window.Waypoint = Waypoint;
+})();(function () {
+  'use strict';
+
+  function requestAnimationFrameShim(callback) {
+    window.setTimeout(callback, 1000 / 60);
+  }
+
+  var keyCounter = 0;
+  var contexts = {};
+  var Waypoint = window.Waypoint;
+  var oldWindowLoad = window.onload;
+
+  /* http://imakewebthings.com/waypoints/api/context */
+  function Context(element) {
+    this.element = element;
+    this.Adapter = Waypoint.Adapter;
+    this.adapter = new this.Adapter(element);
+    this.key = 'waypoint-context-' + keyCounter;
+    this.didScroll = false;
+    this.didResize = false;
+    this.oldScroll = {
+      x: this.adapter.scrollLeft(),
+      y: this.adapter.scrollTop()
+    };
+    this.waypoints = {
+      vertical: {},
+      horizontal: {}
+    };
+
+    element.waypointContextKey = this.key;
+    contexts[element.waypointContextKey] = this;
+    keyCounter += 1;
+    if (!Waypoint.windowContext) {
+      Waypoint.windowContext = true;
+      Waypoint.windowContext = new Context(window);
+    }
+
+    this.createThrottledScrollHandler();
+    this.createThrottledResizeHandler();
+  }
+
+  /* Private */
+  Context.prototype.add = function (waypoint) {
+    var axis = waypoint.options.horizontal ? 'horizontal' : 'vertical';
+    this.waypoints[axis][waypoint.key] = waypoint;
+    this.refresh();
+  };
+
+  /* Private */
+  Context.prototype.checkEmpty = function () {
+    var horizontalEmpty = this.Adapter.isEmptyObject(this.waypoints.horizontal);
+    var verticalEmpty = this.Adapter.isEmptyObject(this.waypoints.vertical);
+    var isWindow = this.element == this.element.window;
+    if (horizontalEmpty && verticalEmpty && !isWindow) {
+      this.adapter.off('.waypoints');
+      delete contexts[this.key];
+    }
+  };
+
+  /* Private */
+  Context.prototype.createThrottledResizeHandler = function () {
+    var self = this;
+
+    function resizeHandler() {
+      self.handleResize();
+      self.didResize = false;
+    }
+
+    this.adapter.on('resize.waypoints', function () {
+      if (!self.didResize) {
+        self.didResize = true;
+        Waypoint.requestAnimationFrame(resizeHandler);
+      }
+    });
+  };
+
+  /* Private */
+  Context.prototype.createThrottledScrollHandler = function () {
+    var self = this;
+    function scrollHandler() {
+      self.handleScroll();
+      self.didScroll = false;
+    }
+
+    this.adapter.on('scroll.waypoints', function () {
+      if (!self.didScroll || Waypoint.isTouch) {
+        self.didScroll = true;
+        Waypoint.requestAnimationFrame(scrollHandler);
+      }
+    });
+  };
+
+  /* Private */
+  Context.prototype.handleResize = function () {
+    Waypoint.Context.refreshAll();
+  };
+
+  /* Private */
+  Context.prototype.handleScroll = function () {
+    var triggeredGroups = {};
+    var axes = {
+      horizontal: {
+        newScroll: this.adapter.scrollLeft(),
+        oldScroll: this.oldScroll.x,
+        forward: 'right',
+        backward: 'left'
+      },
+      vertical: {
+        newScroll: this.adapter.scrollTop(),
+        oldScroll: this.oldScroll.y,
+        forward: 'down',
+        backward: 'up'
+      }
+    };
+
+    for (var axisKey in axes) {
+      var axis = axes[axisKey];
+      var isForward = axis.newScroll > axis.oldScroll;
+      var direction = isForward ? axis.forward : axis.backward;
+
+      for (var waypointKey in this.waypoints[axisKey]) {
+        var waypoint = this.waypoints[axisKey][waypointKey];
+        if (waypoint.triggerPoint === null) {
+          continue;
+        }
+        var wasBeforeTriggerPoint = axis.oldScroll < waypoint.triggerPoint;
+        var nowAfterTriggerPoint = axis.newScroll >= waypoint.triggerPoint;
+        var crossedForward = wasBeforeTriggerPoint && nowAfterTriggerPoint;
+        var crossedBackward = !wasBeforeTriggerPoint && !nowAfterTriggerPoint;
+        if (crossedForward || crossedBackward) {
+          waypoint.queueTrigger(direction);
+          triggeredGroups[waypoint.group.id] = waypoint.group;
+        }
+      }
+    }
+
+    for (var groupKey in triggeredGroups) {
+      triggeredGroups[groupKey].flushTriggers();
+    }
+
+    this.oldScroll = {
+      x: axes.horizontal.newScroll,
+      y: axes.vertical.newScroll
+    };
+  };
+
+  /* Private */
+  Context.prototype.innerHeight = function () {
+    /*eslint-disable eqeqeq */
+    if (this.element == this.element.window) {
+      return Waypoint.viewportHeight();
+    }
+    /*eslint-enable eqeqeq */
+    return this.adapter.innerHeight();
+  };
+
+  /* Private */
+  Context.prototype.remove = function (waypoint) {
+    delete this.waypoints[waypoint.axis][waypoint.key];
+    this.checkEmpty();
+  };
+
+  /* Private */
+  Context.prototype.innerWidth = function () {
+    /*eslint-disable eqeqeq */
+    if (this.element == this.element.window) {
+      return Waypoint.viewportWidth();
+    }
+    /*eslint-enable eqeqeq */
+    return this.adapter.innerWidth();
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/context-destroy */
+  Context.prototype.destroy = function () {
+    var allWaypoints = [];
+    for (var axis in this.waypoints) {
+      for (var waypointKey in this.waypoints[axis]) {
+        allWaypoints.push(this.waypoints[axis][waypointKey]);
+      }
+    }
+    for (var i = 0, end = allWaypoints.length; i < end; i++) {
+      allWaypoints[i].destroy();
+    }
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/context-refresh */
+  Context.prototype.refresh = function () {
+    /*eslint-disable eqeqeq */
+    var isWindow = this.element == this.element.window;
+    /*eslint-enable eqeqeq */
+    var contextOffset = isWindow ? undefined : this.adapter.offset();
+    var triggeredGroups = {};
+    var axes;
+
+    this.handleScroll();
+    axes = {
+      horizontal: {
+        contextOffset: isWindow ? 0 : contextOffset.left,
+        contextScroll: isWindow ? 0 : this.oldScroll.x,
+        contextDimension: this.innerWidth(),
+        oldScroll: this.oldScroll.x,
+        forward: 'right',
+        backward: 'left',
+        offsetProp: 'left'
+      },
+      vertical: {
+        contextOffset: isWindow ? 0 : contextOffset.top,
+        contextScroll: isWindow ? 0 : this.oldScroll.y,
+        contextDimension: this.innerHeight(),
+        oldScroll: this.oldScroll.y,
+        forward: 'down',
+        backward: 'up',
+        offsetProp: 'top'
+      }
+    };
+
+    for (var axisKey in axes) {
+      var axis = axes[axisKey];
+      for (var waypointKey in this.waypoints[axisKey]) {
+        var waypoint = this.waypoints[axisKey][waypointKey];
+        var adjustment = waypoint.options.offset;
+        var oldTriggerPoint = waypoint.triggerPoint;
+        var elementOffset = 0;
+        var freshWaypoint = oldTriggerPoint == null;
+        var contextModifier, wasBeforeScroll, nowAfterScroll;
+        var triggeredBackward, triggeredForward;
+
+        if (waypoint.element !== waypoint.element.window) {
+          elementOffset = waypoint.adapter.offset()[axis.offsetProp];
+        }
+
+        if (typeof adjustment === 'function') {
+          adjustment = adjustment.apply(waypoint);
+        } else if (typeof adjustment === 'string') {
+          adjustment = parseFloat(adjustment);
+          if (waypoint.options.offset.indexOf('%') > -1) {
+            adjustment = Math.ceil(axis.contextDimension * adjustment / 100);
+          }
+        }
+
+        contextModifier = axis.contextScroll - axis.contextOffset;
+        waypoint.triggerPoint = Math.floor(elementOffset + contextModifier - adjustment);
+        wasBeforeScroll = oldTriggerPoint < axis.oldScroll;
+        nowAfterScroll = waypoint.triggerPoint >= axis.oldScroll;
+        triggeredBackward = wasBeforeScroll && nowAfterScroll;
+        triggeredForward = !wasBeforeScroll && !nowAfterScroll;
+
+        if (!freshWaypoint && triggeredBackward) {
+          waypoint.queueTrigger(axis.backward);
+          triggeredGroups[waypoint.group.id] = waypoint.group;
+        } else if (!freshWaypoint && triggeredForward) {
+          waypoint.queueTrigger(axis.forward);
+          triggeredGroups[waypoint.group.id] = waypoint.group;
+        } else if (freshWaypoint && axis.oldScroll >= waypoint.triggerPoint) {
+          waypoint.queueTrigger(axis.forward);
+          triggeredGroups[waypoint.group.id] = waypoint.group;
+        }
+      }
+    }
+
+    Waypoint.requestAnimationFrame(function () {
+      for (var groupKey in triggeredGroups) {
+        triggeredGroups[groupKey].flushTriggers();
+      }
+    });
+
+    return this;
+  };
+
+  /* Private */
+  Context.findOrCreateByElement = function (element) {
+    return Context.findByElement(element) || new Context(element);
+  };
+
+  /* Private */
+  Context.refreshAll = function () {
+    for (var contextId in contexts) {
+      contexts[contextId].refresh();
+    }
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/context-find-by-element */
+  Context.findByElement = function (element) {
+    return contexts[element.waypointContextKey];
+  };
+
+  window.onload = function () {
+    if (oldWindowLoad) {
+      oldWindowLoad();
+    }
+    Context.refreshAll();
+  };
+
+  Waypoint.requestAnimationFrame = function (callback) {
+    var requestFn = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || requestAnimationFrameShim;
+    requestFn.call(window, callback);
+  };
+  Waypoint.Context = Context;
+})();(function () {
+  'use strict';
+
+  function byTriggerPoint(a, b) {
+    return a.triggerPoint - b.triggerPoint;
+  }
+
+  function byReverseTriggerPoint(a, b) {
+    return b.triggerPoint - a.triggerPoint;
+  }
+
+  var groups = {
+    vertical: {},
+    horizontal: {}
+  };
+  var Waypoint = window.Waypoint;
+
+  /* http://imakewebthings.com/waypoints/api/group */
+  function Group(options) {
+    this.name = options.name;
+    this.axis = options.axis;
+    this.id = this.name + '-' + this.axis;
+    this.waypoints = [];
+    this.clearTriggerQueues();
+    groups[this.axis][this.name] = this;
+  }
+
+  /* Private */
+  Group.prototype.add = function (waypoint) {
+    this.waypoints.push(waypoint);
+  };
+
+  /* Private */
+  Group.prototype.clearTriggerQueues = function () {
+    this.triggerQueues = {
+      up: [],
+      down: [],
+      left: [],
+      right: []
+    };
+  };
+
+  /* Private */
+  Group.prototype.flushTriggers = function () {
+    for (var direction in this.triggerQueues) {
+      var waypoints = this.triggerQueues[direction];
+      var reverse = direction === 'up' || direction === 'left';
+      waypoints.sort(reverse ? byReverseTriggerPoint : byTriggerPoint);
+      for (var i = 0, end = waypoints.length; i < end; i += 1) {
+        var waypoint = waypoints[i];
+        if (waypoint.options.continuous || i === waypoints.length - 1) {
+          waypoint.trigger([direction]);
+        }
+      }
+    }
+    this.clearTriggerQueues();
+  };
+
+  /* Private */
+  Group.prototype.next = function (waypoint) {
+    this.waypoints.sort(byTriggerPoint);
+    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints);
+    var isLast = index === this.waypoints.length - 1;
+    return isLast ? null : this.waypoints[index + 1];
+  };
+
+  /* Private */
+  Group.prototype.previous = function (waypoint) {
+    this.waypoints.sort(byTriggerPoint);
+    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints);
+    return index ? this.waypoints[index - 1] : null;
+  };
+
+  /* Private */
+  Group.prototype.queueTrigger = function (waypoint, direction) {
+    this.triggerQueues[direction].push(waypoint);
+  };
+
+  /* Private */
+  Group.prototype.remove = function (waypoint) {
+    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints);
+    if (index > -1) {
+      this.waypoints.splice(index, 1);
+    }
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/first */
+  Group.prototype.first = function () {
+    return this.waypoints[0];
+  };
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/last */
+  Group.prototype.last = function () {
+    return this.waypoints[this.waypoints.length - 1];
+  };
+
+  /* Private */
+  Group.findOrCreate = function (options) {
+    return groups[options.axis][options.name] || new Group(options);
+  };
+
+  Waypoint.Group = Group;
+})();(function () {
+  'use strict';
+
+  var $ = window.jQuery;
+  var Waypoint = window.Waypoint;
+
+  function JQueryAdapter(element) {
+    this.$element = $(element);
+  }
+
+  $.each(['innerHeight', 'innerWidth', 'off', 'offset', 'on', 'outerHeight', 'outerWidth', 'scrollLeft', 'scrollTop'], function (i, method) {
+    JQueryAdapter.prototype[method] = function () {
+      var args = Array.prototype.slice.call(arguments);
+      return this.$element[method].apply(this.$element, args);
+    };
+  });
+
+  $.each(['extend', 'inArray', 'isEmptyObject'], function (i, method) {
+    JQueryAdapter[method] = $[method];
+  });
+
+  Waypoint.adapters.push({
+    name: 'jquery',
+    Adapter: JQueryAdapter
+  });
+  Waypoint.Adapter = JQueryAdapter;
+})();(function () {
+  'use strict';
+
+  var Waypoint = window.Waypoint;
+
+  function createExtension(framework) {
+    return function () {
+      var waypoints = [];
+      var overrides = arguments[0];
+
+      if (framework.isFunction(arguments[0])) {
+        overrides = framework.extend({}, arguments[1]);
+        overrides.handler = arguments[0];
+      }
+
+      this.each(function () {
+        var options = framework.extend({}, overrides, {
+          element: this
+        });
+        if (typeof options.context === 'string') {
+          options.context = framework(this).closest(options.context)[0];
+        }
+        waypoints.push(new Waypoint(options));
+      });
+
+      return waypoints;
+    };
+  }
+
+  if (window.jQuery) {
+    window.jQuery.fn.waypoint = createExtension(window.jQuery);
+  }
+  if (window.Zepto) {
+    window.Zepto.fn.waypoint = createExtension(window.Zepto);
+  }
+})();
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+
+(function ($) {
+    "use strict";
+
+    $.fn.counterUp = function (options) {
+
+        // Defaults
+        var settings = $.extend({
+            'time': 400,
+            'delay': 10
+        }, options);
+
+        return this.each(function () {
+
+            // Store the object
+            var $this = $(this);
+            var $settings = settings;
+
+            var counterUpper = function counterUpper() {
+                var nums = [];
+                var divisions = $settings.time / $settings.delay;
+                var num = $this.text();
+                var isComma = /[0-9]+,[0-9]+/.test(num);
+                num = num.replace(/,/g, '');
+                var isInt = /^[0-9]+$/.test(num);
+                var isFloat = /^[0-9]+\.[0-9]+$/.test(num);
+                var decimalPlaces = isFloat ? (num.split('.')[1] || []).length : 0;
+
+                // Generate list of incremental numbers to display
+                for (var i = divisions; i >= 1; i--) {
+
+                    // Preserve as int if input was int
+                    var newNum = parseInt(num / divisions * i);
+
+                    // Preserve float if input was float
+                    if (isFloat) {
+                        newNum = parseFloat(num / divisions * i).toFixed(decimalPlaces);
+                    }
+
+                    // Preserve commas if input had commas
+                    if (isComma) {
+                        while (/(\d+)(\d{3})/.test(newNum.toString())) {
+                            newNum = newNum.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+                        }
+                    }
+
+                    nums.unshift(newNum);
+                }
+
+                $this.data('counterup-nums', nums);
+                $this.text('0');
+
+                // Updates the number until we're done
+                var f = function f() {
+                    if (!$this.data('counterup-nums')) {
+                        return;
+                    }
+                    $this.text($this.data('counterup-nums').shift());
+                    if ($this.data('counterup-nums').length) {
+                        setTimeout($this.data('counterup-func'), $settings.delay);
+                    } else {
+                        delete $this.data('counterup-nums');
+                        $this.data('counterup-nums', null);
+                        $this.data('counterup-func', null);
+                    }
+                };
+                $this.data('counterup-func', f);
+
+                // Start the count up
+                setTimeout($this.data('counterup-func'), $settings.delay);
+            };
+
+            // Perform counts when the element gets into view
+            $this.waypoint(counterUpper, { offset: '100%', triggerOnce: true });
+        });
+    };
+})(jQuery);
+
+/***/ }),
 /* 47 */
+/***/ (function(module, exports) {
+
+// Form Handler
+window.fh = {
+  set_success: function set_success(element, message) {
+    $(element).closest('.form-group').removeClass('has-error');
+    $(element).closest('.form-group').addClass('has-success');
+    $(element).closest('.form-group').find('.help-block').html(message);
+  },
+  set_multisuccess: function set_multisuccess(data) {
+    errors = data.messages;
+    for (var key in errors) {
+      this.set_success('#' + key, errors[key]);
+    }
+  },
+  set_single_error: function set_single_error(data) {
+    $('#error-result').show(100);
+    $('#error-result').html(data.messages);
+  },
+  set_error: function set_error(element, error) {
+    $(element).closest('.form-group').addClass('has-error');
+    $(element).closest('.form-group').removeClass('has-success');
+    $(element).closest('.form-group').find('.help-block').html(error);
+  },
+
+  remove_error: function remove_error(element) {
+    $(element).closest('.form-group').removeClass('has-error');
+    $(element).closest('.form-group').find('.help-block').html('');
+  },
+
+  remove_all_errros: function remove_all_errros(element) {
+    $(element).find('.form-group').removeClass('has-error');
+    $(element).find('.form-group').find('.help-block').html('');
+  },
+
+  set_multierrors: function set_multierrors(data) {
+    errors = data.messages;
+    for (var key in errors) {
+      this.set_error('#' + key, errors[key]);
+    }
+  },
+
+  hide_element: function hide_element(element) {
+    $(element).closest('.form-group').css("display", "none");
+  },
+
+  show_element: function show_element(element) {
+    $(element).closest('.form-group').css("display", "block");
+  },
+
+  is_success: function is_success(data) {
+    return data.success;
+  },
+
+  redirect: function redirect(data) {
+    window.location = data.redirect;
+  },
+
+  hide_button: function hide_button() {
+    btn = $(document.activeElement);
+    document.btntext = btn[0].innerHTML;
+    btn[0].innerHTML = '<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>';
+    btn.prop('disabled', true);
+    window.lastbutton = btn;
+  },
+
+  show_button: function show_button() {
+    var btn = window.lastbutton;
+    btn[0].innerHTML = document.btntext;
+    btn.prop('disabled', false);
+  },
+
+  show_errorpage: function show_errorpage(error) {
+    console.log(error);
+    this.show_button(window.lastbutton); // Remove This
+  }
+};
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+$("#form_signup").on("submit", function (event) {
+  event.preventDefault();
+  fh.hide_button();
+  fh.remove_all_errros('#form_signup');
+  axios.post('/api/user/signup', $('#form_signup').serialize()).then(function (res) {
+    var data = res.data;
+    if (fh.is_success(data)) {
+      fh.redirect(data);
+    } else {
+      fh.set_multierrors(data);
+    }
+    fh.show_button();
+  }).catch(function (res) {});
+});
+
+/***/ }),
+/* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -21340,6 +21340,18 @@ footer .pull-center {
   padding-right: 10px;
 }
 
+.has-error p {
+  color: #f44336;
+}
+
+.has-error .form-control {
+  border-color: #f44336 !important;
+}
+
+.has-error .form-control:focus {
+  border-color: #f44336 !important;
+}
+
 .nav-link {
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;

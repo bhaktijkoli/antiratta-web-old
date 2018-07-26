@@ -20,3 +20,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+// Modules
+require('./parallax');
+require('./jquery.waypoints');
+require('./jquery.counterup');
+require('./formhandler');
+
+// Pages
+require('./pages/login')

@@ -42,6 +42,15 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+.has-error p {
+  color: $brand-danger;
+}
+.has-error .form-control {
+  border-color: $brand-danger !important;
+}
+.has-error .form-control:focus {
+  border-color: $brand-danger !important;
+}
 // Navbar
 .nav-link {
   transition-duration: 200ms;
