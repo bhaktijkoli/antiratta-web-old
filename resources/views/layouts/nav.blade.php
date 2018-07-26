@@ -1,7 +1,7 @@
-<nav class="navbar {{isset($transparent_nav)?'navbar-transparent':''}} navbar-color-on-scroll fixed-top navbar-expand-lg bg-dark" color-on-scroll="50" id="sectionsNav">
+<nav class="navbar {{isset($transparent_nav)?'navbar-transparent navbar-color-on-scroll':''}} fixed-top navbar-expand-lg bg-dark" color-on-scroll="50" id="sectionsNav">
   <div class="container">
     <div class="navbar-translate">
-      <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">{{config('app.name')}}</a>
+      <a class="navbar-brand" href="/">{{config('app.name')}}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
         <span class="navbar-toggler-icon"></span>
