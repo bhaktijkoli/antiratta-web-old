@@ -10,7 +10,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SignupRequest;
 
 use App\User;
+use App\EmailVerification;
 use App\ResponseBuilder;
+use App\Mail\VerificationMail;
+
+use Mail;
 
 class LoginController extends Controller
 {
@@ -54,6 +58,8 @@ class LoginController extends Controller
       $user->email = $request->input('signup_email');
       $user->password = Hash::make($request->input('signup_password'));
       $user->save();
+      $ev = EmailVerification::createToken($user->email);
+      Mail::to($user)->send(new VerificationMail($user, $ev));
       return ResponseBuilder::send(true, "", '/');
     }
 
