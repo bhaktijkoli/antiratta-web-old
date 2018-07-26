@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@get');
-Route::get('/login', 'Auth\LoginController@getLogin');
+Route::get('/', 'HomeController@get')->name('home');
+Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
+Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
 
 // Update
 Route::get('/update', function() {

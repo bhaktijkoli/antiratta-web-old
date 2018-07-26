@@ -1,7 +1,7 @@
 @extends('mails.master')
 @section('content')
 @php
-  $link = $ev->token;
+  $link = route('email_verify') ."?token=$ev->token";
 @endphp
 Hi {{$user->firstname}},<br />
 To complete your sign up, please verify your email:<br />

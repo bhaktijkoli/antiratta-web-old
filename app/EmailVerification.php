@@ -18,4 +18,15 @@ class EmailVerification extends Model
     return $ev;
   }
 
+  public static function verifyToken($token) {
+    $ev = \App\EmailVerification::where('token', $token)->first();
+    if($ev) {
+      $user = User::where('email', $ev->email)->first();
+      $user->verifed = '1';
+      $user->save();
+      $ev->forceDelete();
+      return $user;
+    }
+    return false;
+  }
 }

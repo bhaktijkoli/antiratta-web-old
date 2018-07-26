@@ -13,6 +13,7 @@ use App\User;
 use App\EmailVerification;
 use App\ResponseBuilder;
 use App\Mail\VerificationMail;
+use App\Mail\WelcomeMail;
 
 use Mail;
 
@@ -51,6 +52,7 @@ class LoginController extends Controller
     public function getLogin() {
       return view('pages.login');
     }
+
     public function postSignup(SignupRequest $request) {
       $user = new User();
       $user->firstname = $request->input('signup_firstname');
@@ -61,6 +63,14 @@ class LoginController extends Controller
       $ev = EmailVerification::createToken($user->email);
       Mail::to($user)->send(new VerificationMail($user, $ev));
       return ResponseBuilder::send(true, "", '/');
+    }
+
+    public function getVerify(Request $request) {
+      $token = $request->input('token', '');
+      $user = EmailVerification::verifyToken($token);
+      if(!$user) return redirect('/');
+      Mail::to($user)->send(new WelcomeMail($user));
+      return view('pages.verify');
     }
 
 }

@@ -23,7 +23,8 @@
                 </ul>
               </div>
             </div>
-          </div><div class="card-body ">
+          </div>
+          <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" id="signin">
                 @include('forms.login')
