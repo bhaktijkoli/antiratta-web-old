@@ -9,6 +9,7 @@
 // Pages
 @import 'home';
 @import 'jfk';
+@import 'about';
 
 // Buttons
 .btn-primary {
@@ -69,6 +70,10 @@
   height: 18px;
   margin-left: 40px;
   margin-right: 40px;
+}
+.nav-space {
+  display: block;
+  margin-top: 70px;
 }
 @media only screen and (max-width: 600px) {
   .nav-divider {

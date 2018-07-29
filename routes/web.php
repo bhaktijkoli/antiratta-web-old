@@ -16,10 +16,7 @@ Route::get('/', 'HomeController@get')->name('home');
 Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
 Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
 Route::get('/jfk', 'JFKController@getJfK')->name('jfk');
-Route::get('/check', function() {
-  if(Auth::check()) return "yes";
-  return "hello";
-});
+Route::get('/aboutus', 'AboutController@getAbout')->name('aboutus');
 
 // Api
 Route::prefix('api')->group(function () {

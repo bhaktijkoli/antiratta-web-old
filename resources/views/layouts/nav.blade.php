@@ -21,14 +21,14 @@
           <a class="nav-link" href="#">Candid charcha</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jfk">jfk</a>
+          <a class="nav-link" href="{{route('jfk')}}">jfk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About us</a>
+          <a class="nav-link" href="{{route('aboutus')}}">About us</a>
         </li>
         <li class="nav-divider"></li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="{{route('login')}}">Login</a>
         </li>
       </ul>
     </div>
