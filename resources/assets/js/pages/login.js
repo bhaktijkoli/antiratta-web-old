@@ -8,9 +8,25 @@ $( "#form_signup" ).on( "submit", ( event ) => {
       fh.redirect(data);
     } else {
       fh.set_multierrors(data);
+      fh.show_button();
     }
-    fh.show_button();
   }).catch(res=>{
-    
+
   })
 });
+
+$('#form_login').on("submit", event => {
+  event.preventDefault();
+  fh.hide_button();
+  $('#login_error').hide(100);
+  axios.post('/api/user/login', $('#form_login').serialize()).then(res=>{
+    $("#login_error").show(100);
+  }).catch(res=>{
+    let data = res.response.data;
+    if(data.errors.email) {
+      $('#login_error').html(data.errors.email)
+    }
+    fh.show_button();
+    $("#login_error").show(100);
+  })
+})

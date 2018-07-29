@@ -19,58 +19,81 @@ use Mail;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+  /*
+  |--------------------------------------------------------------------------
+  | Login Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles authenticating users for the application and
+  | redirecting them to your home screen. The controller uses a trait
+  | to conveniently provide its functionality to your applications.
+  |
+  */
 
-    use AuthenticatesUsers;
+  use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+  /**
+  * Where to redirect users after login.
+  *
+  * @var string
+  */
+  protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-      $this->middleware('guest')->except('logout');
-    }
+  /**
+  * Create a new controller instance.
+  *
+  * @return void
+  */
+  public function __construct() {
+    $this->middleware('guest')->except('logout');
+  }
 
-    public function getLogin() {
-      return view('pages.login');
-    }
+  // Login
+  public function getLogin() {
+    return view('pages.login');
+  }
+  public function postLogin(Request $request) {
+    $this->login($request);
+  }
+  // Signup
+  public function postSignup(SignupRequest $request) {
+    $user = new User();
+    $user->firstname = $request->input('signup_firstname');
+    $user->lastname = $request->input('signup_lastname');
+    $user->email = $request->input('signup_email');
+    $user->password = Hash::make($request->input('signup_password'));
+    $user->save();
+    $ev = EmailVerification::createToken($user->email);
+    Mail::to($user)->send(new VerificationMail($user, $ev));
+    return ResponseBuilder::send(true, "", '/');
+  }
 
-    public function postSignup(SignupRequest $request) {
-      $user = new User();
-      $user->firstname = $request->input('signup_firstname');
-      $user->lastname = $request->input('signup_lastname');
-      $user->email = $request->input('signup_email');
-      $user->password = Hash::make($request->input('signup_password'));
-      $user->save();
-      $ev = EmailVerification::createToken($user->email);
-      Mail::to($user)->send(new VerificationMail($user, $ev));
-      return ResponseBuilder::send(true, "", '/');
-    }
+  // Verify
+  public function getVerify(Request $request) {
+    $token = $request->input('token', '');
+    $user = EmailVerification::verifyToken($token);
+    if(!$user) return redirect('/');
+    Mail::to($user)->send(new WelcomeMail($user));
+    return view('pages.verify');
+  }
 
-    public function getVerify(Request $request) {
-      $token = $request->input('token', '');
-      $user = EmailVerification::verifyToken($token);
-      if(!$user) return redirect('/');
-      Mail::to($user)->send(new WelcomeMail($user));
-      return view('pages.verify');
-    }
 
+  // Login Functions
+  protected function validateLogin(Request $request)
+  {
+    $this->validate(
+      $request,
+      [
+        'email' => 'required|string',
+        'password' => 'required|string',
+      ],
+      [
+        'email.required' => 'Email Address and password is required.',
+        'password.required' => 'Email Address and password is required.',
+      ]
+    );
+  }
+  protected function credentials(Request $request) {
+    return array_merge($request->only('email', 'password'), ['verified' => 1]);
+  }
 }

@@ -11,9 +11,21 @@
 |
 */
 
+// Website
 Route::get('/', 'HomeController@get')->name('home');
 Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
 Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
+Route::get('/jfk', 'JFKController@getJfK')->name('jfk');
+Route::get('/check', function() {
+  if(Auth::check()) return "yes";
+  return "hello";
+});
+
+// Api
+Route::prefix('api')->group(function () {
+  Route::post('user/signup', 'Auth\LoginController@postSignup');
+  Route::post('user/login', 'Auth\LoginController@postLogin');
+});
 
 // Update
 Route::get('/update', function() {

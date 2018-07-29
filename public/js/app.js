@@ -13905,6 +13905,7 @@ __webpack_require__(47);
 
 // Pages
 __webpack_require__(48);
+__webpack_require__(65);
 
 /***/ }),
 /* 13 */
@@ -46490,9 +46491,25 @@ $("#form_signup").on("submit", function (event) {
       fh.redirect(data);
     } else {
       fh.set_multierrors(data);
+      fh.show_button();
+    }
+  }).catch(function (res) {});
+});
+
+$('#form_login').on("submit", function (event) {
+  event.preventDefault();
+  fh.hide_button();
+  $('#login_error').hide(100);
+  axios.post('/api/user/login', $('#form_login').serialize()).then(function (res) {
+    $("#login_error").show(100);
+  }).catch(function (res) {
+    var data = res.response.data;
+    if (data.errors.email) {
+      $('#login_error').html(data.errors.email);
     }
     fh.show_button();
-  }).catch(function (res) {});
+    $("#login_error").show(100);
+  });
 });
 
 /***/ }),
@@ -46500,6 +46517,49 @@ $("#form_signup").on("submit", function (event) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', function () {
+  var parent = document.querySelector('.splitview'),
+      topPanel = parent.querySelector('.top'),
+      handle = parent.querySelector('.handle'),
+      skewHack = 0,
+      delta = 0;
+
+  // If the parent has .skewed class, set the skewHack var.
+  if (parent.className.indexOf('skewed') != -1) {
+    skewHack = 1000;
+  }
+
+  parent.addEventListener('mousemove', function (event) {
+    // Get the delta between the mouse position and center point.
+    delta = (event.clientX - window.innerWidth / 2) * 0.5;
+
+    // Move the handle.
+    handle.style.left = event.clientX + delta + 'px';
+
+    // Adjust the top panel width.
+    topPanel.style.width = event.clientX + skewHack + delta + 'px';
+  });
+});
 
 /***/ })
 /******/ ]);
