@@ -22,7 +22,7 @@ class EmailVerification extends Model
     $ev = \App\EmailVerification::where('token', $token)->first();
     if($ev) {
       $user = User::where('email', $ev->email)->first();
-      $user->verifed = '1';
+      $user->verified = '1';
       $user->save();
       $ev->forceDelete();
       return $user;
