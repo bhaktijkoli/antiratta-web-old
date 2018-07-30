@@ -9,4 +9,7 @@ class AboutController extends Controller
   public function getAbout() {
     return view('pages.aboutus');
   }
+  public function getCandid() {
+    return view('pages.candid');
+  }
 }

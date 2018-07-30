@@ -18,7 +18,7 @@
           <a class="nav-link" href="#">Courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Candid charcha</a>
+          <a class="nav-link" href="{{route('candid')}}">Candid charcha</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('jfk')}}">jfk</a>
