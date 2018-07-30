@@ -12,8 +12,8 @@ $menu_item = 'candid';
     <div class="row">
       <div class="col-sm-12">
         <div class="text-center">
-          <img src="{{asset('images/candidcharcha.png')}}" />
-          <h2>Comming soon...</h2>
+          <img src="{{asset('images/candidcharcha.png')}}" alt="Coming soon" height="180"/>
+          <h2>Coming soon...</h2>
         </div>
       </div>
     </div>

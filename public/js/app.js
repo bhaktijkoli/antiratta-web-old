@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(50);
 
 
 /***/ }),
@@ -13905,7 +13905,7 @@ __webpack_require__(47);
 
 // Pages
 __webpack_require__(48);
-__webpack_require__(65);
+__webpack_require__(49);
 
 /***/ }),
 /* 13 */
@@ -46516,27 +46516,6 @@ $('#form_login').on("submit", function (event) {
 /* 49 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */
-/***/ (function(module, exports) {
-
 document.addEventListener('DOMContentLoaded', function () {
   var parent = document.querySelector('.splitview'),
       topPanel = parent.querySelector('.top'),
@@ -46560,6 +46539,12 @@ document.addEventListener('DOMContentLoaded', function () {
     topPanel.style.width = event.clientX + skewHack + delta + 'px';
   });
 });
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
