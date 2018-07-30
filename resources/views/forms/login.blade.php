@@ -19,8 +19,8 @@
   </div>
   <hr class="hr-text" data-content="OR">
   <div class="text-center">
-    <a href="#" class="btn btn-fab btn-round btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-    <a href="#" class="btn btn-fab btn-round btn-google"><i class="fa fa-google" aria-hidden="true"></i></a>
-    <a href="#" class="btn btn-fab btn-round btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="{{route('social_login', 'facebook')}}" class="btn btn-fab btn-round btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+    <a href="{{route('social_login', 'google')}}" class="btn btn-fab btn-round btn-google"><i class="fa fa-google" aria-hidden="true"></i></a>
+    <a href="{{route('social_login', 'twitter')}}" class="btn btn-fab btn-round btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
   </div>
 </form>

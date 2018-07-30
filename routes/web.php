@@ -19,6 +19,10 @@ Route::get('/jfk', 'JFKController@getJfK')->name('jfk');
 Route::get('/candid-charcha', 'AboutController@getCandid')->name('candid');
 Route::get('/aboutus', 'AboutController@getAbout')->name('aboutus');
 
+// OAuth
+Route::get('login/{provider}', 'Auth\SocialLoginController@redirectToProvider')->name('social_login');
+Route::get('login/{provider}/callback', 'Auth\SocialLoginController@handleProviderCallback');
+
 // Api
 Route::prefix('api')->group(function () {
   Route::post('user/signup', 'Auth\LoginController@postSignup');
