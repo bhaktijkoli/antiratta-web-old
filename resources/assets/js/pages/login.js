@@ -20,7 +20,7 @@ $('#form_login').on("submit", event => {
   fh.hide_button();
   $('#login_error').hide(100);
   axios.post('/api/user/login', $('#form_login').serialize()).then(res=>{
-    $("#login_error").show(100);
+    window.location = "/";
   }).catch(res=>{
     let data = res.response.data;
     if(data.errors.email) {

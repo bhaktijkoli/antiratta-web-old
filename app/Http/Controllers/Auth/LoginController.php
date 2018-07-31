@@ -94,6 +94,6 @@ class LoginController extends Controller
     );
   }
   protected function credentials(Request $request) {
-    return array_merge($request->only('email', 'password'), ['verified' => 1]);
+    return array_merge($request->only('email', 'password'), ['verified' => '1']);
   }
 }

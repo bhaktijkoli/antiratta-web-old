@@ -27,10 +27,26 @@
           <a class="nav-link" href="{{route('aboutus')}}">About us</a>
         </li>
         <li class="nav-divider"></li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('login')}}">Login</a>
-        </li>
-      </ul>
+        @if (Auth::check())
+          <li class="dropdown nav-item">
+            <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              <div class="profile-photo-small">
+                <img src="http://via.placeholder.com/60x60&text=Avatar" alt="Circle Image" class="rounded-circle img-fluid">
+              </div>
+              <div class="ripple-container"></div></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                {{-- <h6 class="dropdown-header"></h6> --}}
+                <a href="#pablo" class="dropdown-item">Profile</a>
+                <a href="#pablo" class="dropdown-item">Settings</a>
+                <a href="{{route('logout')}}" class="dropdown-item">Sign out</a>
+              </div>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('login')}}">Login</a>
+            </li>
+          @endif
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>

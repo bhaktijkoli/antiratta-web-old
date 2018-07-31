@@ -46501,7 +46501,7 @@ $('#form_login').on("submit", function (event) {
   fh.hide_button();
   $('#login_error').hide(100);
   axios.post('/api/user/login', $('#form_login').serialize()).then(function (res) {
-    $("#login_error").show(100);
+    window.location = "/";
   }).catch(function (res) {
     var data = res.response.data;
     if (data.errors.email) {
