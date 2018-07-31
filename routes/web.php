@@ -14,6 +14,7 @@
 // Website
 Route::get('/', 'HomeController@get')->name('home');
 Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
+Route::get('/authenticate', 'Auth\LoginController@getAuthenticate')->name('authenticate');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
 Route::get('/jfk', 'JFKController@getJfK')->name('jfk');

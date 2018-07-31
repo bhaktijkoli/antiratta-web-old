@@ -45,7 +45,7 @@ class LoginController extends Controller
   * @return void
   */
   public function __construct() {
-    $this->middleware('guest')->except('logout');
+    $this->middleware('guest')->except(['logout','getAuthenticate']);
   }
 
   // Login
@@ -55,6 +55,12 @@ class LoginController extends Controller
   public function postLogin(Request $request) {
     $this->login($request);
   }
+
+  // Authenticate
+  public function getAuthenticate() {
+    return redirect()->route('home');
+  }
+
   // Signup
   public function postSignup(SignupRequest $request) {
     $user = new User();

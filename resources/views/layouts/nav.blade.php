@@ -35,7 +35,7 @@
               </div>
               <div class="ripple-container"></div></a>
               <div class="dropdown-menu dropdown-menu-right">
-                {{-- <h6 class="dropdown-header"></h6> --}}
+                <h6 class="dropdown-header"></h6>
                 <a href="#pablo" class="dropdown-item">Profile</a>
                 <a href="#pablo" class="dropdown-item">Settings</a>
                 <a href="{{route('logout')}}" class="dropdown-item">Sign out</a>
