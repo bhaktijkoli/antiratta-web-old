@@ -54,10 +54,10 @@
   border-color: $brand-danger !important;
 }
 // Navbar
-.nav-link {
+.navbar .nav-link {
   transition-duration: 200ms;
 }
-.nav-link:hover {
+.navbar .nav-link:hover {
   background-color: $brand-primary;
   color: #FFFFFF !important;
 }
@@ -70,6 +70,9 @@
   height: 18px;
   margin-left: 40px;
   margin-right: 40px;
+}
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: $brand-primary !important;
 }
 .nav-space {
   display: block;

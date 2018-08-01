@@ -29,15 +29,16 @@
         <li class="nav-divider"></li>
         @if (Auth::check())
           <li class="dropdown nav-item">
-            <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
               <div class="profile-photo-small">
                 <img src="http://via.placeholder.com/60x60&text=Avatar" alt="Circle Image" class="rounded-circle img-fluid">
               </div>
               <div class="ripple-container"></div></a>
               <div class="dropdown-menu dropdown-menu-right">
-                <h6 class="dropdown-header"></h6>
-                <a href="#pablo" class="dropdown-item">Profile</a>
-                <a href="#pablo" class="dropdown-item">Settings</a>
+                <h6 class="dropdown-header">{{Auth::user()->firstname." ".Auth::user()->lastname}}</h6>
+                <a href="#" class="dropdown-item">My Courses</a>
+                <a href="{{route('setting', 'personal-info')}}" class="dropdown-item">Settings</a>
+                <div class="dropdown-divider"></div>
                 <a href="{{route('logout')}}" class="dropdown-item">Sign out</a>
               </div>
             </li>

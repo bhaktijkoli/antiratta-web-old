@@ -21,6 +21,8 @@ Route::get('/jfk', 'JFKController@getJfK')->name('jfk');
 Route::get('/candid-charcha', 'AboutController@getCandid')->name('candid');
 Route::get('/aboutus', 'AboutController@getAbout')->name('aboutus');
 
+Route::get('/settings/{setting}', 'SettingsController@getSetting')->name('setting');
+
 // OAuth
 Route::get('login/{provider}', 'Auth\SocialLoginController@redirectToProvider')->name('social_login');
 Route::get('login/{provider}/callback', 'Auth\SocialLoginController@handleProviderCallback');

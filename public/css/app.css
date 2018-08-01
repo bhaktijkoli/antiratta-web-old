@@ -17564,12 +17564,12 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   color: #555;
   -webkit-transition: all .3s;
   transition: all .3s;
-  border-radius: 30px;
+  border-radius: 8px;
   padding: 10px 15px;
 }
 
 .nav-pills .nav-item .nav-link:hover {
-  background-color: rgba(200, 200, 200, 0.2);
+  background-color: transparent;
 }
 
 .nav-pills .nav-item .nav-link.active {
@@ -21480,12 +21480,12 @@ footer .pull-center {
   border-color: #f44336 !important;
 }
 
-.nav-link {
+.navbar .nav-link {
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;
 }
 
-.nav-link:hover {
+.navbar .nav-link:hover {
   background-color: #fbc02d;
   color: #FFFFFF !important;
 }
@@ -21500,6 +21500,10 @@ footer .pull-center {
   height: 18px;
   margin-left: 40px;
   margin-right: 40px;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #fbc02d !important;
 }
 
 .nav-space {
