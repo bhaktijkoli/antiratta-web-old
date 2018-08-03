@@ -83,6 +83,10 @@
     display: none;
   }
 }
+// Nav Pills
+.nav-pills .nav-item .nav-link {
+  text-align: left;
+}
 
 // Other
 .space {
@@ -150,18 +154,18 @@
 }
 
 @keyframes circle {
-    0%, 40% {
-        stroke-dashoffset: -1260;
-    }
-    100% {
-        stroke-dashoffset: 0;
-    }
+  0%, 40% {
+    stroke-dashoffset: -1260;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 @keyframes check {
-    0% {
-        stroke-dashoffset: 430;
-    }
-    40% {
-        stroke-dashoffset: 0;
-    }
+  0% {
+    stroke-dashoffset: 430;
+  }
+  40% {
+    stroke-dashoffset: 0;
+  }
 }

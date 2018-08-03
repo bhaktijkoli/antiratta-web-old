@@ -24,7 +24,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button type="submit" name="login" class="btn btn-primary btn-block">Change</button>
+            <button type="submit" name="login" class="btn btn-info btn-block">Change</button>
           </div>
         </div>
         <div class="col-sm-3">

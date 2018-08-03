@@ -21517,6 +21517,10 @@ footer .pull-center {
   }
 }
 
+.nav-pills .nav-item .nav-link {
+  text-align: left;
+}
+
 .space {
   height: 500px;
 }
