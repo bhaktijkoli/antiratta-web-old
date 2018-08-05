@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(5);
-var isBuffer = __webpack_require__(20);
+var isBuffer = __webpack_require__(16);
 
 /*global toString:true*/
 
@@ -13308,7 +13308,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(22);
+var normalizeHeaderName = __webpack_require__(18);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -13620,12 +13620,12 @@ process.umask = function() { return 0; };
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(23);
-var buildURL = __webpack_require__(25);
-var parseHeaders = __webpack_require__(26);
-var isURLSameOrigin = __webpack_require__(27);
+var settle = __webpack_require__(19);
+var buildURL = __webpack_require__(21);
+var parseHeaders = __webpack_require__(22);
+var isURLSameOrigin = __webpack_require__(23);
 var createError = __webpack_require__(8);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(24);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -13722,7 +13722,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(29);
+      var cookies = __webpack_require__(25);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -13806,7 +13806,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(24);
+var enhanceError = __webpack_require__(20);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -13864,113 +13864,6 @@ module.exports = Cancel;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(12);
-module.exports = __webpack_require__(50);
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(13);
-
-window.Vue = __webpack_require__(37);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', __webpack_require__(40));
-
-var app = new Vue({
-  el: '#app'
-});
-
-// Modules
-__webpack_require__(44);
-__webpack_require__(45);
-__webpack_require__(46);
-__webpack_require__(47);
-
-// Pages
-__webpack_require__(48);
-__webpack_require__(49);
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-window._ = __webpack_require__(14);
-window.Popper = __webpack_require__(2).default;
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-  window.$ = window.jQuery = __webpack_require__(3);
-  // Material Kit
-  __webpack_require__(16);
-  __webpack_require__(17);
-} catch (e) {}
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-window.axios = __webpack_require__(18);
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
-
-/***/ }),
-/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31080,10 +30973,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(12)(module)))
 
 /***/ }),
-/* 15 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -31111,7 +31004,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 16 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -32673,263 +32566,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-/*!
-
- =========================================================
- * Material Kit - v2.0.4
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-kit
- * Copyright 2018 Creative Tim (http://www.creative-tim.com)
-
- * Designed by www.invisionapp.com Coded by www.creative-tim.com
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
-var big_image;
-
-$(document).ready(function () {
-  BrowserDetect.init();
-
-  // Init Material scripts for buttons ripples, inputs animations etc, more info on the next link https://github.com/FezVrasta/bootstrap-material-design#materialjs
-  $('body').bootstrapMaterialDesign();
-
-  window_width = $(window).width();
-
-  $navbar = $('.navbar[color-on-scroll]');
-  scroll_distance = $navbar.attr('color-on-scroll') || 500;
-
-  $navbar_collapse = $('.navbar').find('.navbar-collapse');
-
-  //  Activate the Tooltips
-  $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
-
-  // Activate Popovers
-  $('[data-toggle="popover"]').popover();
-
-  if ($('.navbar-color-on-scroll').length != 0) {
-    $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
-  }
-
-  materialKit.checkScrollForTransparentNavbar();
-
-  if (window_width >= 768) {
-    big_image = $('.page-header[data-parallax="true"]');
-    if (big_image.length != 0) {
-      $(window).on('scroll', materialKit.checkScrollForParallax);
-    }
-  }
-});
-
-$(document).on('click', '.navbar-toggler', function () {
-  $toggle = $(this);
-
-  if (materialKit.misc.navbar_menu_visible == 1) {
-    $('html').removeClass('nav-open');
-    materialKit.misc.navbar_menu_visible = 0;
-    $('#bodyClick').remove();
-    setTimeout(function () {
-      $toggle.removeClass('toggled');
-    }, 550);
-
-    $('html').removeClass('nav-open-absolute');
-  } else {
-    setTimeout(function () {
-      $toggle.addClass('toggled');
-    }, 580);
-
-    div = '<div id="bodyClick"></div>';
-    $(div).appendTo("body").click(function () {
-      $('html').removeClass('nav-open');
-
-      if ($('nav').hasClass('navbar-absolute')) {
-        $('html').removeClass('nav-open-absolute');
-      }
-      materialKit.misc.navbar_menu_visible = 0;
-      $('#bodyClick').remove();
-      setTimeout(function () {
-        $toggle.removeClass('toggled');
-      }, 550);
-    });
-
-    if ($('nav').hasClass('navbar-absolute')) {
-      $('html').addClass('nav-open-absolute');
-    }
-
-    $('html').addClass('nav-open');
-    materialKit.misc.navbar_menu_visible = 1;
-  }
-});
-
-materialKit = {
-  misc: {
-    navbar_menu_visible: 0,
-    window_width: 0,
-    transparent: true,
-    fixedTop: false,
-    navbar_initialized: false,
-    isWindow: document.documentMode || /Edge/.test(navigator.userAgent)
-  },
-
-  initFormExtendedDatetimepickers: function initFormExtendedDatetimepickers() {
-    $('.datetimepicker').datetimepicker({
-      icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove'
-      }
-    });
-  },
-
-  initSliders: function initSliders() {
-    // Sliders for demo purpose
-    var slider = document.getElementById('sliderRegular');
-
-    noUiSlider.create(slider, {
-      start: 40,
-      connect: [true, false],
-      range: {
-        min: 0,
-        max: 100
-      }
-    });
-
-    var slider2 = document.getElementById('sliderDouble');
-
-    noUiSlider.create(slider2, {
-      start: [20, 60],
-      connect: true,
-      range: {
-        min: 0,
-        max: 100
-      }
-    });
-  },
-
-  checkScrollForParallax: function checkScrollForParallax() {
-    oVal = $(window).scrollTop() / 3;
-    big_image.css({
-      'transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-    });
-  },
-
-  checkScrollForTransparentNavbar: debounce(function () {
-    if ($(document).scrollTop() > scroll_distance) {
-      if (materialKit.misc.transparent) {
-        materialKit.misc.transparent = false;
-        $('.navbar-color-on-scroll').removeClass('navbar-transparent');
-      }
-    } else {
-      if (!materialKit.misc.transparent) {
-        materialKit.misc.transparent = true;
-        $('.navbar-color-on-scroll').addClass('navbar-transparent');
-      }
-    }
-  }, 17)
-};
-
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function () {
-    var context = this,
-        args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    }, wait);
-    if (immediate && !timeout) func.apply(context, args);
-  };
-};
-
-var BrowserDetect = {
-  init: function init() {
-    this.browser = this.searchString(this.dataBrowser) || "Other";
-    this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "Unknown";
-  },
-  searchString: function searchString(data) {
-    for (var i = 0; i < data.length; i++) {
-      var dataString = data[i].string;
-      this.versionSearchString = data[i].subString;
-
-      if (dataString.indexOf(data[i].subString) !== -1) {
-        return data[i].identity;
-      }
-    }
-  },
-  searchVersion: function searchVersion(dataString) {
-    var index = dataString.indexOf(this.versionSearchString);
-    if (index === -1) {
-      return;
-    }
-
-    var rv = dataString.indexOf("rv:");
-    if (this.versionSearchString === "Trident" && rv !== -1) {
-      return parseFloat(dataString.substring(rv + 3));
-    } else {
-      return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
-    }
-  },
-
-  dataBrowser: [{
-    string: navigator.userAgent,
-    subString: "Chrome",
-    identity: "Chrome"
-  }, {
-    string: navigator.userAgent,
-    subString: "MSIE",
-    identity: "Explorer"
-  }, {
-    string: navigator.userAgent,
-    subString: "Trident",
-    identity: "Explorer"
-  }, {
-    string: navigator.userAgent,
-    subString: "Firefox",
-    identity: "Firefox"
-  }, {
-    string: navigator.userAgent,
-    subString: "Safari",
-    identity: "Safari"
-  }, {
-    string: navigator.userAgent,
-    subString: "Opera",
-    identity: "Opera"
-  }]
-
-};
-
-var better_browser = '<div class="container"><div class="better-browser row"><div class="col-md-2"></div><div class="col-md-8"><h3>We are sorry but it looks like your Browser doesn\'t support our website Features. In order to get the full experience please download a new version of your favourite browser.</h3></div><div class="col-md-2"></div><br><div class="col-md-4"><a href="https://www.mozilla.org/ro/firefox/new/" class="btn btn-warning">Mozilla</a><br></div><div class="col-md-4"><a href="https://www.google.com/chrome/browser/desktop/index.html" class="btn ">Chrome</a><br></div><div class="col-md-4"><a href="http://windows.microsoft.com/en-us/internet-explorer/ie-11-worldwide-languages" class="btn">Internet Explorer</a><br></div><br><br><h4>Thank you!</h4></div></div>';
-
-/***/ }),
-/* 18 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(15);
 
 /***/ }),
-/* 19 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32937,7 +32580,7 @@ module.exports = __webpack_require__(19);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(5);
-var Axios = __webpack_require__(21);
+var Axios = __webpack_require__(17);
 var defaults = __webpack_require__(4);
 
 /**
@@ -32972,14 +32615,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(10);
-axios.CancelToken = __webpack_require__(35);
+axios.CancelToken = __webpack_require__(31);
 axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(36);
+axios.spread = __webpack_require__(32);
 
 module.exports = axios;
 
@@ -32988,7 +32631,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 20 */
+/* 16 */
 /***/ (function(module, exports) {
 
 /*!
@@ -33015,7 +32658,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 21 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33023,8 +32666,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(4);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(30);
-var dispatchRequest = __webpack_require__(31);
+var InterceptorManager = __webpack_require__(26);
+var dispatchRequest = __webpack_require__(27);
 
 /**
  * Create a new instance of Axios
@@ -33101,7 +32744,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 22 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33120,7 +32763,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 23 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33153,7 +32796,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 24 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33181,7 +32824,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 25 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33254,7 +32897,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 26 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33314,7 +32957,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 27 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33389,7 +33032,7 @@ module.exports = (
 
 
 /***/ }),
-/* 28 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33432,7 +33075,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 29 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33492,7 +33135,7 @@ module.exports = (
 
 
 /***/ }),
-/* 30 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33551,18 +33194,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 31 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(32);
+var transformData = __webpack_require__(28);
 var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(4);
-var isAbsoluteURL = __webpack_require__(33);
-var combineURLs = __webpack_require__(34);
+var isAbsoluteURL = __webpack_require__(29);
+var combineURLs = __webpack_require__(30);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -33644,7 +33287,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 32 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33671,7 +33314,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 33 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33692,7 +33335,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 34 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33713,7 +33356,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 35 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33777,7 +33420,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 36 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33811,7 +33454,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 37 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44774,10 +44417,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(38).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(34).setImmediate))
 
 /***/ }),
-/* 38 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -44833,7 +44476,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(39);
+__webpack_require__(35);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -44847,7 +44490,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 39 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -45040,15 +44683,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 40 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(41)
+var normalizeComponent = __webpack_require__(37)
 /* script */
-var __vue_script__ = __webpack_require__(42)
+var __vue_script__ = __webpack_require__(38)
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(39)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -45087,7 +44730,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */
+/* 37 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -45196,7 +44839,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 42 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45225,7 +44868,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 43 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -45266,6 +44909,413 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
   }
 }
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+// Form Handler
+window.fh = {
+  set_success: function set_success(element, message) {
+    $(element).closest('.form-group').removeClass('has-error');
+    $(element).closest('.form-group').addClass('has-success');
+    $(element).closest('.form-group').find('.help-block').html(message);
+  },
+  set_multisuccess: function set_multisuccess(data) {
+    errors = data.messages;
+    for (var key in errors) {
+      this.set_success('#' + key, errors[key]);
+    }
+  },
+  set_single_error: function set_single_error(data) {
+    $('#error-result').show(100);
+    $('#error-result').html(data.messages);
+  },
+  set_error: function set_error(element, error) {
+    $(element).closest('.form-group').addClass('has-error');
+    $(element).closest('.form-group').removeClass('has-success');
+    $(element).closest('.form-group').find('.help-block').html(error);
+  },
+
+  remove_error: function remove_error(element) {
+    $(element).closest('.form-group').removeClass('has-error');
+    $(element).closest('.form-group').find('.help-block').html('');
+  },
+
+  remove_all_errros: function remove_all_errros(element) {
+    $(element).find('.form-group').removeClass('has-error');
+    $(element).find('.form-group').find('.help-block').html('');
+  },
+
+  set_multierrors: function set_multierrors(data) {
+    errors = data.messages;
+    for (var key in errors) {
+      this.set_error('#' + key, errors[key]);
+    }
+  },
+
+  hide_element: function hide_element(element) {
+    $(element).closest('.form-group').css("display", "none");
+  },
+
+  show_element: function show_element(element) {
+    $(element).closest('.form-group').css("display", "block");
+  },
+
+  is_success: function is_success(data) {
+    return data.success;
+  },
+
+  redirect: function redirect(data) {
+    window.location = data.redirect;
+  },
+
+  hide_button: function hide_button() {
+    btn = $(document.activeElement);
+    document.btntext = btn[0].innerHTML;
+    btn[0].innerHTML = '<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>';
+    btn.prop('disabled', true);
+    window.lastbutton = btn;
+  },
+
+  show_button: function show_button() {
+    var btn = window.lastbutton;
+    btn[0].innerHTML = document.btntext;
+    btn.prop('disabled', false);
+  },
+
+  show_errorpage: function show_errorpage(error) {
+    console.log(error);
+    this.show_button(window.lastbutton); // Remove This
+  }
+};
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(42);
+__webpack_require__(49);
+module.exports = __webpack_require__(50);
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+window._ = __webpack_require__(11);
+window.Popper = __webpack_require__(2).default;
+
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+try {
+  window.$ = window.jQuery = __webpack_require__(3);
+  // Material Kit
+  __webpack_require__(13);
+  __webpack_require__(43);
+} catch (e) {}
+
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+window.axios = __webpack_require__(14);
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+window.Vue = __webpack_require__(33);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', __webpack_require__(36));
+
+var app = new Vue({
+  el: '#app'
+});
+
+// Modules
+__webpack_require__(44);
+__webpack_require__(45);
+__webpack_require__(46);
+__webpack_require__(40);
+
+// Pages
+__webpack_require__(47);
+__webpack_require__(48);
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+/*!
+
+ =========================================================
+ * Material Kit - v2.0.4
+ =========================================================
+
+ * Product Page: https://www.creative-tim.com/product/material-kit
+ * Copyright 2018 Creative Tim (http://www.creative-tim.com)
+
+ * Designed by www.invisionapp.com Coded by www.creative-tim.com
+
+ =========================================================
+
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+ */
+
+var big_image;
+
+$(document).ready(function () {
+  BrowserDetect.init();
+
+  // Init Material scripts for buttons ripples, inputs animations etc, more info on the next link https://github.com/FezVrasta/bootstrap-material-design#materialjs
+  $('body').bootstrapMaterialDesign();
+
+  window_width = $(window).width();
+
+  $navbar = $('.navbar[color-on-scroll]');
+  scroll_distance = $navbar.attr('color-on-scroll') || 500;
+
+  $navbar_collapse = $('.navbar').find('.navbar-collapse');
+
+  //  Activate the Tooltips
+  $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
+
+  // Activate Popovers
+  $('[data-toggle="popover"]').popover();
+
+  if ($('.navbar-color-on-scroll').length != 0) {
+    $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
+  }
+
+  materialKit.checkScrollForTransparentNavbar();
+
+  if (window_width >= 768) {
+    big_image = $('.page-header[data-parallax="true"]');
+    if (big_image.length != 0) {
+      $(window).on('scroll', materialKit.checkScrollForParallax);
+    }
+  }
+});
+
+$(document).on('click', '.navbar-toggler', function () {
+  $toggle = $(this);
+
+  if (materialKit.misc.navbar_menu_visible == 1) {
+    $('html').removeClass('nav-open');
+    materialKit.misc.navbar_menu_visible = 0;
+    $('#bodyClick').remove();
+    setTimeout(function () {
+      $toggle.removeClass('toggled');
+    }, 550);
+
+    $('html').removeClass('nav-open-absolute');
+  } else {
+    setTimeout(function () {
+      $toggle.addClass('toggled');
+    }, 580);
+
+    div = '<div id="bodyClick"></div>';
+    $(div).appendTo("body").click(function () {
+      $('html').removeClass('nav-open');
+
+      if ($('nav').hasClass('navbar-absolute')) {
+        $('html').removeClass('nav-open-absolute');
+      }
+      materialKit.misc.navbar_menu_visible = 0;
+      $('#bodyClick').remove();
+      setTimeout(function () {
+        $toggle.removeClass('toggled');
+      }, 550);
+    });
+
+    if ($('nav').hasClass('navbar-absolute')) {
+      $('html').addClass('nav-open-absolute');
+    }
+
+    $('html').addClass('nav-open');
+    materialKit.misc.navbar_menu_visible = 1;
+  }
+});
+
+materialKit = {
+  misc: {
+    navbar_menu_visible: 0,
+    window_width: 0,
+    transparent: true,
+    fixedTop: false,
+    navbar_initialized: false,
+    isWindow: document.documentMode || /Edge/.test(navigator.userAgent)
+  },
+
+  initFormExtendedDatetimepickers: function initFormExtendedDatetimepickers() {
+    $('.datetimepicker').datetimepicker({
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-screenshot',
+        clear: 'fa fa-trash',
+        close: 'fa fa-remove'
+      }
+    });
+  },
+
+  initSliders: function initSliders() {
+    // Sliders for demo purpose
+    var slider = document.getElementById('sliderRegular');
+
+    noUiSlider.create(slider, {
+      start: 40,
+      connect: [true, false],
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+
+    var slider2 = document.getElementById('sliderDouble');
+
+    noUiSlider.create(slider2, {
+      start: [20, 60],
+      connect: true,
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+  },
+
+  checkScrollForParallax: function checkScrollForParallax() {
+    oVal = $(window).scrollTop() / 3;
+    big_image.css({
+      'transform': 'translate3d(0,' + oVal + 'px,0)',
+      '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
+      '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
+      '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
+    });
+  },
+
+  checkScrollForTransparentNavbar: debounce(function () {
+    if ($(document).scrollTop() > scroll_distance) {
+      if (materialKit.misc.transparent) {
+        materialKit.misc.transparent = false;
+        $('.navbar-color-on-scroll').removeClass('navbar-transparent');
+      }
+    } else {
+      if (!materialKit.misc.transparent) {
+        materialKit.misc.transparent = true;
+        $('.navbar-color-on-scroll').addClass('navbar-transparent');
+      }
+    }
+  }, 17)
+};
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this,
+        args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    }, wait);
+    if (immediate && !timeout) func.apply(context, args);
+  };
+};
+
+var BrowserDetect = {
+  init: function init() {
+    this.browser = this.searchString(this.dataBrowser) || "Other";
+    this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "Unknown";
+  },
+  searchString: function searchString(data) {
+    for (var i = 0; i < data.length; i++) {
+      var dataString = data[i].string;
+      this.versionSearchString = data[i].subString;
+
+      if (dataString.indexOf(data[i].subString) !== -1) {
+        return data[i].identity;
+      }
+    }
+  },
+  searchVersion: function searchVersion(dataString) {
+    var index = dataString.indexOf(this.versionSearchString);
+    if (index === -1) {
+      return;
+    }
+
+    var rv = dataString.indexOf("rv:");
+    if (this.versionSearchString === "Trident" && rv !== -1) {
+      return parseFloat(dataString.substring(rv + 3));
+    } else {
+      return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+    }
+  },
+
+  dataBrowser: [{
+    string: navigator.userAgent,
+    subString: "Chrome",
+    identity: "Chrome"
+  }, {
+    string: navigator.userAgent,
+    subString: "MSIE",
+    identity: "Explorer"
+  }, {
+    string: navigator.userAgent,
+    subString: "Trident",
+    identity: "Explorer"
+  }, {
+    string: navigator.userAgent,
+    subString: "Firefox",
+    identity: "Firefox"
+  }, {
+    string: navigator.userAgent,
+    subString: "Safari",
+    identity: "Safari"
+  }, {
+    string: navigator.userAgent,
+    subString: "Opera",
+    identity: "Opera"
+  }]
+
+};
+
+var better_browser = '<div class="container"><div class="better-browser row"><div class="col-md-2"></div><div class="col-md-8"><h3>We are sorry but it looks like your Browser doesn\'t support our website Features. In order to get the full experience please download a new version of your favourite browser.</h3></div><div class="col-md-2"></div><br><div class="col-md-4"><a href="https://www.mozilla.org/ro/firefox/new/" class="btn btn-warning">Mozilla</a><br></div><div class="col-md-4"><a href="https://www.google.com/chrome/browser/desktop/index.html" class="btn ">Chrome</a><br></div><div class="col-md-4"><a href="http://windows.microsoft.com/en-us/internet-explorer/ie-11-worldwide-languages" class="btn">Internet Explorer</a><br></div><br><br><h4>Thank you!</h4></div></div>';
 
 /***/ }),
 /* 44 */
@@ -46401,86 +46451,6 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 /* 47 */
 /***/ (function(module, exports) {
 
-// Form Handler
-window.fh = {
-  set_success: function set_success(element, message) {
-    $(element).closest('.form-group').removeClass('has-error');
-    $(element).closest('.form-group').addClass('has-success');
-    $(element).closest('.form-group').find('.help-block').html(message);
-  },
-  set_multisuccess: function set_multisuccess(data) {
-    errors = data.messages;
-    for (var key in errors) {
-      this.set_success('#' + key, errors[key]);
-    }
-  },
-  set_single_error: function set_single_error(data) {
-    $('#error-result').show(100);
-    $('#error-result').html(data.messages);
-  },
-  set_error: function set_error(element, error) {
-    $(element).closest('.form-group').addClass('has-error');
-    $(element).closest('.form-group').removeClass('has-success');
-    $(element).closest('.form-group').find('.help-block').html(error);
-  },
-
-  remove_error: function remove_error(element) {
-    $(element).closest('.form-group').removeClass('has-error');
-    $(element).closest('.form-group').find('.help-block').html('');
-  },
-
-  remove_all_errros: function remove_all_errros(element) {
-    $(element).find('.form-group').removeClass('has-error');
-    $(element).find('.form-group').find('.help-block').html('');
-  },
-
-  set_multierrors: function set_multierrors(data) {
-    errors = data.messages;
-    for (var key in errors) {
-      this.set_error('#' + key, errors[key]);
-    }
-  },
-
-  hide_element: function hide_element(element) {
-    $(element).closest('.form-group').css("display", "none");
-  },
-
-  show_element: function show_element(element) {
-    $(element).closest('.form-group').css("display", "block");
-  },
-
-  is_success: function is_success(data) {
-    return data.success;
-  },
-
-  redirect: function redirect(data) {
-    window.location = data.redirect;
-  },
-
-  hide_button: function hide_button() {
-    btn = $(document.activeElement);
-    document.btntext = btn[0].innerHTML;
-    btn[0].innerHTML = '<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>';
-    btn.prop('disabled', true);
-    window.lastbutton = btn;
-  },
-
-  show_button: function show_button() {
-    var btn = window.lastbutton;
-    btn[0].innerHTML = document.btntext;
-    btn.prop('disabled', false);
-  },
-
-  show_errorpage: function show_errorpage(error) {
-    console.log(error);
-    this.show_button(window.lastbutton); // Remove This
-  }
-};
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports) {
-
 $("#form_signup").on("submit", function (event) {
   event.preventDefault();
   fh.hide_button();
@@ -46513,7 +46483,7 @@ $('#form_login').on("submit", function (event) {
 });
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -46539,6 +46509,12 @@ document.addEventListener('DOMContentLoaded', function () {
     topPanel.style.width = event.clientX + skewHack + delta + 'px';
   });
 });
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 50 */

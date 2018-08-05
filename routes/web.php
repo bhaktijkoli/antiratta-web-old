@@ -11,6 +11,10 @@
 |
 */
 
+Route::group(['domain'=>'admin.localhost'], function(){
+  Route::get('/', 'Admin\DashboardController@getDashboard')->name('admin_dashboard');
+});
+
 // Website
 Route::get('/', 'HomeController@get')->name('home');
 Route::get('/login', 'Auth\LoginController@getLogin')->name('login');

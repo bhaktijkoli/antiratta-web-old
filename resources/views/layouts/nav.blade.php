@@ -36,6 +36,10 @@
               <div class="ripple-container"></div></a>
               <div class="dropdown-menu dropdown-menu-right">
                 <h6 class="dropdown-header">{{Auth::user()->firstname." ".Auth::user()->lastname}}</h6>
+                @if (Auth::user()->has_access()==true)
+                  <a href="{{route('admin_dashboard')}}" class="dropdown-item">Admin Dashboard</a>
+                  <div class="dropdown-divider"></div>
+                @endif
                 <a href="#" class="dropdown-item">My Courses</a>
                 <a href="{{route('setting', 'personal-info')}}" class="dropdown-item">Settings</a>
                 <div class="dropdown-divider"></div>

@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
@@ -12,7 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
     // Material Kit
     require('./bootstrap-material-design.min');
-    require('./material-kit');
+    require('./material-dashboard');
 } catch (e) {}
 
 /**
@@ -39,19 +38,22 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+
+window.Vue = require('vue');
+
 /**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// import Echo from 'laravel-echo'
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-// window.Pusher = require('pusher-js');
+const app = new Vue({
+    el: '#app'
+});
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+// Modules
+require('./formhandler');
+
+// Pages
