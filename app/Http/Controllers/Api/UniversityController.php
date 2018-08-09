@@ -35,4 +35,10 @@ class UniversityController extends Controller
     $branch->save();
     return ResponseBuilder::send(true, "", '/');
   }
+  public function removeBranch(Request $request) {
+    $branch = Branch::where('id', $request->input('id', '-1'))->first();
+    if(!$branch) abort("404");
+    $branch->forceDelete();
+    return ResponseBuilder::send(true, "", '/');
+  }
 }

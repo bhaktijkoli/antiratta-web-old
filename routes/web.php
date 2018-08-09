@@ -43,6 +43,7 @@ Route::prefix('api')->group(function () {
 // Admin Api
 Route::prefix('api/admin')->group(function () {
   Route::post('branches/add', 'Api\UniversityController@addBranch');
+  Route::post('branches/remove', 'Api\UniversityController@removeBranch');
 });
 
 // Update

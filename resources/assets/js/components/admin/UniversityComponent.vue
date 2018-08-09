@@ -7,6 +7,9 @@
           <hr />
           <div class="row">
             <div class="col-sm-12">
+              <label>Select university</label>
+            </div>
+            <div class="col-sm-12">
               <div class="form-group">
                 <select class="form-control" name="" v-on:change="onChangeUniversity">
                   <option v-for="(un, index) in universities" :value="index">
@@ -31,12 +34,14 @@
                 <tr>
                   <th>#</th>
                   <th>Branch Name</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(branch, index) in branches">
                   <td>{{index+1}}</td>
                   <td>{{branch.name}}</td>
+                  <td><button type="button" class="btn btn-danger btn-sm" @click="onRemoveBranch(branch)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                 </tr>
               </tbody>
             </table>
@@ -89,7 +94,7 @@ export default {
       let comp = this;
       fh.hide_button();
       fh.remove_all_errros('#formAdminAddBranch');
-      axios.post('/api/admin/branches/add', $('#formAdminAddBranch').serialize()).then(res=>{
+      axios.post(route.api('admin/branches/add'), $('#formAdminAddBranch').serialize()).then(res=>{
         let data = res.data;
         if(fh.is_success(data)) {
           comp.changeUniverstiy(comp.university)
@@ -101,8 +106,16 @@ export default {
 
       })
     },
+    onRemoveBranch: function(branch) {
+      let comp = this;
+      if(confirm("Do you want to remove " + branch.name + "?")) {
+        axios.post(route.api('admin/branches/remove'), {id:branch.id}).then(res=>{
+          comp.changeUniverstiy(comp.university);
+        })
+      }
+    },
     changeUniverstiy: function(value) {
-      var comp = this;
+      let comp = this;
       comp.university = value;
       axios.get(route.api('branches/get/')+value).then(res=>{
         comp.branches = res.data;

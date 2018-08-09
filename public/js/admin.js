@@ -45688,6 +45688,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -45714,7 +45719,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var comp = this;
       fh.hide_button();
       fh.remove_all_errros('#formAdminAddBranch');
-      axios.post('/api/admin/branches/add', $('#formAdminAddBranch').serialize()).then(function (res) {
+      axios.post(route.api('admin/branches/add'), $('#formAdminAddBranch').serialize()).then(function (res) {
         var data = res.data;
         if (fh.is_success(data)) {
           comp.changeUniverstiy(comp.university);
@@ -45723,6 +45728,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
         fh.show_button();
       }).catch(function (res) {});
+    },
+    onRemoveBranch: function onRemoveBranch(branch) {
+      var comp = this;
+      if (confirm("Do you want to remove " + branch.name + "?")) {
+        axios.post(route.api('admin/branches/remove'), { id: branch.id }).then(function (res) {
+          comp.changeUniverstiy(comp.university);
+        });
+      }
     },
     changeUniverstiy: function changeUniverstiy(value) {
       var comp = this;
@@ -45751,6 +45764,8 @@ var render = function() {
           _c("hr"),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
+            _vm._m(0),
+            _vm._v(" "),
             _c("div", { staticClass: "col-sm-12" }, [
               _c("div", { staticClass: "form-group" }, [
                 _c(
@@ -45807,7 +45822,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("table", { staticClass: "table table-hover table-striped" }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -45815,7 +45830,28 @@ var render = function() {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(branch.name))])
+                    _c("td", [_vm._v(_vm._s(branch.name))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.onRemoveBranch(branch)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
                   ])
                 })
               )
@@ -45823,9 +45859,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
-            _vm._m(1),
-            _vm._v(" "),
             _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "clearfix" }),
             _vm._v(" "),
@@ -45853,11 +45889,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("label", [_vm._v("Select university")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Branch Name")])
+        _c("th", [_vm._v("Branch Name")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   },
