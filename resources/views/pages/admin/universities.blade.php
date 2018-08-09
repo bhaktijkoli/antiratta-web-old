@@ -1,14 +1,13 @@
 @extends('layouts.admin.master')
 @section('pre')
-@php
-$title = 'Admin Dashboard';
-$menu_item = 'dashboard';
-$nav_head = 'Dashboard';
+  @php
+  $title = 'Universities';
+  $menu_item = 'universities';
+  $nav_head = 'Universities';
 @endphp
 @endsection
 @section('content')
-<div class="container">
-</div>
+  <university-component/>
 @endsection
 @section('post')
 @endsection

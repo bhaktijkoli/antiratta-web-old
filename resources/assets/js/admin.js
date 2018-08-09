@@ -38,8 +38,12 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// Modules
+require('./formhandler');
+require('./route');
 
 window.Vue = require('vue');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -48,12 +52,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('university-component', require('./components/admin/UniversityComponent.vue'));
 
 const app = new Vue({
     el: '#app'
 });
 
-// Modules
-require('./formhandler');
 
 // Pages

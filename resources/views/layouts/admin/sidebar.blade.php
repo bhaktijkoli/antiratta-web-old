@@ -6,14 +6,14 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item active">
+      <li class="nav-item {{$menu_item=='dashboard'?'active':''}}">
         <a class="nav-link" href="{{route('admin_dashboard')}}">
           <i class="fa fa-tachometer" aria-hidden="true"></i>
           <p>Dashboard</p>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('admin_dashboard')}}">
+      <li class="nav-item {{$menu_item=='universities'?'active':''}}">
+        <a class="nav-link" href="{{route('admin_universities')}}">
           <i class="fa fa-university" aria-hidden="true"></i>
           <p>Universities</p>
         </a>

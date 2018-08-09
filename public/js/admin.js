@@ -45051,6 +45051,10 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// Modules
+__webpack_require__(40);
+__webpack_require__(73);
+
 window.Vue = __webpack_require__(33);
 
 /**
@@ -45060,13 +45064,11 @@ window.Vue = __webpack_require__(33);
  */
 
 Vue.component('example-component', __webpack_require__(36));
+Vue.component('university-component', __webpack_require__(70));
 
 var app = new Vue({
   el: '#app'
 });
-
-// Modules
-__webpack_require__(40);
 
 // Pages
 
@@ -45549,6 +45551,362 @@ md = {
     }, wait);
     if (immediate && !timeout) func.apply(context, args);
   };
+};
+
+/***/ }),
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(37)
+/* script */
+var __vue_script__ = __webpack_require__(71)
+/* template */
+var __vue_template__ = __webpack_require__(72)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/UniversityComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8f818cb0", Component.options)
+  } else {
+    hotAPI.reload("data-v-8f818cb0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    var comp = this;
+    axios.get(route.api('universities/get')).then(function (res) {
+      comp.universities = res.data;
+      comp.changeUniverstiy(1);
+    });
+  },
+  data: function data() {
+    return {
+      universities: [],
+      branches: [],
+      university: 0
+    };
+  },
+
+  methods: {
+    onChangeUniversity: function onChangeUniversity(e) {
+      this.changeUniverstiy(e.target.value);
+    },
+    onAddBranchSubmit: function onAddBranchSubmit(e) {
+      e.preventDefault();
+      var comp = this;
+      fh.hide_button();
+      fh.remove_all_errros('#formAdminAddBranch');
+      axios.post('/api/admin/branches/add', $('#formAdminAddBranch').serialize()).then(function (res) {
+        var data = res.data;
+        if (fh.is_success(data)) {
+          comp.changeUniverstiy(comp.university);
+        } else {
+          fh.set_multierrors(data);
+        }
+        fh.show_button();
+      }).catch(function (res) {});
+    },
+    changeUniverstiy: function changeUniverstiy(value) {
+      var comp = this;
+      comp.university = value;
+      axios.get(route.api('branches/get/') + value).then(function (res) {
+        comp.branches = res.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "60px" } }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("form", { attrs: { id: "formAdminUniverstiy" } }, [
+          _c("h5", [_vm._v("Universities")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    staticClass: "form-control",
+                    attrs: { name: "" },
+                    on: { change: _vm.onChangeUniversity }
+                  },
+                  _vm._l(_vm.universities, function(un, index) {
+                    return _c("option", { domProps: { value: index } }, [
+                      _vm._v(
+                        "\n                  " +
+                          _vm._s(un.name) +
+                          "\n                "
+                      )
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("form", { attrs: { id: "formAdminAddBranch" } }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.university,
+              expression: "university"
+            }
+          ],
+          attrs: { type: "hidden", name: "branch_university" },
+          domProps: { value: _vm.university },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.university = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", [_vm._v("Branches")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("table", { staticClass: "table table-hover table-striped" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.branches, function(branch, index) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(branch.name))])
+                  ])
+                })
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "clearfix" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-3" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-inline-form",
+                    attrs: { type: "submit", name: "button" },
+                    on: { click: _vm.onAddBranchSubmit }
+                  },
+                  [_vm._v("Add")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Branch Name")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("label", [_vm._v("Add Branch")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-9" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "branch_name",
+            name: "branch_name",
+            placeholder: "Name"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8f818cb0", module.exports)
+  }
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+window.route = {
+  api: function api(url) {
+    return '/api/' + url;
+  }
 };
 
 /***/ })

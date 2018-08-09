@@ -13,6 +13,7 @@
 
 Route::group(['domain'=>'admin.localhost'], function(){
   Route::get('/', 'Admin\DashboardController@getDashboard')->name('admin_dashboard');
+  Route::get('/universities', 'Admin\UniversityController@getUniversities')->name('admin_universities');
 });
 
 // Website
@@ -35,6 +36,13 @@ Route::get('login/{provider}/callback', 'Auth\SocialLoginController@handleProvid
 Route::prefix('api')->group(function () {
   Route::post('user/signup', 'Auth\LoginController@postSignup');
   Route::post('user/login', 'Auth\LoginController@postLogin');
+  Route::get('universities/get', 'Api\UniversityController@getUniversities');
+  Route::get('branches/get/{id}', 'Api\UniversityController@getBranches');
+});
+
+// Admin Api
+Route::prefix('api/admin')->group(function () {
+  Route::post('branches/add', 'Api\UniversityController@addBranch');
 });
 
 // Update
