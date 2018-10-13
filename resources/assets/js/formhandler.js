@@ -52,6 +52,9 @@ window.fh = {
     return data.success;
   },
 
+  clear_all: function(element) {
+    $(element).find("input, textarea").val("");
+  },
 
   redirect: function(data) {
     window.location = data.redirect;
