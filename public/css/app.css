@@ -21235,6 +21235,7 @@ footer .pull-center {
 }
 
 .btn-inline-form {
+  width: 120px;
   margin-top: -2px;
 }
 

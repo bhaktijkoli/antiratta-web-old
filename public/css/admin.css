@@ -19962,10 +19962,6 @@ label {
   position: relative;
 }
 
-.card .card-body .form-group {
-  margin: 27px 0 0;
-}
-
 .card .card-header {
   z-index: 3 !important;
 }
@@ -21878,6 +21874,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .btn-inline-form {
+  width: 120px;
   margin-top: -2px;
 }
 
