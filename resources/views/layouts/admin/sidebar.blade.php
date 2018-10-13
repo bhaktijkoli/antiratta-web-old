@@ -19,7 +19,7 @@
         </a>
       </li>
       <li class="nav-item {{$menu_item=='courses'?'active':''}}">
-        <a class="nav-link" href="{{route('admin_universities')}}">
+        <a class="nav-link" href="{{route('admin_courses')}}">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i>
           <p>Courses</p>
         </a>

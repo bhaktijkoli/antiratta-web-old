@@ -52,6 +52,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('university-component', require('./components/admin/UniversityComponent.vue'));
+Vue.component('course-component', require('./components/admin/CourseComponent.vue'));
 
 const app = new Vue({
     el: '#app'
