@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Auth;
 use App\University;
 use App\Branch;
 use App\Http\Requests\AddBranchRequest;
@@ -30,6 +31,7 @@ class UniversityController extends Controller
   }
   public function addBranch(AddBranchRequest $request) {
     $branch = new Branch();
+    $branch->user = Auth::user()->id;
     $branch->name = $request->input('branch_name');
     $branch->university = $request->input('branch_university', '-1');
     $branch->save();

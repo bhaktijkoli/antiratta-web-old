@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['domain'=>'admin.localhost'], function(){
+Route::prefix('admin')->group(function () {
   Route::get('/', 'Admin\DashboardController@getDashboard')->name('admin_dashboard');
   Route::get('/universities', 'Admin\UniversityController@getUniversities')->name('admin_universities');
 });
