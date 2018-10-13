@@ -7,7 +7,13 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-  public function getDashboard() {
+  public function __construct()
+  {
+    $this->middleware('admin');
+  }
+
+  public function getDashboard()
+  {
     return view('pages.admin.dashboard');
   }
 }

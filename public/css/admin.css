@@ -21874,7 +21874,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .btn-inline-form {
-  width: 120px;
+  min-width: 120px;
   margin-top: -2px;
 }
 
