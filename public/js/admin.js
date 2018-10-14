@@ -46412,9 +46412,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$root.$on('refresh-list', function () {
+      _this.onChangeUniversity();
+    });
+  },
   data: function data() {
     return {
       branches: [],
@@ -46423,26 +46438,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    onChangeUniversity: function onChangeUniversity(e) {
-      changeUniverstiy(e.target.value);
+    onChangeUniversity: function onChangeUniversity() {
+      var _this2 = this;
+
+      axios.get(route.api('branches/get/'), { params: { university: this.university } }).then(function (res) {
+        _this2.branches = res.data;
+      });
     },
     onRemoveBranch: function onRemoveBranch(branch) {
-      var _this = this;
+      var _this3 = this;
 
       if (confirm("Do you want to remove " + branch.name + "?")) {
         axios.post(route.api('admin/branches/remove'), { id: branch.id }).then(function (res) {
-          _this.changeUniverstiy(_this.university);
+          _this3.onChangeUniversity();
         });
       }
     },
-    changeUniverstiy: function changeUniverstiy(value) {
-      var _this2 = this;
-
-      this.university = value;
-      axios.get(route.api('branches/get/'), { params: { university: value } }).then(function (res) {
-        _this2.branches = res.data;
-      });
-    }
+    changeUniverstiy: function changeUniverstiy(value) {}
   },
   props: ['universities']
 });
@@ -46472,64 +46484,137 @@ var render = function() {
               _c(
                 "select",
                 {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.university,
+                      expression: "university"
+                    }
+                  ],
                   staticClass: "form-control",
-                  attrs: { name: "" },
-                  on: { change: _vm.onChangeUniversity }
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.university = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.onChangeUniversity
+                    ]
+                  }
                 },
                 _vm._l(_vm.universities, function(un, index) {
-                  return _c("option", { domProps: { value: index } }, [
-                    _vm._v(
-                      "\n              " + _vm._s(un.name) + "\n            "
-                    )
-                  ])
+                  return _c(
+                    "option",
+                    { domProps: { value: index + 1, selected: index == 0 } },
+                    [
+                      _vm._v(
+                        "\n              " + _vm._s(un.name) + "\n            "
+                      )
+                    ]
+                  )
                 })
               )
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("table", { staticClass: "table table-hover table-striped" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.branches, function(branch, index) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(index + 1))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(branch.name))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.onRemoveBranch(branch)
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.branches.length == 0,
+                expression: "branches.length==0"
+              }
+            ],
+            staticClass: "row",
+            staticStyle: { "margin-top": "50px", "margin-bottom": "50px" }
+          },
+          [_vm._m(0)]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.branches.length > 0,
+                expression: "branches.length > 0"
+              }
+            ],
+            staticClass: "row"
+          },
+          [
+            _c("table", { staticClass: "table table-hover table-striped" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.branches, function(branch, index) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(branch.name))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.onRemoveBranch(branch)
+                            }
                           }
-                        }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa fa-trash",
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ]
-                    )
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
                   ])
-                ])
-              })
-            )
-          ])
-        ])
+                })
+              )
+            ])
+          ]
+        )
       ])
     ]
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "text-center" }, [
+        _c("p", [
+          _vm._v(
+            "\n            No branches found for the selected university.\n          "
+          )
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -46655,6 +46740,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     onAddBranchSubmit: function onAddBranchSubmit(e) {
+      var _this = this;
+
       e.preventDefault();
       var form = $(this.$refs.formAdminAddBranch);
       fh.hide_button();
@@ -46662,6 +46749,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post(route.api('admin/branches/add'), form.serialize()).then(function (res) {
         var data = res.data;
         if (fh.is_success(data)) {
+          _this.$root.$emit("refresh-list");
           fh.clear_all(form);
         } else {
           fh.set_multierrors(data);
@@ -46706,7 +46794,7 @@ var render = function() {
                   attrs: { id: "branch_university", name: "branch_university" }
                 },
                 _vm._l(_vm.universities, function(un, index) {
-                  return _c("option", { domProps: { value: index } }, [
+                  return _c("option", { domProps: { value: index + 1 } }, [
                     _vm._v(
                       "\n                " +
                         _vm._s(un.name) +

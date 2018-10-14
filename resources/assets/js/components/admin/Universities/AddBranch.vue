@@ -23,7 +23,7 @@
             <div class="form-group">
               <label>Select university</label>
               <select class="form-control" id="branch_university" name="branch_university">
-                <option v-for="(un, index) in universities" :value="index">
+                <option v-for="(un, index) in universities" :value="index+1">
                   {{un.name}}
                 </option>
               </select>
@@ -53,6 +53,7 @@ export default {
       axios.post(route.api('admin/branches/add'), form.serialize()).then(res=>{
         let data = res.data;
         if(fh.is_success(data)) {
+          this.$root.$emit("refresh-list");
           fh.clear_all(form);
         } else {
           fh.set_multierrors(data);

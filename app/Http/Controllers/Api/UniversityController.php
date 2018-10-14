@@ -27,7 +27,11 @@ class UniversityController extends Controller
   }
   public function getBranches(Request $request) {
     $branches = Branch::where('university', $request->input('university', '-1'))->get();
-    return $branches;
+    $data = [];
+    foreach ($branches as $branch) {
+      array_push($data, $branch->format());
+    }
+    return $data;
   }
   public function addBranch(AddBranchRequest $request) {
     $branch = new Branch();

@@ -7,15 +7,24 @@
         <div class="col-sm-12">
           <div class="form-group">
             <label>Select university</label>
-            <select class="form-control" name="" v-on:change="onChangeUniversity">
-              <option v-for="(un, index) in universities" :value="index">
+            <select class="form-control" @change="onChangeUniversity" v-model="university">
+              <option v-for="(un, index) in universities" :value="index+1" :selected="index==0">
                 {{un.name}}
               </option>
             </select>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin-top:50px;margin-bottom:50px;" v-show="branches.length==0">
+        <div class="col-sm-12">
+          <div class="text-center">
+            <p>
+              No branches found for the selected university.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row" v-show="branches.length > 0">
         <table class="table table-hover table-striped">
           <thead>
             <tr>
@@ -40,6 +49,9 @@
 <script>
 export default {
   mounted() {
+    this.$root.$on('refresh-list', ()=> {
+      this.onChangeUniversity();
+    })
   },
   data() {
     return {
@@ -48,21 +60,20 @@ export default {
     }
   },
   methods: {
-    onChangeUniversity: function(e) {
-      changeUniverstiy(e.target.value)
+    onChangeUniversity: function() {
+      axios.get(route.api('branches/get/'), {params:{university:this.university}}).then(res=>{
+        this.branches = res.data;
+      });
     },
     onRemoveBranch: function(branch) {
       if(confirm("Do you want to remove " + branch.name + "?")) {
         axios.post(route.api('admin/branches/remove'), {id:branch.id}).then(res=>{
-          this.changeUniverstiy(this.university);
+          this.onChangeUniversity();
         })
       }
     },
     changeUniverstiy: function(value) {
-      this.university = value;
-      axios.get(route.api('branches/get/'), {params:{university:value}}).then(res=>{
-        this.branches = res.data;
-      });
+
     }
   },
   props: ['universities'],
