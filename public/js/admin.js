@@ -45526,70 +45526,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AllBranches__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AllBranches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AllBranches__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddBranch__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddBranch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AddBranch__);
 //
 //
 //
@@ -45598,64 +45538,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    AllBranches: __WEBPACK_IMPORTED_MODULE_0__AllBranches___default.a, AddBranch: __WEBPACK_IMPORTED_MODULE_1__AddBranch___default.a
+  },
   mounted: function mounted() {
-    var comp = this;
+    var _this = this;
+
     axios.get(route.api('universities/get')).then(function (res) {
-      comp.universities = res.data;
-      comp.changeUniverstiy(1);
+      _this.universities = res.data;
     });
   },
   data: function data() {
     return {
-      universities: [],
-      branches: [],
-      university: 0
+      universities: []
     };
-  },
-
-  methods: {
-    onChangeUniversity: function onChangeUniversity(e) {
-      this.changeUniverstiy(e.target.value);
-    },
-    onAddBranchSubmit: function onAddBranchSubmit(e) {
-      var _this = this;
-
-      e.preventDefault();
-      var form = $(this.$refs.formAdminAddBranch);
-      var comp = this;
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/branches/add'), form.serialize()).then(function (res) {
-        var data = res.data;
-        if (fh.is_success(data)) {
-          _this.changeUniverstiy(_this.university);
-          fh.clear_all(form);
-        } else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(function (res) {
-        show_errorpage(res);
-      });
-    },
-    onRemoveBranch: function onRemoveBranch(branch) {
-      var _this2 = this;
-
-      if (confirm("Do you want to remove " + branch.name + "?")) {
-        axios.post(route.api('admin/branches/remove'), { id: branch.id }).then(function (res) {
-          _this2.changeUniverstiy(_this2.university);
-        });
-      }
-    },
-    changeUniverstiy: function changeUniverstiy(value) {
-      var _this3 = this;
-
-      this.university = value;
-      axios.get(route.api('branches/get/'), { params: { university: value } }).then(function (res) {
-        _this3.branches = res.data;
-      });
-    }
   }
 });
 
@@ -45667,187 +45567,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "60px" } }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("form", { attrs: { id: "formAdminUniverstiy" } }, [
-          _c("h5", [_vm._v("Universities")]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-12" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "select",
-                  {
-                    staticClass: "form-control",
-                    attrs: { name: "" },
-                    on: { change: _vm.onChangeUniversity }
-                  },
-                  _vm._l(_vm.universities, function(un, index) {
-                    return _c("option", { domProps: { value: index } }, [
-                      _vm._v(
-                        "\n                  " +
-                          _vm._s(un.name) +
-                          "\n                "
-                      )
-                    ])
-                  })
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c("form", { ref: "formAdminAddBranch" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.university,
-              expression: "university"
-            }
-          ],
-          attrs: { type: "hidden", name: "branch_university" },
-          domProps: { value: _vm.university },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.university = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", [_vm._v("Branches")]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("table", { staticClass: "table table-hover table-striped" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.branches, function(branch, index) {
-                  return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(index + 1))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(branch.name))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-sm",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              _vm.onRemoveBranch(branch)
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fa fa-trash",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ]
-                      )
-                    ])
-                  ])
-                })
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "clearfix" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-inline-form",
-                    attrs: { type: "submit", name: "button" },
-                    on: { click: _vm.onAddBranchSubmit }
-                  },
-                  [_vm._v("Add")]
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  ])
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("AllBranches", { attrs: { universities: _vm.universities } }),
+      _vm._v(" "),
+      _c("AddBranch", { attrs: { universities: _vm.universities } })
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("Select university")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Branch Name")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("Add Branch")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-9" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "branch_name",
-            name: "branch_name",
-            placeholder: "Name"
-          }
-        }),
-        _vm._v(" "),
-        _c("p", { staticClass: "help-block" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -46586,6 +46317,477 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-610ec588", module.exports)
+  }
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(36)
+/* script */
+var __vue_script__ = __webpack_require__(90)
+/* template */
+var __vue_template__ = __webpack_require__(91)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/Universities/AllBranches.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9db47f76", Component.options)
+  } else {
+    hotAPI.reload("data-v-9db47f76", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {},
+  data: function data() {
+    return {
+      branches: [],
+      university: 0
+    };
+  },
+
+  methods: {
+    onChangeUniversity: function onChangeUniversity(e) {
+      changeUniverstiy(e.target.value);
+    },
+    onRemoveBranch: function onRemoveBranch(branch) {
+      var _this = this;
+
+      if (confirm("Do you want to remove " + branch.name + "?")) {
+        axios.post(route.api('admin/branches/remove'), { id: branch.id }).then(function (res) {
+          _this.changeUniverstiy(_this.university);
+        });
+      }
+    },
+    changeUniverstiy: function changeUniverstiy(value) {
+      var _this2 = this;
+
+      this.university = value;
+      axios.get(route.api('branches/get/'), { params: { university: value } }).then(function (res) {
+        _this2.branches = res.data;
+      });
+    }
+  },
+  props: ['universities']
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card", staticStyle: { "margin-top": "60px" } },
+    [
+      _c("div", { staticClass: "card-body" }, [
+        _c("h5", [_vm._v("All Branches")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Select university")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "form-control",
+                  attrs: { name: "" },
+                  on: { change: _vm.onChangeUniversity }
+                },
+                _vm._l(_vm.universities, function(un, index) {
+                  return _c("option", { domProps: { value: index } }, [
+                    _vm._v(
+                      "\n              " + _vm._s(un.name) + "\n            "
+                    )
+                  ])
+                })
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("table", { staticClass: "table table-hover table-striped" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.branches, function(branch, index) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(branch.name))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-sm",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.onRemoveBranch(branch)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-trash",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                ])
+              })
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Branch Name")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9db47f76", module.exports)
+  }
+}
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(36)
+/* script */
+var __vue_script__ = __webpack_require__(93)
+/* template */
+var __vue_template__ = __webpack_require__(94)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/Universities/AddBranch.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0214ed57", Component.options)
+  } else {
+    hotAPI.reload("data-v-0214ed57", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {},
+
+  methods: {
+    onAddBranchSubmit: function onAddBranchSubmit(e) {
+      e.preventDefault();
+      var form = $(this.$refs.formAdminAddBranch);
+      fh.hide_button();
+      fh.remove_all_errros(form);
+      axios.post(route.api('admin/branches/add'), form.serialize()).then(function (res) {
+        var data = res.data;
+        if (fh.is_success(data)) {
+          fh.clear_all(form);
+        } else {
+          fh.set_multierrors(data);
+        }
+        fh.show_button();
+      }).catch(function (res) {
+        show_errorpage(res);
+      });
+    }
+  },
+  props: ['universities']
+});
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("form", { ref: "formAdminAddBranch" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("h5", [_vm._v("Add Branch")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-9" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Select university")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "form-control",
+                  attrs: { id: "branch_university", name: "branch_university" }
+                },
+                _vm._l(_vm.universities, function(un, index) {
+                  return _c("option", { domProps: { value: index } }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(un.name) +
+                        "\n              "
+                    )
+                  ])
+                })
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-inline-form",
+                  attrs: { type: "submit", name: "button" },
+                  on: { click: _vm.onAddBranchSubmit }
+                },
+                [_vm._v("Add")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-9" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "branch_name",
+            name: "branch_name",
+            placeholder: "Enter branch name"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-9" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Shortname")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "branch_shortname",
+            name: "branch_shortname",
+            placeholder: "Enter shortname"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0214ed57", module.exports)
   }
 }
 

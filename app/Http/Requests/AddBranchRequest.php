@@ -28,6 +28,7 @@ class AddBranchRequest extends FormRequest
   {
     return [
       'branch_name' => 'required',
+      'branch_shortname' => 'required',
     ];
   }
 

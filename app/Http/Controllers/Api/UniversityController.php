@@ -34,6 +34,7 @@ class UniversityController extends Controller
     $branch->user = Auth::user()->id;
     $branch->name = $request->input('branch_name');
     $branch->university = $request->input('branch_university', '-1');
+    $branch->shortname = $request->input('branch_shortname', '');
     $branch->save();
     return ResponseBuilder::send(true, "", '/');
   }

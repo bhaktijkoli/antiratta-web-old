@@ -18,6 +18,7 @@ class CreateBranchesTable extends Migration
           $table->integer('user');
           $table->integer('university');
           $table->string('name');
+          $table->string('shortname');
           $table->timestamps();
       });
   }
