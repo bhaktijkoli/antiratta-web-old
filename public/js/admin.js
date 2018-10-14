@@ -45618,18 +45618,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     onRemoveBranch: function onRemoveBranch(branch) {
-      var comp = this;
+      var _this2 = this;
+
       if (confirm("Do you want to remove " + branch.name + "?")) {
         axios.post(route.api('admin/branches/remove'), { id: branch.id }).then(function (res) {
-          comp.changeUniverstiy(comp.university);
+          _this2.changeUniverstiy(_this2.university);
         });
       }
     },
     changeUniverstiy: function changeUniverstiy(value) {
-      var comp = this;
-      comp.university = value;
-      axios.get(route.api('branches/get/') + value).then(function (res) {
-        comp.branches = res.data;
+      var _this3 = this;
+
+      this.university = value;
+      axios.get(route.api('branches/get/'), { params: { university: value } }).then(function (res) {
+        _this3.branches = res.data;
       });
     }
   }
@@ -45977,7 +45979,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.university = value;
-      axios.get(route.api('branches/get/') + value).then(function (res) {
+      axios.get(route.api('branches/get/'), { params: { university: value } }).then(function (res) {
         _this2.branches = res.data;
       });
     },

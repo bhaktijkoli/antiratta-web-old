@@ -38,7 +38,7 @@ Route::prefix('api')->group(function () {
   Route::post('user/signup', 'Auth\LoginController@postSignup');
   Route::post('user/login', 'Auth\LoginController@postLogin');
   Route::get('universities/get', 'Api\UniversityController@getUniversities');
-  Route::get('branches/get/{id}', 'Api\UniversityController@getBranches');
+  Route::get('branches/get', 'Api\UniversityController@getBranches');
 });
 
 // Admin Api

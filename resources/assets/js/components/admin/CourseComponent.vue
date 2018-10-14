@@ -68,7 +68,7 @@ export default {
   methods: {
     changeUniverstiy: function(value) {
       this.university = value;
-      axios.get(route.api('branches/get/')+value).then(res=>{
+      axios.get(route.api('branches/get/'), {params:{university:value}}).then(res=>{
         this.branches = res.data;
       });
     },

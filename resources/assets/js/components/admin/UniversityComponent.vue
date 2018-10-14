@@ -109,18 +109,16 @@ export default {
       })
     },
     onRemoveBranch: function(branch) {
-      let comp = this;
       if(confirm("Do you want to remove " + branch.name + "?")) {
         axios.post(route.api('admin/branches/remove'), {id:branch.id}).then(res=>{
-          comp.changeUniverstiy(comp.university);
+          this.changeUniverstiy(this.university);
         })
       }
     },
     changeUniverstiy: function(value) {
-      let comp = this;
-      comp.university = value;
-      axios.get(route.api('branches/get/')+value).then(res=>{
-        comp.branches = res.data;
+      this.university = value;
+      axios.get(route.api('branches/get/'), {params:{university:value}}).then(res=>{
+        this.branches = res.data;
       });
     }
   },
