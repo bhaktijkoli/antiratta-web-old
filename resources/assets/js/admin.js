@@ -51,8 +51,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('university-component', require('./components/admin/UniversityComponent.vue'));
-Vue.component('course-component', require('./components/admin/CourseComponent.vue'));
+Vue.component('university-component', require('./components/admin/Universities/UniversityComponent.vue'));
+Vue.component('course-component', require('./components/admin/Courses/CourseComponent.vue'));
 
 const app = new Vue({
     el: '#app'
