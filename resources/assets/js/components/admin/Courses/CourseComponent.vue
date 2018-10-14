@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="card" style="margin-top:60px">
+    <AllCourses :universities="universities"/>
+    <div class="card">
       <form ref="formAddCourse">
         <div class="card-body">
           <h5>Add Course</h5>
@@ -10,6 +11,13 @@
               <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control" id="course_name" name="course_name" placeholder="Enter course name">
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="form-group">
+                <label for="">Short name</label>
+                <input type="text" class="form-control" id="course_shortname" name="course_shortname" placeholder="Enter course shortname">
                 <p class="help-block"></p>
               </div>
             </div>
@@ -51,7 +59,11 @@
 </template>
 
 <script>
+import AllCourses from './AllCoursesComponent'
 export default {
+  components: {
+    AllCourses
+  },
   mounted() {
     axios.get(route.api('universities/get')).then(res=>{
       this.universities = res.data;

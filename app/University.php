@@ -4,8 +4,8 @@ namespace App;
 
 class University
 {
-  private const universities_name = ["None", "Mumbai University"];
-  private const universities_sc = ["None", "MU"];
+  private const universities_name = ["None", "Mumbai University", "Pune University"];
+  private const universities_sc = ["None", "MU", "PU"];
   public static function getNames() {
     return Self::universities_name;
   }

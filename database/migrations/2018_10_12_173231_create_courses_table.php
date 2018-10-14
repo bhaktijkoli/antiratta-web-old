@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->integer('user');
             $table->integer('branch');
             $table->string('name');
+            $table->string('shortname');
             $table->double('price');
             $table->timestamps();
         });

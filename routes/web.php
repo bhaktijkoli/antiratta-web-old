@@ -39,6 +39,7 @@ Route::prefix('api')->group(function () {
   Route::post('user/login', 'Auth\LoginController@postLogin');
   Route::get('universities/get', 'Api\UniversityController@getUniversities');
   Route::get('branches/get', 'Api\UniversityController@getBranches');
+  Route::get('courses/get', 'Api\CourseController@getCourses');
 });
 
 // Admin Api
@@ -46,6 +47,7 @@ Route::prefix('api/admin')->group(function () {
   Route::post('branches/add', 'Api\UniversityController@addBranch');
   Route::post('branches/remove', 'Api\UniversityController@removeBranch');
   Route::post('courses/add', 'Api\CourseController@addCourse');
+  Route::post('courses/remove', 'Api\CourseController@removeCourse');
 });
 
 // Update

@@ -20,7 +20,24 @@ class CourseController extends Controller
     $course->name = $request->input('course_name', '');
     $course->price = $request->input('course_price', '');
     $course->branch = $request->input('course_branch', '');
+    $course->shortname = $request->input('course_shortname', '');
     $course->save();
     return ResponseBuilder::send(true, "", '/');
+  }
+
+  public function removeCourse(Request $request) {
+    $course = Course::where('id', $request->input('course','-1'))->first();
+    if(!$course) abort(404);
+    $course->deleleAll();
+    return ResponseBuilder::send(true, "", '/');
+  }
+
+  public function getCourses(Request $request) {
+    $courses = Course::where('branch', $request->input('branch', '-1'))->get();
+    $data = [];
+    foreach ($courses as $course) {
+      array_push($data, $course->format());
+    }
+    return $data;
   }
 }
