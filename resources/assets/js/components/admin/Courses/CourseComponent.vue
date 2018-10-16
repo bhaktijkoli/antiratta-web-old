@@ -68,6 +68,7 @@ export default {
     axios.get(route.api('universities/get')).then(res=>{
       this.universities = res.data;
       this.changeUniverstiy(1);
+      this.$root.$emit('universities-loaded');
     });
   },
   data() {

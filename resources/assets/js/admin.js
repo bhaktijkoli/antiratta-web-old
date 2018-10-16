@@ -53,6 +53,7 @@ window.Vue = require('vue');
 
 Vue.component('university-component', require('./components/admin/Universities/UniversityComponent.vue'));
 Vue.component('course-component', require('./components/admin/Courses/CourseComponent.vue'));
+Vue.component('editcourse-component', require('./components/admin/EditCourse/EditCourseComponent.vue'));
 
 const app = new Vue({
     el: '#app'

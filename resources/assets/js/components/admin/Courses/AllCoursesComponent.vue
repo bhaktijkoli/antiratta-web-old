@@ -35,6 +35,13 @@
             <span class="sr-only">Loading...</span>
           </div>
         </div>
+        <div class="col-sm-12" v-show="courses.length==0 && first==false" style="margin-top:50px;margin-bottom:50px">
+          <div class="text-center">
+            <p>
+              No courses were found for the selected branch and university.
+            </p>
+          </div>
+        </div>
         <div class="col-sm-12" v-show="courses.length!=0">
           <table class="table table-hover table-striped">
             <thead>
@@ -48,7 +55,10 @@
               <tr v-for="(course, key) in courses">
                 <td>{{key+1}}</td>
                 <td>{{course.name}}</td>
-                <td><button type="button" class="btn btn-danger btn-sm" @click="onRemoveCourse(course)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                <td>
+                  <a class="btn btn-warning btn-sm" @click="onClickEdit(course)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a class="btn btn-danger btn-sm" @click="onRemoveCourse(course)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -61,11 +71,16 @@
 <script>
 export default {
   mounted() {
+    this.$root.$on('universities-loaded', ()=> {
+      this.university = 1;
+      this.onChangeUniverstiy();
+    })
   },
   data() {
     return {
       university: 0,
       branch: -1,
+      first: true,
       branches: [],
       courses: [],
       loading: false,
@@ -75,15 +90,20 @@ export default {
     onChangeUniverstiy: function() {
       axios.get(route.api('branches/get/'), {params:{university:this.university}}).then(res=>{
         this.branches = res.data;
+        this.branch = 0;
       });
     },
     onGetClick: function() {
+      this.first = false;
       this.courses = [];
       this.loading = true;
       axios.get(route.api('courses/get/'), {params:{branch:this.branch}}).then(res=>{
         this.courses = res.data;
         this.loading = false;
       });
+    },
+    onClickEdit: function(course) {
+      window.location = route.admin('courses/edit/'+course.id);
     },
     onRemoveCourse: function(course) {
       if(confirm("Do you want to remove " + course.name + "?")) {

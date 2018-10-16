@@ -21301,6 +21301,10 @@ footer .pull-center {
   text-align: left;
 }
 
+.table .btn .fa {
+  color: #FFFFFF !important;
+}
+
 .space {
   height: 500px;
 }
