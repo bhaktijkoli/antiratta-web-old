@@ -1,27 +1,31 @@
 <template>
   <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <h5>Edit Course</h5>
-        <hr />
+    <div class="row">
+      <div class="col-sm-9">
+        <EditCourseForm :course="course"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import EditCourseForm from './EditCourseForm'
 export default {
   components: {
-
-  },
-  mounted() {
+    EditCourseForm
   },
   data() {
     return {
-
+      course: {},
     }
   },
-  methods: {
+  mounted() {
+    var id = window.location.pathname.split("/").pop();
+    axios.get(route.api('courses/get/') + id)
+    .then(res=>{
+      this.course = res.data;
+      this.$root.$emit('course-loaded');
+    })
   },
 }
 </script>

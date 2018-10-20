@@ -15,6 +15,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/', 'Admin\DashboardController@getDashboard')->name('admin_dashboard');
   Route::get('/universities', 'Admin\UniversityController@getUniversities')->name('admin_universities');
   Route::get('/courses', 'Admin\CourseController@getCourses')->name('admin_courses');
+  Route::get('/courses/edit/{id}', 'Admin\CourseController@getEditCourse')->name('admin_editcourse');
 });
 
 // Website
@@ -40,6 +41,7 @@ Route::prefix('api')->group(function () {
   Route::get('universities/get', 'Api\UniversityController@getUniversities');
   Route::get('branches/get', 'Api\UniversityController@getBranches');
   Route::get('courses/get', 'Api\CourseController@getCourses');
+  Route::get('courses/get/{id}', 'Api\CourseController@getCourseByID');
 });
 
 // Admin Api
@@ -47,6 +49,7 @@ Route::prefix('api/admin')->group(function () {
   Route::post('branches/add', 'Api\UniversityController@addBranch');
   Route::post('branches/remove', 'Api\UniversityController@removeBranch');
   Route::post('courses/add', 'Api\CourseController@addCourse');
+  Route::post('courses/edit', 'Api\CourseController@editCourse');
   Route::post('courses/remove', 'Api\CourseController@removeCourse');
 });
 

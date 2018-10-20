@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="margin-top:60px">
+  <div class="card first-card">
     <div class="card-body">
       <h5>All Courses</h5>
       <hr />
