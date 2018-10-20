@@ -54,18 +54,7 @@ export default {
     onFormSumit: function(e) {
       e.preventDefault();
       var form = $(e.target);
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/courses/edit'), form.serialize()).then(res=>{
-        let data = res.data;
-        if(fh.is_success(data)) {
-        } else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(res=>{
-        show_errorpage(res);
-      })
+      fsh.post(route.api('admin/courses/edit'), form, null, false);
     }
   },
   props: ['course'],

@@ -45966,19 +45966,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       e.preventDefault();
       var form = $(this.$refs.formAdminAddBranch);
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/branches/add'), form.serialize()).then(function (res) {
-        var data = res.data;
-        if (fh.is_success(data)) {
-          _this.$root.$emit("refresh-list");
-          fh.clear_all(form);
-        } else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(function (res) {
-        show_errorpage(res);
+      fsh.post(route.api('admin/branches/add'), form, function (success, data) {
+        if (success == true) _this.$root.$emit("refresh-list");
       });
     }
   },
@@ -47112,17 +47101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onFormSumit: function onFormSumit(e) {
       e.preventDefault();
       var form = $(e.target);
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/courses/edit'), form.serialize()).then(function (res) {
-        var data = res.data;
-        if (fh.is_success(data)) {} else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(function (res) {
-        show_errorpage(res);
-      });
+      fsh.post(route.api('admin/courses/edit'), form, null, false);
     }
   },
   props: ['course']
@@ -47303,13 +47282,14 @@ if (false) {
 window.fsh = {
   post: function post(url, form) {
     var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var clear = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 
     fh.hide_button();
     fh.remove_all_errros(form);
     axios.post(url, form.serialize()).then(function (res) {
       var data = res.data;
       if (fh.is_success(data)) {
-        fh.clear_all(form);
+        if (clear == true) fh.clear_all(form);
         if (typeof callback == 'function') callback(true, res.data);
       } else {
         fh.set_multierrors(data);

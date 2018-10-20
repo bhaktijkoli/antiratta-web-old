@@ -48,20 +48,9 @@ export default {
     onAddBranchSubmit: function(e) {
       e.preventDefault();
       var form = $(this.$refs.formAdminAddBranch);
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/branches/add'), form.serialize()).then(res=>{
-        let data = res.data;
-        if(fh.is_success(data)) {
-          this.$root.$emit("refresh-list");
-          fh.clear_all(form);
-        } else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(res=>{
-        show_errorpage(res);
-      })
+      fsh.post(route.api('admin/branches/add'), form, (success, data)=>{
+        if(success == true) this.$root.$emit("refresh-list");
+      });
     },
   },
   props: ['universities'],
