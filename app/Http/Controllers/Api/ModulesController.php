@@ -51,6 +51,6 @@ class ModulesController extends Controller
   public function getModuleByID($id) {
     $module = Module::where('id', $id)->first();
     if(!$module) abort(404);
-    return $module->format();
+    return $module->formatDetails();
   }
 }

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 use Auth;
 
-class Module extends Model
+class Topic extends Model
 {
-  protected $table = "modules";
+  protected $table = "topics";
   public $timestamps = true;
 
   public function format() {
@@ -21,17 +21,6 @@ class Module extends Model
         $data['updated_by'] = User::where('id', $this->updated_by)->first()->firstname;
         $data['updated_at'] = $this->updated_at->diffForHumans();
     }
-    return $data;
-  }
-
-  public function formatDetails() {
-    $data = $this->format();
-    $topics = [];
-    $topicQueries = Topic::where('module', $this->id)->get();
-    foreach ($topicQueries as $t) {
-      array_push($topics, $t);
-    }
-    $data['topics'] = $topics;
     return $data;
   }
 

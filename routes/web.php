@@ -56,6 +56,7 @@ Route::middleware(['admin'])->prefix('api/admin')->group(function () {
   Route::post('modules/add', 'Api\ModulesController@addModule');
   Route::post('modules/edit', 'Api\ModulesController@editModule');
   Route::post('modules/remove', 'Api\ModulesController@removeModule');
+  Route::post('topics/add', 'Api\TopicsController@addTopic');
 });
 
 // Update

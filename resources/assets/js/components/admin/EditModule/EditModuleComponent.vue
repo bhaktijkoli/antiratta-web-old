@@ -1,16 +1,26 @@
 <template>
   <div class="container">
     <div class="row">
-      <EditModuleForm :module="module" />
+      <div class="col-sm-12">
+        <EditModuleForm :module="module" />
+      </div>
+      <div class="col-sm-12">
+        <TopicList :module="module" />
+      </div>
+      <div class="col-sm-12">
+        <AddTopic :module="module" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import EditModuleForm from './EditModuleForm'
+import TopicList from './../Topics/TopicList'
+import AddTopic from './../Topics/AddTopic'
 export default {
   components: {
-    EditModuleForm,
+    EditModuleForm, TopicList, AddTopic
   },
   data() {
     return {
