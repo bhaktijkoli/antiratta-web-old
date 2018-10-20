@@ -44941,6 +44941,7 @@ if (token) {
 
 // Modules
 __webpack_require__(37);
+__webpack_require__(92);
 __webpack_require__(54);
 
 window.Vue = __webpack_require__(34);
@@ -46277,20 +46278,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     onAddCourseSubmit: function onAddCourseSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var form = $(this.$refs.formAddCourse);
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/courses/add'), form.serialize()).then(function (res) {
-        var data = res.data;
-        if (fh.is_success(data)) {
-          fh.clear_all(form);
-        } else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(function (res) {
-        show_errorpage(res);
+      fsh.post(route.api('admin/courses/add'), form, function (success, data) {
+        if (success == true) _this3.$root.$emit('courses-refresh');
       });
     }
   }
@@ -46427,6 +46420,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.$root.$on('universities-loaded', function () {
       _this.university = 1;
       _this.onChangeUniverstiy();
+    });
+    this.$root.$on('courses-refresh', function () {
+      _this.onGetClick();
     });
   },
   data: function data() {
@@ -47283,6 +47279,48 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-ce4c1476", module.exports)
   }
 }
+
+/***/ }),
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */
+/***/ (function(module, exports) {
+
+window.fsh = {
+  post: function post(url, form) {
+    var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    fh.hide_button();
+    fh.remove_all_errros(form);
+    axios.post(url, form.serialize()).then(function (res) {
+      var data = res.data;
+      if (fh.is_success(data)) {
+        fh.clear_all(form);
+        if (typeof callback == 'function') callback(true, res.data);
+      } else {
+        fh.set_multierrors(data);
+        if (typeof callback == 'function') callback(false, res.data);
+      }
+      fh.show_button();
+    }).catch(function (res) {
+      show_errorpage(res);
+    });
+  }
+};
 
 /***/ })
 /******/ ]);

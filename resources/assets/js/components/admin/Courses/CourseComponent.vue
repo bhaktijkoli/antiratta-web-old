@@ -88,19 +88,9 @@ export default {
     onAddCourseSubmit: function(e) {
       e.preventDefault();
       var form = $(this.$refs.formAddCourse);
-      fh.hide_button();
-      fh.remove_all_errros(form);
-      axios.post(route.api('admin/courses/add'), form.serialize()).then(res=>{
-        let data = res.data;
-        if(fh.is_success(data)) {
-          fh.clear_all(form);
-        } else {
-          fh.set_multierrors(data);
-        }
-        fh.show_button();
-      }).catch(res=>{
-        show_errorpage(res);
-      })
+      fsh.post(route.api('admin/courses/add'), form, (success, data)=>{
+        if(success == true) this.$root.$emit('courses-refresh');
+      });
     },
   },
 }

@@ -74,6 +74,9 @@ export default {
     this.$root.$on('universities-loaded', ()=> {
       this.university = 1;
       this.onChangeUniverstiy();
+    });
+    this.$root.$on('courses-refresh', ()=> {
+      this.onGetClick();
     })
   },
   data() {

@@ -40,6 +40,7 @@ if (token) {
 
 // Modules
 require('./formhandler');
+require('./scripts/admin-form');
 require('./route');
 
 window.Vue = require('vue');
