@@ -25,6 +25,17 @@ class Course extends Model
     return $data;
   }
 
+  public function formatDetails() {
+    $data = $this->format();
+    $modules = [];
+    $moduleQueries = Module::where('course', $this->id)->get();
+    foreach ($moduleQueries as $m) {
+      array_push($modules, $m);
+    }
+    $data['modules'] = $modules;
+    return $data;
+  }
+
   public function deleleAll() {
     $this->forceDelete();
   }

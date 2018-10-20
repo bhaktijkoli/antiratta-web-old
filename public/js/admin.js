@@ -46962,6 +46962,10 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditCourseForm__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditCourseForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditCourseForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Modules_ModuleList__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Modules_ModuleList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Modules_ModuleList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Modules_AddModule__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Modules_AddModule___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Modules_AddModule__);
 //
 //
 //
@@ -46972,11 +46976,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    EditCourseForm: __WEBPACK_IMPORTED_MODULE_0__EditCourseForm___default.a
+    EditCourseForm: __WEBPACK_IMPORTED_MODULE_0__EditCourseForm___default.a, ModuleList: __WEBPACK_IMPORTED_MODULE_1__Modules_ModuleList___default.a, AddModule: __WEBPACK_IMPORTED_MODULE_2__Modules_AddModule___default.a
   },
   data: function data() {
     return {
@@ -46986,11 +46998,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
-    var id = window.location.pathname.split("/").pop();
-    axios.get(route.api('courses/get/') + id).then(function (res) {
-      _this.course = res.data;
-      _this.$root.$emit('course-loaded');
+    this.doRefresh();
+    this.$root.$on('refresh', function () {
+      _this.doRefresh();
     });
+  },
+
+  methods: {
+    doRefresh: function doRefresh() {
+      var _this2 = this;
+
+      var id = window.location.pathname.split("/").pop();
+      axios.get(route.api('courses/get/') + id).then(function (res) {
+        _this2.course = res.data;
+        _this2.$root.$emit('course-loaded', res.data);
+      });
+    }
   }
 });
 
@@ -47245,6 +47268,20 @@ var render = function() {
         { staticClass: "col-sm-9" },
         [_c("EditCourseForm", { attrs: { course: _vm.course } })],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-sm-12" },
+        [_c("ModuleList", { attrs: { course: _vm.course } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-sm-12" },
+        [_c("AddModule", { attrs: { course: _vm.course } })],
+        1
       )
     ])
   ])
@@ -47301,6 +47338,406 @@ window.fsh = {
     });
   }
 };
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(94)
+/* template */
+var __vue_template__ = __webpack_require__(95)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/Modules/AddModule.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1797269e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1797269e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {},
+
+  methods: {
+    onSubmit: function onSubmit(e) {
+      var _this = this;
+
+      e.preventDefault();
+      var form = $(e.target);
+      fsh.post(route.api('admin/modules/add'), form, function (success, data) {
+        if (success == true) _this.$root.$emit("refresh");
+      });
+    }
+  },
+  props: ['course']
+});
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", [_vm._v("Add Module")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("form", { on: { submit: _vm.onSubmit } }, [
+        _c("input", {
+          attrs: { type: "hidden", name: "module_course" },
+          domProps: { value: _vm.course.id }
+        }),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-9" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "module_name",
+              name: "module_name",
+              placeholder: "Enter module name"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Description")]),
+          _vm._v(" "),
+          _c("textarea", {
+            staticClass: "form-control",
+            attrs: { id: "module_description", name: "module_description" }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-inline-form",
+              attrs: { type: "submit", name: "button" }
+            },
+            [_vm._v("Add")]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1797269e", module.exports)
+  }
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(97)
+/* template */
+var __vue_template__ = __webpack_require__(98)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/Modules/ModuleList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f359bc6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-f359bc6e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$root.$on('course-loaded', function (data) {
+      _this.modules = data.modules;
+    });
+  },
+  data: function data() {
+    return {
+      modules: []
+    };
+  },
+
+  methods: {},
+  props: ['course']
+});
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", [_vm._v("All Modules")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.modules.length == 0,
+                expression: "modules.length==0"
+              }
+            ],
+            staticClass: "col-sm-12",
+            staticStyle: { "margin-top": "50px", "margin-bottom": "50px" }
+          },
+          [_vm._m(0)]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.modules.length != 0,
+                expression: "modules.length!=0"
+              }
+            ],
+            staticClass: "col-sm-12"
+          },
+          [
+            _c("table", { staticClass: "table table-hover table-striped" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.modules, function(m, key) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(key + 1))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(m.name))])
+                  ])
+                })
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("p", [
+        _vm._v(
+          "\n            No modules were found for this course.\n          "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Course Name")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f359bc6e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

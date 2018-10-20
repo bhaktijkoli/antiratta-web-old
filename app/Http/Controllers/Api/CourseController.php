@@ -61,6 +61,6 @@ class CourseController extends Controller
   public function getCourseByID($id) {
     $course = Course::where('id', $id)->first();
     if(!$course) abort(404);
-    return $course->format();
+    return $course->formatDetails();
   }
 }
