@@ -1,7 +1,7 @@
 <template>
   <div class="card first-card">
     <div class="card-body">
-      <h5>Edit Course</h5>
+      <h5>Edit Course&nbsp;&nbsp;<small>{{course.name}}</small></h5>
       <hr />
       <form @submit="onFormSumit">
         <input type="hidden" name="course" :value="course.id">

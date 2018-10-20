@@ -47141,7 +47141,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card first-card" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("h5", [_vm._v("Edit Course")]),
+      _c("h5", [
+        _vm._v("Edit Course  "),
+        _c("small", [_vm._v(_vm._s(_vm.course.name))])
+      ]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -48035,7 +48038,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card first-card" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("h5", [_vm._v("Add Module")]),
+      _c("h5", [
+        _vm._v("Edit Module  "),
+        _c("small", [_vm._v(_vm._s(_vm.module.name))])
+      ]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
