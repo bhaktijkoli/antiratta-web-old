@@ -7,6 +7,8 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
 use App\ResponseBuilder;
 
+use Auth;
+
 class AddBranchRequest extends FormRequest
 {
   /**
@@ -16,7 +18,7 @@ class AddBranchRequest extends FormRequest
   */
   public function authorize()
   {
-    return true;
+    return Auth::user()->isEditor();
   }
 
   /**

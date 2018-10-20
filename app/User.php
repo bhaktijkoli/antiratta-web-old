@@ -27,13 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function has_access() {
+    public function hasAccess() {
       if($this->role > 0) return true;
       else return false;
     }
 
     public function isAdmin() {
       if($this->role == 1) return true;
+      return false;
+    }
+
+    public function isEditor() {
+      if($this->role > 0 && $this->role <= 2) return true;
       return false;
     }
 }
