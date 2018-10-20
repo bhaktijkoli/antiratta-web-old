@@ -26,4 +26,12 @@ class ModulesController extends Controller
     $module->save();
     return ResponseBuilder::send(true, "", '/');
   }
+
+  // Remove module
+  public function removeModule(Request $request) {
+    $module = Module::where('id', $request->input('module', '-1'))->first();
+    if(!$module) abort(404);
+    $module->deleleAll();
+    return ResponseBuilder::send(true, "", '/');
+  }
 }

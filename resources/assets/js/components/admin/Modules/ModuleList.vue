@@ -24,6 +24,10 @@
               <tr v-for="(m, key) in modules">
                 <td>{{key+1}}</td>
                 <td>{{m.name}}</td>
+                <td>
+                  <a class="btn btn-warning btn-sm" @click="onClickEdit(m)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a class="btn btn-danger btn-sm" @click="doClickRemove(m)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -46,6 +50,17 @@ export default {
     }
   },
   methods: {
+    onClickEdit: function(m) {
+      window.location = route.admin('modules/edit/'+m.id);
+    },
+    doClickRemove: function(m) {
+      if(confirm("Are you sure to remove " + m.name +"?")) {
+        axios.post(route.api('admin/modules/remove'), {module:m.id})
+        .then(res=> {
+          if(fh.is_success(res.data)) this.$root.$emit("refresh");
+        })
+      }
+    }
   },
   props: ['course'],
 }

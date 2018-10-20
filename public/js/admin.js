@@ -47617,6 +47617,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -47632,7 +47636,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  methods: {},
+  methods: {
+    onClickEdit: function onClickEdit(m) {
+      window.location = route.admin('modules/edit/' + m.id);
+    },
+    doClickRemove: function doClickRemove(m) {
+      var _this2 = this;
+
+      if (confirm("Are you sure to remove " + m.name + "?")) {
+        axios.post(route.api('admin/modules/remove'), { module: m.id }).then(function (res) {
+          if (fh.is_success(res.data)) _this2.$root.$emit("refresh");
+        });
+      }
+    }
+  },
   props: ['course']
 });
 
@@ -47691,7 +47708,45 @@ var render = function() {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(key + 1))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(m.name))])
+                    _c("td", [_vm._v(_vm._s(m.name))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-warning btn-sm",
+                          on: {
+                            click: function($event) {
+                              _vm.onClickEdit(m)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-pencil",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          on: {
+                            click: function($event) {
+                              _vm.doClickRemove(m)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
                   ])
                 })
               )

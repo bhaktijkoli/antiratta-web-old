@@ -52,6 +52,7 @@ Route::prefix('api/admin')->group(function () {
   Route::post('courses/edit', 'Api\CourseController@editCourse');
   Route::post('courses/remove', 'Api\CourseController@removeCourse');
   Route::post('modules/add', 'Api\ModulesController@addModule');
+  Route::post('modules/remove', 'Api\ModulesController@removeModule');
 });
 
 // Update
