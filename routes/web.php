@@ -26,7 +26,6 @@ Route::get('/authenticate', 'Auth\LoginController@getAuthenticate')->name('authe
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
 Route::get('/jfk', 'JFKController@getJfK')->name('jfk');
-Route::get('/candid-charcha', 'AboutController@getCandid')->name('candid');
 Route::get('/aboutus', 'AboutController@getAbout')->name('aboutus');
 
 Route::get('/settings/{setting}', 'SettingsController@getSetting')->name('setting');
