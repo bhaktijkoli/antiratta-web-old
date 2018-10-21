@@ -24,6 +24,11 @@ class Topic extends Model
     return $data;
   }
 
+  public function formatDetails() {
+    $data = $this->format();
+    return $data;
+  }
+
   public function deleleAll() {
     $this->forceDelete();
   }

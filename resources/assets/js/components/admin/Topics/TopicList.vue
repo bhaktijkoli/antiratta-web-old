@@ -25,8 +25,8 @@
                 <td>{{key+1}}</td>
                 <td>{{m.name}}</td>
                 <td>
-                  <!-- <a class="btn btn-warning btn-sm" @click="onClickEdit(m)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                  <a class="btn btn-danger btn-sm" @click="doClickRemove(m)"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
+                  <a class="btn btn-warning btn-sm" @click="onClickEdit(m)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                  <!-- <a class="btn btn-danger btn-sm" @click="doClickRemove(m)"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
                 </td>
               </tr>
             </tbody>

@@ -56,6 +56,7 @@ Vue.component('university-component', require('./components/admin/Universities/U
 Vue.component('course-component', require('./components/admin/Courses/CourseComponent.vue'));
 Vue.component('editcourse-component', require('./components/admin/EditCourse/EditCourseComponent.vue'));
 Vue.component('editmodule-component', require('./components/admin/EditModule/EditModuleComponent.vue'));
+Vue.component('edittopic-component', require('./components/admin/EditTopic/EditTopicComponent.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -27,4 +27,22 @@ class TopicsController extends Controller
     $topic->save();
     return ResponseBuilder::send(true, "", '/');
   }
+
+  // Edit topic
+  public function editTopic(Request $request) {
+    $topic = Topic::where('id', $request->input('topic', '-1'))->first();
+    if(!$topic) abort(404);
+    $topic->name = $request->input('topic_name', '');
+    $topic->description = $request->input('topic_description', '');
+    $topic->updated_by = Auth::user()->id;
+    $topic->save();
+    return ResponseBuilder::send(true, "", '/');
+  }
+
+  // Get Topic Details
+  public function getTopicByID($id) {
+    $topic = Topic::where('id', $id)->first();
+    if(!$topic) abort(404);
+    return $topic->formatDetails();
+  }
 }

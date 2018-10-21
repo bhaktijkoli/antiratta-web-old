@@ -44957,6 +44957,7 @@ Vue.component('university-component', __webpack_require__(55));
 Vue.component('course-component', __webpack_require__(64));
 Vue.component('editcourse-component', __webpack_require__(70));
 Vue.component('editmodule-component', __webpack_require__(99));
+Vue.component('edittopic-component', __webpack_require__(118));
 
 var app = new Vue({
   el: '#app'
@@ -48416,7 +48417,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-9" }, [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Description")]),
+          _c("label", [_vm._v("Theory")]),
           _vm._v(" "),
           _c("textarea", {
             staticClass: "form-control",
@@ -48632,7 +48633,25 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(m.name))]),
                     _vm._v(" "),
-                    _c("td")
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-warning btn-sm",
+                          on: {
+                            click: function($event) {
+                              _vm.onClickEdit(m)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-pencil",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
                   ])
                 })
               )
@@ -48677,6 +48696,353 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-47e9d04e", module.exports)
+  }
+}
+
+/***/ }),
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(119)
+/* template */
+var __vue_template__ = __webpack_require__(123)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/EditTopic/EditTopicComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b61e76ce", Component.options)
+  } else {
+    hotAPI.reload("data-v-b61e76ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditTopic__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditTopic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditTopic__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    EditTopic: __WEBPACK_IMPORTED_MODULE_0__EditTopic___default.a
+  },
+  data: function data() {
+    return {
+      topic: {}
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.doRefresh();
+    this.$root.$on('refresh', function () {
+      _this.doRefresh();
+    });
+  },
+
+  methods: {
+    doRefresh: function doRefresh() {
+      var _this2 = this;
+
+      var id = window.location.pathname.split("/").pop();
+      axios.get(route.api('topics/get/') + id).then(function (res) {
+        _this2.topic = res.data;
+        _this2.$root.$emit('topic-loaded', res.data);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(121)
+/* template */
+var __vue_template__ = __webpack_require__(122)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/EditTopic/EditTopic.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3bf88318", Component.options)
+  } else {
+    hotAPI.reload("data-v-3bf88318", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    $(function () {
+      $('#topic_description').richText();
+    });
+  },
+
+  methods: {
+    onSubmit: function onSubmit(e) {
+      var _this = this;
+
+      e.preventDefault();
+      var form = $(e.target);
+      fsh.post(route.api('admin/topics/edit'), form, function (success, data) {
+        if (success == true) _this.$root.$emit("refresh");
+      });
+    }
+  },
+  props: ['topic']
+});
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card first-card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", [_vm._v("Edit Topic")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("form", { on: { submit: _vm.onSubmit } }, [
+        _c("input", {
+          attrs: { type: "hidden", name: "topic" },
+          domProps: { value: _vm.topic.id }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-9" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "topic_name",
+                  name: "topic_name",
+                  placeholder: "Enter topic name"
+                },
+                domProps: { value: _vm.topic.name }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "help-block" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-9" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Theory")]),
+              _vm._v(" "),
+              _c(
+                "textarea",
+                {
+                  staticClass: "form-control",
+                  attrs: { id: "topic_description", name: "topic_description" }
+                },
+                [_vm._v(_vm._s(_vm.topic.description))]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "help-block" })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-12" }, [
+          _c("label", [
+            _vm._v(
+              "Updated by " +
+                _vm._s(_vm.topic.updated_by) +
+                ", " +
+                _vm._s(_vm.topic.updated_at)
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-inline-form",
+            attrs: { type: "submit", name: "button" }
+          },
+          [_vm._v("Save")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3bf88318", module.exports)
+  }
+}
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-sm-12" },
+        [_c("EditTopic", { attrs: { topic: _vm.topic } })],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b61e76ce", module.exports)
   }
 }
 

@@ -16,7 +16,8 @@ Route::prefix('admin')->group(function () {
   Route::get('/universities', 'Admin\UniversityController@getUniversities')->name('admin_universities');
   Route::get('/courses', 'Admin\CourseController@getCourses')->name('admin_courses');
   Route::get('/courses/edit/{id}', 'Admin\CourseController@getEditCourse')->name('admin_editcourse');
-  Route::get('/modules/edit/{id}', 'Admin\ModuleController@getEditModule')->name('admin_editcourse');
+  Route::get('/modules/edit/{id}', 'Admin\ModuleController@getEditModule')->name('admin_editmodule');
+  Route::get('/topics/edit/{id}', 'Admin\ModuleController@getEditTopic')->name('admin_edittopic');
 });
 
 // Website
@@ -43,6 +44,7 @@ Route::prefix('api')->group(function () {
   Route::get('courses/get', 'Api\CourseController@getCourses');
   Route::get('courses/get/{id}', 'Api\CourseController@getCourseByID');
   Route::get('modules/get/{id}', 'Api\ModulesController@getModuleByID');
+  Route::get('topics/get/{id}', 'Api\TopicsController@getTopicByID');
 });
 
 // Admin Api
@@ -56,6 +58,7 @@ Route::middleware(['admin'])->prefix('api/admin')->group(function () {
   Route::post('modules/edit', 'Api\ModulesController@editModule');
   Route::post('modules/remove', 'Api\ModulesController@removeModule');
   Route::post('topics/add', 'Api\TopicsController@addTopic');
+  Route::post('topics/edit', 'Api\TopicsController@editTopic');
 });
 
 // Update
