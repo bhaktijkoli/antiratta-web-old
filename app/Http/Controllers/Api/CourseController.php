@@ -22,6 +22,9 @@ class CourseController extends Controller
     $course->price = $request->input('course_price', '');
     $course->branch = $request->input('course_branch', '');
     $course->shortname = $request->input('course_shortname', '');
+    $course->sem = $request->input('course_sem', '1');
+    $branch = Branch::where('id', $course->branch)->first();
+    $branch->addSem($course->sem);
     $course->created_by = Auth::user()->id;
     $course->updated_by = Auth::user()->id;
     $course->save();

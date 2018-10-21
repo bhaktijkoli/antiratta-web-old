@@ -17,4 +17,13 @@ class Branch extends Model
     $data['created_at'] = $this->created_at->diffForHumans();
     return $data;
   }
+
+  public function addSem($sem) {
+    $sems = json_decode($this->sems);
+    if(!in_array($sem, $sems)) {
+      array_push($sems, $sem);
+    }
+    $this->sems = json_encode($sems);
+    $this->save();
+  }
 }

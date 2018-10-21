@@ -34,6 +34,7 @@ class AddCourseRequest extends FormRequest
       'course_university' => 'required',
       'course_branch' => 'required',
       'course_shortname' => 'required',
+      'course_sem' => 'required',
     ];
   }
 

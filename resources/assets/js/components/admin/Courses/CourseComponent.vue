@@ -46,6 +46,15 @@
                 <p class="help-block"></p>
               </div>
             </div>
+            <div class="col-sm-9">
+              <div class="form-group">
+              <label for="">Semester</label>
+                <select class="form-control" id="course_sem" name="course_sem">
+                  <option v-for="(sem, key) in sems" :value="sem">{{sem}}</option>
+                </select>
+                <p class="help-block"></p>
+              </div>
+            </div>
             <div class="col-sm-12">
               <div class="form-group">
                 <button type="submit" name="button" class="btn btn-primary btn-inline-form" v-on:click="onAddCourseSubmit">Add</button>
@@ -75,6 +84,7 @@ export default {
     return {
       universities: [],
       branches: [],
+      sems: [1,2,3,4,5,6,7,8],
       university: 0,
     }
   },

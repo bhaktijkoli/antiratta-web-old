@@ -39,6 +39,7 @@ class UniversityController extends Controller
     $branch->name = $request->input('branch_name');
     $branch->university = $request->input('branch_university', '-1');
     $branch->shortname = $request->input('branch_shortname', '');
+    $branch->sems = json_encode([]);
     $branch->save();
     return ResponseBuilder::send(true, "", '/');
   }

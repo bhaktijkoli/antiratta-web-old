@@ -46236,6 +46236,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46255,6 +46264,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       universities: [],
       branches: [],
+      sems: [1, 2, 3, 4, 5, 6, 7, 8],
       university: 0
     };
   },
@@ -46803,6 +46813,27 @@ var render = function() {
                     _vm._l(_vm.branches, function(branch, key) {
                       return _c("option", { domProps: { value: branch.id } }, [
                         _vm._v(_vm._s(branch.name))
+                      ])
+                    })
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "help-block" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-9" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Semester")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control",
+                      attrs: { id: "course_sem", name: "course_sem" }
+                    },
+                    _vm._l(_vm.sems, function(sem, key) {
+                      return _c("option", { domProps: { value: sem } }, [
+                        _vm._v(_vm._s(sem))
                       ])
                     })
                   ),
