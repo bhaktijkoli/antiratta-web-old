@@ -44897,8 +44897,9 @@ module.exports = __webpack_require__(52);
 
 /***/ }),
 /* 52 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 window._ = __webpack_require__(12);
 window.Popper = __webpack_require__(3).default;
 
@@ -48254,7 +48255,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    $(function () {
+      $('#topic_description').richText();
+    });
+  },
 
   methods: {
     onSubmit: function onSubmit(e) {

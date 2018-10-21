@@ -34,6 +34,9 @@
 <script>
 export default {
   mounted() {
+    $(()=>{
+      $('#topic_description').richText();
+    })
   },
   methods: {
     onSubmit: function(e) {
