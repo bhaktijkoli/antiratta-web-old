@@ -374,7 +374,8 @@ module.exports = {
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ (function(module, exports) {
 
 var g;
@@ -401,7 +402,6 @@ module.exports = g;
 
 
 /***/ }),
-/* 2 */,
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2928,7 +2928,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
 /* 4 */
@@ -30974,7 +30974,7 @@ module.exports = Cancel;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(13)(module)))
 
 /***/ }),
 /* 13 */
@@ -44418,7 +44418,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(35).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(35).setImmediate))
 
 /***/ }),
 /* 35 */
@@ -44488,7 +44488,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 36 */
@@ -44681,7 +44681,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(7)))
 
 /***/ }),
 /* 37 */
@@ -44772,8 +44772,8 @@ window.fh = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39);
-__webpack_require__(49);
-module.exports = __webpack_require__(50);
+__webpack_require__(48);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
@@ -44833,15 +44833,15 @@ var app = new Vue({
 });
 
 // Modules
-__webpack_require__(44);
-__webpack_require__(45);
-__webpack_require__(46);
+__webpack_require__(41);
+__webpack_require__(42);
+__webpack_require__(43);
 __webpack_require__(37);
 
 // Pages
-__webpack_require__(116);
+__webpack_require__(44);
+__webpack_require__(46);
 __webpack_require__(47);
-__webpack_require__(48);
 
 /***/ }),
 /* 40 */
@@ -45094,10 +45094,7 @@ var BrowserDetect = {
 var better_browser = '<div class="container"><div class="better-browser row"><div class="col-md-2"></div><div class="col-md-8"><h3>We are sorry but it looks like your Browser doesn\'t support our website Features. In order to get the full experience please download a new version of your favourite browser.</h3></div><div class="col-md-2"></div><br><div class="col-md-4"><a href="https://www.mozilla.org/ro/firefox/new/" class="btn btn-warning">Mozilla</a><br></div><div class="col-md-4"><a href="https://www.google.com/chrome/browser/desktop/index.html" class="btn ">Chrome</a><br></div><div class="col-md-4"><a href="http://windows.microsoft.com/en-us/internet-explorer/ie-11-worldwide-languages" class="btn">Internet Explorer</a><br></div><br><br><h4>Thank you!</h4></div></div>';
 
 /***/ }),
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */
+/* 41 */
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -45504,7 +45501,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(jQuery, window, document);
 
 /***/ }),
-/* 45 */
+/* 42 */
 /***/ (function(module, exports) {
 
 /*!
@@ -46145,7 +46142,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 })();
 
 /***/ }),
-/* 46 */
+/* 43 */
 /***/ (function(module, exports) {
 
 
@@ -46227,150 +46224,10 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 })(jQuery);
 
 /***/ }),
-/* 47 */
-/***/ (function(module, exports) {
-
-$("#form_signup").on("submit", function (event) {
-  event.preventDefault();
-  fh.hide_button();
-  fh.remove_all_errros('#form_signup');
-  axios.post('/api/user/signup', $('#form_signup').serialize()).then(function (res) {
-    var data = res.data;
-    if (fh.is_success(data)) {
-      fh.redirect(data);
-    } else {
-      fh.set_multierrors(data);
-      fh.show_button();
-    }
-  }).catch(function (res) {});
-});
-
-$('#form_login').on("submit", function (event) {
-  event.preventDefault();
-  fh.hide_button();
-  $('#login_error').hide(100);
-  axios.post('/api/user/login', $('#form_login').serialize()).then(function (res) {
-    window.location = "/authenticate";
-  }).catch(function (res) {
-    var data = res.response.data;
-    if (data.errors.email) {
-      $('#login_error').html(data.errors.email);
-    }
-    fh.show_button();
-    $("#login_error").show(100);
-  });
-});
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports) {
-
-document.addEventListener('DOMContentLoaded', function () {
-  var parent = document.querySelector('.splitview'),
-      topPanel = parent.querySelector('.top'),
-      handle = parent.querySelector('.handle'),
-      skewHack = 0,
-      delta = 0;
-
-  // If the parent has .skewed class, set the skewHack var.
-  if (parent.className.indexOf('skewed') != -1) {
-    skewHack = 1000;
-  }
-
-  parent.addEventListener('mousemove', function (event) {
-    // Get the delta between the mouse position and center point.
-    delta = (event.clientX - window.innerWidth / 2) * 0.5;
-
-    // Move the handle.
-    handle.style.left = event.clientX + delta + 'px';
-
-    // Adjust the top panel width.
-    topPanel.style.width = event.clientX + skewHack + delta + 'px';
-  });
-});
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(117);
+__webpack_require__(45);
 
 $(function () {
   $('.count').counterUp();
@@ -46390,7 +46247,7 @@ $('#intro-video').YTPlayer({
 });
 
 /***/ }),
-/* 117 */
+/* 45 */
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -46706,6 +46563,81 @@ if (typeof Object.create !== "function") {
     });
   };
 })(jQuery, window, document);
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+$("#form_signup").on("submit", function (event) {
+  event.preventDefault();
+  fh.hide_button();
+  fh.remove_all_errros('#form_signup');
+  axios.post('/api/user/signup', $('#form_signup').serialize()).then(function (res) {
+    var data = res.data;
+    if (fh.is_success(data)) {
+      fh.redirect(data);
+    } else {
+      fh.set_multierrors(data);
+      fh.show_button();
+    }
+  }).catch(function (res) {});
+});
+
+$('#form_login').on("submit", function (event) {
+  event.preventDefault();
+  fh.hide_button();
+  $('#login_error').hide(100);
+  axios.post('/api/user/login', $('#form_login').serialize()).then(function (res) {
+    window.location = "/authenticate";
+  }).catch(function (res) {
+    var data = res.response.data;
+    if (data.errors.email) {
+      $('#login_error').html(data.errors.email);
+    }
+    fh.show_button();
+    $("#login_error").show(100);
+  });
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', function () {
+  var parent = document.querySelector('.splitview'),
+      topPanel = parent.querySelector('.top'),
+      handle = parent.querySelector('.handle'),
+      skewHack = 0,
+      delta = 0;
+
+  // If the parent has .skewed class, set the skewHack var.
+  if (parent.className.indexOf('skewed') != -1) {
+    skewHack = 1000;
+  }
+
+  parent.addEventListener('mousemove', function (event) {
+    // Get the delta between the mouse position and center point.
+    delta = (event.clientX - window.innerWidth / 2) * 0.5;
+
+    // Move the handle.
+    handle.style.left = event.clientX + delta + 'px';
+
+    // Adjust the top panel width.
+    topPanel.style.width = event.clientX + skewHack + delta + 'px';
+  });
+});
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

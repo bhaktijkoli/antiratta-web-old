@@ -10,8 +10,8 @@ window.Popper = require('popper.js').default;
 try {
     window.$ = window.jQuery = require('jquery');
     // Material Kit
-    require('./bootstrap-material-design.min');
-    require('./material-dashboard');
+    require('./../scripts/bootstrap-material-design.min');
+    require('./../scripts/material-kit');
 } catch (e) {}
 
 /**
@@ -38,13 +38,8 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-// Modules
-require('./formhandler');
-require('./scripts/admin-form');
-require('./route');
 
 window.Vue = require('vue');
-
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -52,15 +47,18 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('university-component', require('./components/admin/Universities/UniversityComponent.vue'));
-Vue.component('course-component', require('./components/admin/Courses/CourseComponent.vue'));
-Vue.component('editcourse-component', require('./components/admin/EditCourse/EditCourseComponent.vue'));
-Vue.component('editmodule-component', require('./components/admin/EditModule/EditModuleComponent.vue'));
-Vue.component('edittopic-component', require('./components/admin/EditTopic/EditTopicComponent.vue'));
 
 const app = new Vue({
     el: '#app'
 });
 
+// Modules
+require('./../scripts/parallax');
+require('./../scripts/jquery.waypoints');
+require('./../scripts/jquery.counterup');
+require('./../scripts/formhandler');
 
 // Pages
+require('./../pages/home')
+require('./../pages/login')
+require('./../pages/jfk')
