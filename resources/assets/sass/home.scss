@@ -1,3 +1,16 @@
+#intro {
+  height: 100vh;
+  #intro-video {
+    z-index: -1;
+  }
+  #intro-video-overlay {
+    position: absolute;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000073;
+  }
+}
 .banner {
   background-image: url('./img/banner.png');
   background-size: cover;

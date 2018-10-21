@@ -7,7 +7,7 @@
 @endphp
 @endsection
 @section('content')
-  <div class="banner">
+  {{-- <div class="banner">
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
@@ -17,7 +17,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
+  <section id="intro">
+    <div id="intro-video"></div>
+    <div id="intro-video-overlay"></div>
+  </section>
   <section id="stutor" class="hero-content-colored">
     <div class="container">
       <div class="text-center">
@@ -106,7 +110,4 @@
 </section>
 @endsection
 @section('post')
-  <script type="text/javascript">
-  $('.count').counterUp();
-  </script>
 @endsection

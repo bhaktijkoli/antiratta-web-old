@@ -59,5 +59,6 @@ require('./jquery.counterup');
 require('./formhandler');
 
 // Pages
+require('./pages/home')
 require('./pages/login')
 require('./pages/jfk')
