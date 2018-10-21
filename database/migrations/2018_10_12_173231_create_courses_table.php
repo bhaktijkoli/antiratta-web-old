@@ -18,7 +18,6 @@ class CreateCoursesTable extends Migration
             $table->integer('branch');
             $table->string('name');
             $table->string('shortname');
-            $table->string('url');
             $table->double('price');
             $table->integer('created_by');
             $table->integer('updated_by');
