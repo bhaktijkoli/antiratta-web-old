@@ -47146,11 +47146,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
-    return {};
+    return {
+      sems: [1, 2, 3, 4, 5, 6, 7, 8]
+    };
   },
 
   methods: {
@@ -47239,6 +47250,54 @@ var render = function() {
                 },
                 domProps: { value: _vm.course.price }
               }),
+              _vm._v(" "),
+              _c("p", { staticClass: "help-block" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("Semester")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.course.sem,
+                      expression: "course.sem"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "course_sem", name: "course_sem" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.course,
+                        "sem",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.sems, function(sem, key) {
+                  return _c("option", { domProps: { value: sem } }, [
+                    _vm._v(_vm._s(sem))
+                  ])
+                })
+              ),
               _vm._v(" "),
               _c("p", { staticClass: "help-block" })
             ])

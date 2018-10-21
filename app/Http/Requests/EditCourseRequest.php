@@ -32,6 +32,7 @@ class EditCourseRequest extends FormRequest
       'course_name' => 'required',
       'course_price' => 'required',
       'course_shortname' => 'required',
+      'course_sem' => 'required',
     ];
   }
 

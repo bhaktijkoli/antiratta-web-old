@@ -16,6 +16,7 @@ class Course extends Model
     $data['name'] = $this->name;
     $data['shortname'] = $this->shortname;
     $data['price'] = $this->price;
+    $data['sem'] = $this->sem;
     if(Auth::check()) {
         $data['created_by'] = User::where('id', $this->created_by)->first()->firstname;
         $data['created_at'] = $this->created_at->diffForHumans();

@@ -37,6 +37,9 @@ class CourseController extends Controller
     $course->name = $request->input('course_name', '');
     $course->price = $request->input('course_price', '');
     $course->shortname = $request->input('course_shortname', '');
+    $course->sem = $request->input('course_sem', '1');
+    $branch = Branch::where('id', $course->branch)->first();
+    $branch->addSem($course->sem);
     $course->updated_by = Auth::user()->id;
     $course->save();
     return ResponseBuilder::send(true, "", '/');
