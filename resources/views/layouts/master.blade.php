@@ -11,11 +11,9 @@
   @yield('css')
 </head>
 <body>
-  @include('layouts.nav')
   <div id="app">
     @yield('content')
   </div>
-  @include('layouts.footer')
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   @yield('post')
 </body>

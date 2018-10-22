@@ -21,13 +21,14 @@ Route::prefix('admin')->group(function () {
 });
 
 // Website
-Route::get('/', 'HomeController@get')->name('home');
-Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
+Route::get('/', 'IndexController@getIndex')->name('home');
+Route::get('/login', 'IndexController@getIndex')->name('login');
 Route::get('/authenticate', 'Auth\LoginController@getAuthenticate')->name('authenticate');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
-Route::get('/jfk', 'JFKController@getJfK')->name('jfk');
-Route::get('/aboutus', 'AboutController@getAbout')->name('aboutus');
+Route::get('/courses', 'IndexController@getIndex')->name('courses');
+Route::get('/jfk', 'IndexController@getIndex')->name('jfk');
+Route::get('/aboutus', 'IndexController@getIndex')->name('aboutus');
 
 Route::get('/settings/{setting}', 'SettingsController@getSetting')->name('setting');
 
@@ -37,6 +38,7 @@ Route::get('login/{provider}/callback', 'Auth\SocialLoginController@handleProvid
 
 // Api
 Route::prefix('api')->group(function () {
+  Route::get('auth', 'Api\AuthController@getAuth');
   Route::post('user/signup', 'Auth\LoginController@postSignup');
   Route::post('user/login', 'Auth\LoginController@postLogin');
   Route::get('universities/get', 'Api\UniversityController@getUniversities');

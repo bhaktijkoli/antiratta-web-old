@@ -21344,6 +21344,7 @@ footer .pull-center {
 
 #intro {
   height: 100vh;
+  background-color: black;
 }
 
 #intro #intro-video {
