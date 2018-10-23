@@ -64,5 +64,4 @@ const app = new Vue({
 
 
 // Pages
-require('./../pages/login')
 require('./../pages/jfk')

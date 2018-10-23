@@ -44979,7 +44979,6 @@ var app = new Vue({
 });
 
 // Pages
-__webpack_require__(73);
 __webpack_require__(74);
 
 /***/ }),
@@ -51630,41 +51629,7 @@ var index_esm = {
 
 
 /***/ }),
-/* 73 */
-/***/ (function(module, exports) {
-
-$("#form_signup").on("submit", function (event) {
-  event.preventDefault();
-  fh.hide_button();
-  fh.remove_all_errros('#form_signup');
-  axios.post('/api/user/signup', $('#form_signup').serialize()).then(function (res) {
-    var data = res.data;
-    if (fh.is_success(data)) {
-      fh.redirect(data);
-    } else {
-      fh.set_multierrors(data);
-      fh.show_button();
-    }
-  }).catch(function (res) {});
-});
-
-$('#form_login').on("submit", function (event) {
-  event.preventDefault();
-  fh.hide_button();
-  $('#login_error').hide(100);
-  axios.post('/api/user/login', $('#form_login').serialize()).then(function (res) {
-    window.location = "/authenticate";
-  }).catch(function (res) {
-    var data = res.response.data;
-    if (data.errors.email) {
-      $('#login_error').html(data.errors.email);
-    }
-    fh.show_button();
-    $("#login_error").show(100);
-  });
-});
-
-/***/ }),
+/* 73 */,
 /* 74 */
 /***/ (function(module, exports) {
 
@@ -52130,6 +52095,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Layout_Loading__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Layout_Navbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoginSignup__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoginSignup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LoginSignup__);
 //
 //
 //
@@ -52137,13 +52104,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a
+    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, LoginSignup: __WEBPACK_IMPORTED_MODULE_2__LoginSignup___default.a
   },
   mounted: function mounted() {
     window.title = "Login";
@@ -52175,7 +52145,9 @@ var render = function() {
         ]
       }),
       _vm._v(" "),
-      _c("Navbar")
+      _c("Navbar"),
+      _vm._v(" "),
+      _c("LoginSignup", { staticStyle: { "margin-top": "100px" } })
     ],
     1
   )
@@ -52775,6 +52747,789 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-20ef9d21", module.exports)
+  }
+}
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(163)
+/* template */
+var __vue_template__ = __webpack_require__(164)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/Login/LoginSignup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-73e1124b", Component.options)
+  } else {
+    hotAPI.reload("data-v-73e1124b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LoginForm__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LoginForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__LoginForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignupForm__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignupForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SignupForm__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    LoginForm: __WEBPACK_IMPORTED_MODULE_0__LoginForm___default.a,
+    SignupForm: __WEBPACK_IMPORTED_MODULE_1__SignupForm___default.a
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-6 ml-auto mr-auto" }, [
+          _c("div", { staticClass: "card card-nav-tabs" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "tab-content" }, [
+                _c(
+                  "div",
+                  { staticClass: "tab-pane active", attrs: { id: "signin" } },
+                  [_c("LoginForm")],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "signup" } },
+                  [_c("SignupForm")],
+                  1
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header card-header-primary" }, [
+      _c("div", { staticClass: "nav-tabs-navigation" }, [
+        _c("div", { staticClass: "nav-tabs-wrapper" }, [
+          _c(
+            "ul",
+            {
+              staticClass: "nav nav-tabs nav-fill",
+              attrs: { "data-tabs": "tabs" }
+            },
+            [
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link active",
+                    attrs: { href: "#signin", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Sign In")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#signup", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Sign Up")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-73e1124b", module.exports)
+  }
+}
+
+/***/ }),
+/* 165 */,
+/* 166 */,
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(168)
+/* template */
+var __vue_template__ = __webpack_require__(169)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/Login/LoginForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-37c1e2b7", Component.options)
+  } else {
+    hotAPI.reload("data-v-37c1e2b7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    onSubmit: function onSubmit(e) {
+      e.preventDefault();
+      fh.hide_button();
+      $('#login_error').hide(100);
+      var data = {
+        email: $('#email').val(),
+        password: $('#password').val()
+      };
+      axios.post('/api/user/login', data).then(function (res) {
+        window.location = "/authenticate";
+      }).catch(function (res) {
+        var data = res.response.data;
+        if (data.errors.email) {
+          $('#login_error').html(data.errors.email);
+        }
+        fh.show_button();
+        $("#login_error").show(100);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    { attrs: { id: "form_login" }, on: { submit: _vm.onSubmit } },
+    [
+      _c("h3", [_vm._v("Sign in to your account")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Your student account is your portal to all things your classroom, projects, forums, career resources, and more!"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "alert alert-danger alert-dismissible",
+          staticStyle: { display: "none" },
+          attrs: { id: "login_error" }
+        },
+        [
+          _vm._v(
+            "\n    The email address or password you entered is invalid.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c("hr", { staticClass: "hr-text", attrs: { "data-content": "OR" } }),
+      _vm._v(" "),
+      _vm._m(5)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          id: "email",
+          name: "email",
+          placeholder: "Email Address"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "password",
+          id: "password",
+          name: "password",
+          placeholder: "Password"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("By clicking Sign In, you agree to our "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Terms of Use")]),
+      _vm._v(" and our "),
+      _c("a", { attrs: { href: "" } }, [_vm._v("Privacy Policy.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-block",
+          attrs: { type: "submit", name: "login" }
+        },
+        [_vm._v("SIGN IN")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("a", { staticClass: "btn btn-link btn-block", attrs: { href: "#" } }, [
+        _vm._v("Forgot your password?")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-fab btn-round btn-facebook",
+          attrs: { href: "/login/facebook" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-facebook",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-fab btn-round btn-google",
+          attrs: { href: "/login/google" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-google",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-fab btn-round btn-twitter",
+          attrs: { href: "/login/twitter" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-twitter",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-37c1e2b7", module.exports)
+  }
+}
+
+/***/ }),
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(171)
+/* template */
+var __vue_template__ = __webpack_require__(172)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/Login/SignupForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a490a02", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a490a02", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    onSubmit: function onSubmit(e) {
+      e.preventDefault();
+      fh.hide_button();
+      fh.remove_all_errros('#form_signup');
+      var data = {
+        signup_firstname: $('#signup_firstname').val(),
+        signup_lastname: $('#signup_lastname').val(),
+        signup_email: $('#signup_email').val(),
+        signup_password: $('#signup_password').val()
+      };
+      axios.post('/api/user/signup', data).then(function (res) {
+        var data = res.data;
+        if (fh.is_success(data)) {
+          fh.redirect(data);
+        } else {
+          fh.set_multierrors(data);
+          fh.show_button();
+        }
+      }).catch(function (res) {});
+    }
+  }
+});
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    { attrs: { id: "form_signup" }, on: { submit: _vm.onSubmit } },
+    [
+      _c("h3", [_vm._v("Create your student account")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Your student account is your portal to all things your classroom, projects, forums, career resources, and more!"
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr", { staticClass: "hr-text", attrs: { "data-content": "OR" } }),
+      _vm._v(" "),
+      _vm._m(1)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "signup_firstname",
+              name: "signup_firstname",
+              placeholder: "First Name"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "signup_lastname",
+              name: "signup_lastname",
+              placeholder: "Last Name"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              id: "signup_email",
+              name: "signup_email",
+              placeholder: "Email Address"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              id: "signup_password",
+              name: "signup_password",
+              placeholder: "Password"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("p", [
+          _vm._v("By clicking Sign Up, you agree to our "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Terms of Use")]),
+          _vm._v(" and our "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Privacy Policy.")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-block",
+              attrs: { type: "submit", name: "login" }
+            },
+            [_vm._v("SIGN UP")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-fab btn-round btn-facebook",
+          attrs: { href: "/login/facebook" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-facebook",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-fab btn-round btn-google",
+          attrs: { href: "/login/google" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-google",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-fab btn-round btn-twitter",
+          attrs: { href: "/login/twitter" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-twitter",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0a490a02", module.exports)
   }
 }
 
