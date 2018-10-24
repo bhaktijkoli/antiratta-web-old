@@ -51174,7 +51174,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n.course-card {\n  position: relative;\n  overflow: hidden;\n  margin-bottom: 30px;\n  border-radius: 6px;\n  color: rgba(0, 0, 0, 0.87);\n  background: #fff;\n  min-height: 300px;\n  width: 100%;\n  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n}\n.course-card-top {\n  height: 120px;\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n}\n.course-card-image {\n  height: 120px;\n  width: 100%;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px;\n  -webkit-transition: all .5s;\n  transition: all .5s;\n}\n.course-card:hover .course-card-image {\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n}\n.course-card .course-card-overlay {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 120px;\n  width: 100%;\n  background-color: #50b13078;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px;\n}\n.course-card-title {\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51226,13 +51226,21 @@ var render = function() {
         "div",
         { staticClass: "row" },
         [
-          _c("CourseCard"),
+          _c("CourseCard", {
+            attrs: { title: "Applied Mathematics 3", color: "blue" }
+          }),
           _vm._v(" "),
-          _c("CourseCard"),
+          _c("CourseCard", {
+            attrs: { title: "Applied Mathematics 4", color: "yellow" }
+          }),
           _vm._v(" "),
-          _c("CourseCard"),
+          _c("CourseCard", {
+            attrs: { title: "Data Structures", color: "green" }
+          }),
           _vm._v(" "),
-          _c("CourseCard")
+          _c("CourseCard", {
+            attrs: { title: "Basic Electronics", color: "red" }
+          })
         ],
         1
       )
@@ -54504,7 +54512,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['title', 'color']
+});
 
 /***/ }),
 /* 186 */
@@ -54514,33 +54524,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3 col-course" }, [
-      _c("div", { staticClass: "course-card" }, [
-        _c("div", { staticClass: "course-card-top" }, [
-          _c("img", {
-            staticClass: "course-card-image",
-            attrs: { src: "/images/course.jpg" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "course-card-overlay" }),
-          _vm._v(" "),
-          _c("h3", { staticClass: "course-card-title" }, [
-            _vm._v("Applied Mathematics 3")
-          ])
+  return _c("div", { staticClass: "col-sm-3 col-course" }, [
+    _c("div", { staticClass: "course-card" }, [
+      _c("div", { staticClass: "course-card-top" }, [
+        _c("img", {
+          staticClass: "course-card-image",
+          attrs: { src: "/images/course.jpg" }
+        }),
+        _vm._v(" "),
+        _c("div", { class: "course-card-overlay " + _vm.color }),
+        _vm._v(" "),
+        _c("h3", { staticClass: "course-card-title" }, [
+          _vm._v(_vm._s(_vm.title))
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" })
-    ])
-  }
-]
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" })
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -11,8 +11,9 @@
 
 // Pages
 @import '/pages/home';
-@import 'jfk';
-@import 'about';
+@import '/pages/jfk';
+@import '/pages/about';
+@import '/pages/courses';
 
 #circle-animation-container {
   width: 100%;

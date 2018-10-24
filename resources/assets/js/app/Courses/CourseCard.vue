@@ -3,8 +3,8 @@
     <div class="course-card">
       <div class="course-card-top">
         <img src="/images/course.jpg" class="course-card-image"/>
-        <div class="course-card-overlay"></div>
-        <h3 class="course-card-title">Applied Mathematics 3</h3>
+        <div :class="'course-card-overlay ' + color"></div>
+        <h3 class="course-card-title">{{title}}</h3>
       </div>
     </div>
     <div class="card-body">
@@ -14,5 +14,6 @@
 
 <script>
 export default {
+  props: ['title','color']
 }
 </script>
