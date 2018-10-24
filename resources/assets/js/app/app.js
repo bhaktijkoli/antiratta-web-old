@@ -45,6 +45,7 @@ require('./../scripts/jquery.counterup');
 require('./../scripts/formhandler');
 require('./../scripts/route');
 require('./../scripts/tubular');
+require('./../scripts/star-rating-svg');
 
 // Vue
 window.Vue = require('vue');
