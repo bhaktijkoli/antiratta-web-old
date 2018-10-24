@@ -14,6 +14,7 @@
           </div>
         </div>
         <div class="col-sm-8">
+          <PersonalInfo v-if="$route.name=='personal-info'" :auth="$store.state.auth"/>
         </div>
       </div>
     </div>
@@ -21,7 +22,11 @@
 </template>
 
 <script>
+import PersonalInfo from './PersonalInfo'
 export default {
+  components: {
+    PersonalInfo,
+  },
   mounted() {
     document.title = this.names[this.links.indexOf(this.$route.name)];
   },

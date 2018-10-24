@@ -53827,6 +53827,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PersonalInfo__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PersonalInfo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PersonalInfo__);
+//
 //
 //
 //
@@ -53850,7 +53853,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    PersonalInfo: __WEBPACK_IMPORTED_MODULE_0__PersonalInfo___default.a
+  },
   mounted: function mounted() {
     document.title = this.names[this.links.indexOf(this.$route.name)];
   },
@@ -53914,7 +53921,16 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-8" })
+        _c(
+          "div",
+          { staticClass: "col-sm-8" },
+          [
+            _vm.$route.name == "personal-info"
+              ? _c("PersonalInfo", { attrs: { auth: _vm.$store.state.auth } })
+              : _vm._e()
+          ],
+          1
+        )
       ])
     ])
   ])
@@ -53926,6 +53942,329 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-8cc25294", module.exports)
+  }
+}
+
+/***/ }),
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(177)
+/* template */
+var __vue_template__ = __webpack_require__(178)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/Settings/PersonalInfo.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-54f9304a", Component.options)
+  } else {
+    hotAPI.reload("data-v-54f9304a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 177 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    var _this = this;
+
+    if (this.auth) {
+      this.firstname = this.auth.firstname;
+      this.lastname = this.auth.lastname;
+    }
+    axios.get(route.api('/universities/get')).then(function (res) {
+      _this.universities = res.data;
+    });
+  },
+  data: function data() {
+    return {
+      firstname: '',
+      lastname: '',
+      university: 0,
+      universities: []
+    };
+  },
+
+  methods: {},
+  watch: {
+    auth: function auth(_auth) {
+      if (_auth) {
+        this.firstname = _auth.firstname;
+        this.lastname = _auth.lastname;
+      }
+    }
+  },
+  props: ['auth']
+});
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _c("form", { attrs: { id: "form_personal-info" } }, [
+        _c("h5", [_vm._v("Basic Information")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.firstname,
+                    expression: "firstname"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "firstname",
+                  name: "firstname",
+                  placeholder: "First Name"
+                },
+                domProps: { value: _vm.firstname },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.firstname = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "help-block" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.lastname,
+                    expression: "lastname"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "lastname",
+                  name: "lastname",
+                  placeholder: "Last Name"
+                },
+                domProps: { value: _vm.lastname },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.lastname = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "help-block" })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("h5", [_vm._v("University Information")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control",
+                  attrs: { id: "university", name: "university" }
+                },
+                _vm._l(_vm.universities, function(u, key) {
+                  return _c("option", { domProps: { value: key + 1 } }, [
+                    _vm._v(_vm._s(u.name))
+                  ])
+                })
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "help-block" })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "branch", name: "branch" }
+          },
+          [_c("option", { attrs: { value: "0" } }, [_vm._v("None")])]
+        ),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-info btn-block",
+            attrs: { type: "submit", name: "login" }
+          },
+          [_vm._v("Save")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default btn-block",
+            attrs: { type: "submit", name: "login" }
+          },
+          [_vm._v("Cancel")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-54f9304a", module.exports)
   }
 }
 
