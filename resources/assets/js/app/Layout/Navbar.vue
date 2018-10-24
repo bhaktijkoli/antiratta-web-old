@@ -39,7 +39,7 @@
                 <a href="/admin" class="dropdown-item" v-if="auth.role > 0">Admin Dashboard</a>
                 <div class="dropdown-divider" v-if="auth.role > 0"></div>
                 <a href="" class="dropdown-item">My Courses</a>
-                <a href="" class="dropdown-item">Settings</a>
+                <router-link class="dropdown-item" :to="{name: 'personal-info'}">Settings</router-link>
                 <div class="dropdown-divider"></div>
                 <a href="" class="dropdown-item">Sign out</a>
               </div>

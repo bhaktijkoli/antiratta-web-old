@@ -24,6 +24,21 @@ export default new VueRouter({
       component: require('./Aboutus/AboutusComponent.vue')
     },
     {
+      path: '/settings/personal-info',
+      name: 'personal-info',
+      component: require('./Settings/SettingsComponent.vue')
+    },
+    {
+      path: '/settings/email',
+      name: 'email',
+      component: require('./Settings/SettingsComponent.vue')
+    },
+    {
+      path: '/settings/password',
+      name: 'password',
+      component: require('./Settings/SettingsComponent.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: require('./Login/LoginComponent.vue')

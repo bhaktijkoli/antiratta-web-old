@@ -30,7 +30,7 @@ Route::get('/courses', 'IndexController@getIndex')->name('courses');
 Route::get('/jfk', 'IndexController@getIndex')->name('jfk');
 Route::get('/aboutus', 'IndexController@getIndex')->name('aboutus');
 
-Route::get('/settings/{setting}', 'SettingsController@getSetting')->name('setting');
+Route::get('/settings/{setting}', 'IndexController@getIndex')->name('setting');
 
 // OAuth
 Route::get('login/{provider}', 'Auth\SocialLoginController@redirectToProvider')->name('social_login');
