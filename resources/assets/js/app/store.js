@@ -17,7 +17,7 @@ export default new Vuex.Store({
   actions: {
     getauth: (context) => {
       axios.get(route.api('/auth')).then(res=>{
-        context.commit('auth', res.data);
+        if(res.data != '') context.commit('auth', res.data);
         context.commit('loading', false);
       })
     },
