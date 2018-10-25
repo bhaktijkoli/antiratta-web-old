@@ -2,7 +2,7 @@
   <div class="wrapper">
     <Loading v-show="$store.state.loading"/>
     <Navbar/>
-    <CourseList style="margin-top:100px"/>
+    <SearchCourses style="margin-top:100px"/>
   </div>
 </template>
 
@@ -10,11 +10,11 @@
 import Loading from './../Layout/Loading'
 import Navbar from './../Layout/Navbar'
 
-import CourseList from './CourseList'
+import SearchCourses from './SearchCourses'
 
 export default {
   components: {
-    Loading, Navbar, CourseList
+    Loading, Navbar, SearchCourses
   },
   mounted() {
     document.title = "Courses";
