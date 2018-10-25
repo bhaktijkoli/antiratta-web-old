@@ -44706,7 +44706,7 @@ window.fh = {
 
   show_errorpage: function show_errorpage(error) {
     console.log(error);
-    this.show_button(window.lastbutton); // Remove This
+    this.show_button(); // Remove This
   }
 };
 

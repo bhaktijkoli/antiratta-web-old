@@ -44610,7 +44610,7 @@ window.fh = {
 
   show_errorpage: function show_errorpage(error) {
     console.log(error);
-    this.show_button(window.lastbutton); // Remove This
+    this.show_button(); // Remove This
   }
 };
 
@@ -45538,7 +45538,13 @@ window.fsh = {
 
     fh.hide_button();
     fh.remove_all_errros(form);
-    axios.post(url, form.serialize()).then(function (res) {
+    var formdata = null;
+    if (form.attr('enctype') == 'multipart/form-data') {
+      formdata = new FormData(form[0]);
+    } else {
+      formdata = form.serialize();
+    }
+    axios.post(url, formdata).then(function (res) {
       var data = res.data;
       if (fh.is_success(data)) {
         if (clear == true) fh.clear_all(form);
@@ -45550,6 +45556,7 @@ window.fsh = {
       fh.show_button();
     }).catch(function (res) {
       show_errorpage(res);
+      fh.show_button();
     });
   }
 };
@@ -46341,6 +46348,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46858,102 +46872,110 @@ var render = function() {
       _c("AllCourses", { attrs: { universities: _vm.universities } }),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
-        _c("form", { ref: "formAddCourse" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("h5", [_vm._v("Add Course")]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _vm._m(0),
+        _c(
+          "form",
+          { ref: "formAddCourse", attrs: { enctype: "multipart/form-data" } },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", [_vm._v("Add Course")]),
               _vm._v(" "),
-              _vm._m(1),
+              _c("hr"),
               _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("University")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "course_university",
-                        name: "course_university"
+              _c("div", { staticClass: "row" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("University")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "course_university",
+                          name: "course_university"
+                        },
+                        on: { change: _vm.changeUniverstiy }
                       },
-                      on: { change: _vm.changeUniverstiy }
-                    },
-                    _vm._l(_vm.universities, function(un, key) {
-                      return _c("option", { domProps: { value: key } }, [
-                        _vm._v(_vm._s(un.name))
-                      ])
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "help-block" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Branch")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      staticClass: "form-control",
-                      attrs: { id: "course_branch", name: "course_branch" }
-                    },
-                    _vm._l(_vm.branches, function(branch, key) {
-                      return _c("option", { domProps: { value: branch.id } }, [
-                        _vm._v(_vm._s(branch.name))
-                      ])
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "help-block" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Semester")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      staticClass: "form-control",
-                      attrs: { id: "course_sem", name: "course_sem" }
-                    },
-                    _vm._l(_vm.sems, function(sem, key) {
-                      return _c("option", { domProps: { value: sem } }, [
-                        _vm._v(_vm._s(sem))
-                      ])
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "help-block" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-12" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary btn-inline-form",
-                      attrs: { type: "submit", name: "button" },
-                      on: { click: _vm.onAddCourseSubmit }
-                    },
-                    [_vm._v("Add")]
-                  )
+                      _vm._l(_vm.universities, function(un, key) {
+                        return _c("option", { domProps: { value: key } }, [
+                          _vm._v(_vm._s(un.name))
+                        ])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "help-block" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Branch")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control",
+                        attrs: { id: "course_branch", name: "course_branch" }
+                      },
+                      _vm._l(_vm.branches, function(branch, key) {
+                        return _c(
+                          "option",
+                          { domProps: { value: branch.id } },
+                          [_vm._v(_vm._s(branch.name))]
+                        )
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "help-block" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [_vm._v("Semester")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control",
+                        attrs: { id: "course_sem", name: "course_sem" }
+                      },
+                      _vm._l(_vm.sems, function(sem, key) {
+                        return _c("option", { domProps: { value: sem } }, [
+                          _vm._v(_vm._s(sem))
+                        ])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "help-block" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-12" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-inline-form",
+                        attrs: { type: "submit", name: "button" },
+                        on: { click: _vm.onAddCourseSubmit }
+                      },
+                      [_vm._v("Add")]
+                    )
+                  ])
                 ])
               ])
             ])
-          ])
-        ])
+          ]
+        )
       ])
     ],
     1
@@ -47020,6 +47042,23 @@ var staticRenderFns = [
             name: "course_price",
             placeholder: "Enter price"
           }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-9" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Course Cover Image")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "file", id: "course_image", name: "course_image" }
         }),
         _vm._v(" "),
         _c("p", { staticClass: "help-block" })

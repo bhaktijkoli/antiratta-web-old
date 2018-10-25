@@ -20,6 +20,9 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->string('shortname');
             $table->double('price');
+            $table->double('rating')->default('2');
+            $table->integer('image')->nullable();
+            $table->string('color')->default('blue');
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();

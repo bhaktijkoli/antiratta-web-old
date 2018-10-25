@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 use Auth;
 
+use App\Branch;
+use App\University;
+use App\ImageUpload;
+
 class Course extends Model
 {
   protected $table = "courses";
@@ -17,6 +21,7 @@ class Course extends Model
     $data['shortname'] = $this->shortname;
     $data['price'] = $this->price;
     $data['sem'] = $this->sem;
+    $data['image'] = $this->getImage();
     if(Auth::check()) {
         $data['created_by'] = User::where('id', $this->created_by)->first()->firstname;
         $data['created_at'] = $this->created_at->diffForHumans();
@@ -39,5 +44,20 @@ class Course extends Model
 
   public function deleleAll() {
     $this->forceDelete();
+  }
+
+  public function getSlug() {
+    $branch = Branch::where('id', $this->branch)->first();
+    if(!$branch) abort(505);
+    $bn = strtolower($branch->shortname);
+    $un = strtolower(University::getScs()[$branch->university]);
+    $cn = strtolower($this->shortname);
+    return "$un-$bn-$cn";
+  }
+
+  public function getImage() {
+    $image = ImageUpload::where('id', $this->image)->first();
+    if(!$image) return "";
+    return $image->getUrl();
   }
 }

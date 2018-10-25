@@ -11,6 +11,7 @@ use Auth;
 use App\University;
 use App\Branch;
 use App\Course;
+use App\ImageUpload;
 use App\ResponseBuilder;
 
 class CourseController extends Controller
@@ -27,6 +28,11 @@ class CourseController extends Controller
     $branch->addSem($course->sem);
     $course->created_by = Auth::user()->id;
     $course->updated_by = Auth::user()->id;
+    if($request->course_image) {
+      $img = new ImageUpload();
+      $img->uploadImage($request->course_image, 'courses', $course->getSlug());
+      $course->image = $img->id;
+    }
     $course->save();
     return ResponseBuilder::send(true, "", '/');
   }

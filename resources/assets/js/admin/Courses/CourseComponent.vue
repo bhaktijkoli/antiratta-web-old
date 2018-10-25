@@ -2,7 +2,7 @@
   <div class="container">
     <AllCourses :universities="universities"/>
     <div class="card">
-      <form ref="formAddCourse">
+      <form ref="formAddCourse" enctype="multipart/form-data">
         <div class="card-body">
           <h5>Add Course</h5>
           <hr />
@@ -52,6 +52,13 @@
                 <select class="form-control" id="course_sem" name="course_sem">
                   <option v-for="(sem, key) in sems" :value="sem">{{sem}}</option>
                 </select>
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="form-group">
+              <label for="">Course Cover Image</label>
+                <input type="file" class="form-control" id="course_image" name="course_image">
                 <p class="help-block"></p>
               </div>
             </div>

@@ -76,6 +76,6 @@ window.fh = {
 
   show_errorpage: function(error) {
     console.log(error);
-    this.show_button(window.lastbutton); // Remove This
+    this.show_button(); // Remove This
   }
 }
