@@ -4,7 +4,7 @@
   margin-bottom: 30px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
-  min-height: 300px;
+  min-height: 280px;
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -45,7 +45,7 @@
     color: #FFFF;
     font-weight: 600;
   }
-  
+
   .course-card-body {
     padding-left: 10px;
     padding-right: 10px;
@@ -70,6 +70,8 @@
   .course-card-price {
     position: absolute;
     bottom: 10px;
+    right: 20px;
+    font-weight: 400;
   }
 
 }

@@ -54874,7 +54874,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n.search-box {\n  margin-top: 150px;\n  margin-bottom: 100px;\n}\n.search-box .form-control {\n  border-radius: 8px !important;\n  -webkit-padding-end: 50px;\n          padding-inline-end: 50px;\n  -webkit-box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);\n  box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);\n}\n.input-group .search-icon {\n  position: absolute;\n  top: 12px;\n  right: 15px;\n}\n.input-group .search-icon .fa{\n  font-size: 24px;\n}\n", ""]);
+exports.push([module.i, "\n.search-box {\n  margin-top: 150px;\n  margin-bottom: 100px;\n}\n.search-box .form-control {\n  border-radius: 8px !important;\n  -webkit-padding-end: 50px;\n          padding-inline-end: 50px;\n  background-color: #ffffffe3;\n  -webkit-box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);\n  box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);\n}\n.search-box .form-control:focus {\n  background-color: #ffffffe3;\n}\n.input-group .search-icon {\n  position: absolute;\n  top: 12px;\n  right: 15px;\n  z-index: 1000;\n}\n.input-group .search-icon .fa{\n  font-size: 24px;\n}\n", ""]);
 
 // exports
 

@@ -21590,7 +21590,7 @@ footer .pull-center {
   margin-bottom: 30px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
-  min-height: 300px;
+  min-height: 280px;
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -21663,6 +21663,8 @@ footer .pull-center {
 .course-card .course-card-price {
   position: absolute;
   bottom: 10px;
+  right: 20px;
+  font-weight: 400;
 }
 
 .course-card:hover {

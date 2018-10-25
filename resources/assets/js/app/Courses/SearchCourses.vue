@@ -42,14 +42,19 @@ export default {
 .search-box .form-control {
   border-radius: 8px !important;
   padding-inline-end: 50px;
+  background-color: #ffffffe3;
   -moz-box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
   -webkit-box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
   box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+}
+.search-box .form-control:focus {
+  background-color: #ffffffe3;
 }
 .input-group .search-icon {
   position: absolute;
   top: 12px;
   right: 15px;
+  z-index: 1000;
 }
 .input-group .search-icon .fa{
   font-size: 24px;
