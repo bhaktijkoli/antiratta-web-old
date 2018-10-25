@@ -54,6 +54,14 @@
           </div>
           <div class="col-sm-12">
             <div class="form-group">
+              <label for="">Description</label>
+              <textarea class="form-control" id="course_description" name="course_description" placeholder="Enter Description">
+              </textarea>
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
               <button type="submit" name="button" class="btn btn-primary btn-inline-form">Save</button>
             </div>
           </div>

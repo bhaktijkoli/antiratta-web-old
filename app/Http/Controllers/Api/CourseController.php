@@ -20,6 +20,7 @@ class CourseController extends Controller
   public function addCourse(AddCourseRequest $request) {
     $course = new Course();
     $course->name = $request->input('course_name', '');
+    $course->description = $request->input('course_description', '');
     $course->price = $request->input('course_price', '');
     $course->branch = $request->input('course_branch', '');
     $course->shortname = $request->input('course_shortname', '');
@@ -42,6 +43,7 @@ class CourseController extends Controller
     $course = Course::where('id', $request->input('course', '-1'))->first();
     if(!$course) abort(404);
     $course->name = $request->input('course_name', '');
+    $course->description = $request->input('course_description', '');
     $course->price = $request->input('course_price', '');
     $course->shortname = $request->input('course_shortname', '');
     $course->sem = $request->input('course_sem', '1');

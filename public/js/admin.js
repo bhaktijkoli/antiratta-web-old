@@ -46364,6 +46364,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46992,6 +47000,8 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
                 _c("div", { staticClass: "col-sm-12" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
@@ -47092,6 +47102,27 @@ var staticRenderFns = [
         _c("input", {
           staticClass: "form-control",
           attrs: { type: "file", id: "course_image", name: "course_image" }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-9" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          attrs: {
+            id: "course_description",
+            name: "course_description",
+            placeholder: "Enter Description"
+          }
         }),
         _vm._v(" "),
         _c("p", { staticClass: "help-block" })
@@ -47271,6 +47302,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47548,6 +47587,8 @@ var render = function() {
             _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
             _c("div", { staticClass: "col-sm-12" }, [
               _c("label", [
                 _vm._v(
@@ -47576,6 +47617,27 @@ var staticRenderFns = [
         _c("input", {
           staticClass: "form-control",
           attrs: { type: "file", id: "course_image", name: "course_image" }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          attrs: {
+            id: "course_description",
+            name: "course_description",
+            placeholder: "Enter Description"
+          }
         }),
         _vm._v(" "),
         _c("p", { staticClass: "help-block" })

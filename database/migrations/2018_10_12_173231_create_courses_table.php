@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
             $table->double('rating')->default('2');
             $table->integer('image')->nullable();
             $table->string('color')->default('blue');
+            $table->longtext('description')->nullable();
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
