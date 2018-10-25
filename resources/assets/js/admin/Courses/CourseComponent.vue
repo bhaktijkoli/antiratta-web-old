@@ -48,17 +48,26 @@
             </div>
             <div class="col-sm-9">
               <div class="form-group">
-              <label for="">Semester</label>
+                <label for="">Semester</label>
                 <select class="form-control" id="course_sem" name="course_sem">
                   <option v-for="(sem, key) in sems" :value="sem">{{sem}}</option>
                 </select>
                 <p class="help-block"></p>
               </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-6">
               <div class="form-group">
-              <label for="">Course Cover Image</label>
+                <label for="">Cover Image</label>
                 <input type="file" class="form-control" id="course_image" name="course_image">
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="">Cover Overlay Color</label>
+                <select class="form-control" id="course_color" name="course_color">
+                  <option v-for="c in colors" :value="c">{{c}}</option>
+                </select>
                 <p class="help-block"></p>
               </div>
             </div>
@@ -92,6 +101,7 @@ export default {
       universities: [],
       branches: [],
       sems: [1,2,3,4,5,6,7,8],
+      colors: ['red','blue','green','yellow','orange'],
       university: 0,
     }
   },

@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5>Edit Course&nbsp;&nbsp;<small>{{course.name}}</small></h5>
       <hr />
-      <form @submit="onFormSumit">
+      <form @submit="onFormSumit" enctype="multipart/form-data">
         <input type="hidden" name="course" :value="course.id">
         <div class="row">
           <div class="col-sm-12">
@@ -36,6 +36,22 @@
               <p class="help-block"></p>
             </div>
           </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Update Cover Image</label>
+              <input type="file" class="form-control" id="course_image" name="course_image">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="">Cover Overlay Color</label>
+              <select class="form-control" id="course_color" name="course_color" v-model="course.color">
+                <option v-for="c in colors" :value="c">{{c}}</option>
+              </select>
+              <p class="help-block"></p>
+            </div>
+          </div>
           <div class="col-sm-12">
             <div class="form-group">
               <button type="submit" name="button" class="btn btn-primary btn-inline-form">Save</button>
@@ -57,6 +73,7 @@ export default {
   data() {
     return {
       sems: [1,2,3,4,5,6,7,8],
+      colors: ['red','blue','green','yellow','orange'],
     }
   },
   methods: {

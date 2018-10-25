@@ -24,6 +24,7 @@ class CourseController extends Controller
     $course->branch = $request->input('course_branch', '');
     $course->shortname = $request->input('course_shortname', '');
     $course->sem = $request->input('course_sem', '1');
+    $course->color = $request->input('course_color', 'blue');
     $branch = Branch::where('id', $course->branch)->first();
     $branch->addSem($course->sem);
     $course->created_by = Auth::user()->id;
@@ -44,9 +45,15 @@ class CourseController extends Controller
     $course->price = $request->input('course_price', '');
     $course->shortname = $request->input('course_shortname', '');
     $course->sem = $request->input('course_sem', '1');
+    $course->color = $request->input('course_color', 'blue');
     $branch = Branch::where('id', $course->branch)->first();
     $branch->addSem($course->sem);
     $course->updated_by = Auth::user()->id;
+    if($request->course_image) {
+      $img = new ImageUpload();
+      $img->uploadImage($request->course_image, 'courses', $course->getSlug());
+      $course->image = $img->id;
+    }
     $course->save();
     return ResponseBuilder::send(true, "", '/');
   }

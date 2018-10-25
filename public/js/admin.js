@@ -46355,6 +46355,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46375,6 +46384,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       universities: [],
       branches: [],
       sems: [1, 2, 3, 4, 5, 6, 7, 8],
+      colors: ['red', 'blue', 'green', 'yellow', 'orange'],
       university: 0
     };
   },
@@ -46959,6 +46969,29 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Cover Overlay Color")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control",
+                        attrs: { id: "course_color", name: "course_color" }
+                      },
+                      _vm._l(_vm.colors, function(c) {
+                        return _c("option", { domProps: { value: c } }, [
+                          _vm._v(_vm._s(c))
+                        ])
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "help-block" })
+                  ])
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "col-sm-12" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
@@ -47052,9 +47085,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-9" }, [
+    return _c("div", { staticClass: "col-sm-6" }, [
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Course Cover Image")]),
+        _c("label", { attrs: { for: "" } }, [_vm._v("Cover Image")]),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
@@ -47290,12 +47323,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
     return {
-      sems: [1, 2, 3, 4, 5, 6, 7, 8]
+      sems: [1, 2, 3, 4, 5, 6, 7, 8],
+      colors: ['red', 'blue', 'green', 'yellow', 'orange']
     };
   },
 
@@ -47326,136 +47376,212 @@ var render = function() {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _c("form", { on: { submit: _vm.onFormSumit } }, [
-        _c("input", {
-          attrs: { type: "hidden", name: "course" },
-          domProps: { value: _vm.course.id }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Name")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "course_name",
-                  name: "course_name",
-                  placeholder: "Enter course name"
-                },
-                domProps: { value: _vm.course.name }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "help-block" })
-            ])
-          ]),
+      _c(
+        "form",
+        {
+          attrs: { enctype: "multipart/form-data" },
+          on: { submit: _vm.onFormSumit }
+        },
+        [
+          _c("input", {
+            attrs: { type: "hidden", name: "course" },
+            domProps: { value: _vm.course.id }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Short name")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "course_shortname",
-                  name: "course_shortname",
-                  placeholder: "Enter course shortname"
-                },
-                domProps: { value: _vm.course.shortname }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "help-block" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Price")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "course_price",
-                  name: "course_price",
-                  placeholder: "Enter price"
-                },
-                domProps: { value: _vm.course.price }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "help-block" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Semester")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.course.sem,
-                      expression: "course.sem"
-                    }
-                  ],
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Name")]),
+                _vm._v(" "),
+                _c("input", {
                   staticClass: "form-control",
-                  attrs: { id: "course_sem", name: "course_sem" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.course,
-                        "sem",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
+                  attrs: {
+                    type: "text",
+                    id: "course_name",
+                    name: "course_name",
+                    placeholder: "Enter course name"
+                  },
+                  domProps: { value: _vm.course.name }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Short name")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "course_shortname",
+                    name: "course_shortname",
+                    placeholder: "Enter course shortname"
+                  },
+                  domProps: { value: _vm.course.shortname }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Price")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "course_price",
+                    name: "course_price",
+                    placeholder: "Enter price"
+                  },
+                  domProps: { value: _vm.course.price }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Semester")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.course.sem,
+                        expression: "course.sem"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "course_sem", name: "course_sem" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.course,
+                          "sem",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
                     }
-                  }
-                },
-                _vm._l(_vm.sems, function(sem, key) {
-                  return _c("option", { domProps: { value: sem } }, [
-                    _vm._v(_vm._s(sem))
-                  ])
-                })
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "help-block" })
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12" }, [
-            _c("label", [
-              _vm._v(
-                "Updated by " +
-                  _vm._s(_vm.course.updated_by) +
-                  ", " +
-                  _vm._s(_vm.course.updated_at)
-              )
+                  },
+                  _vm._l(_vm.sems, function(sem, key) {
+                    return _c("option", { domProps: { value: sem } }, [
+                      _vm._v(_vm._s(sem))
+                    ])
+                  })
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-3" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "" } }, [
+                  _vm._v("Cover Overlay Color")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.course.color,
+                        expression: "course.color"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "course_color", name: "course_color" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.course,
+                          "color",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  _vm._l(_vm.colors, function(c) {
+                    return _c("option", { domProps: { value: c } }, [
+                      _vm._v(_vm._s(c))
+                    ])
+                  })
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("label", [
+                _vm._v(
+                  "Updated by " +
+                    _vm._s(_vm.course.updated_by) +
+                    ", " +
+                    _vm._s(_vm.course.updated_at)
+                )
+              ])
             ])
           ])
-        ])
-      ])
+        ]
+      )
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Update Cover Image")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "file", id: "course_image", name: "course_image" }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "help-block" })
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

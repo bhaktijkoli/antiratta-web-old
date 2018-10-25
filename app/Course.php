@@ -22,6 +22,7 @@ class Course extends Model
     $data['price'] = $this->price;
     $data['sem'] = $this->sem;
     $data['image'] = $this->getImage();
+    $data['color'] = $this->color;
     if(Auth::check()) {
         $data['created_by'] = User::where('id', $this->created_by)->first()->firstname;
         $data['created_at'] = $this->created_at->diffForHumans();
