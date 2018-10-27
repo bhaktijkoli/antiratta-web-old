@@ -12,6 +12,14 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-sm-12" v-show="searching">
+          <div class="text-center">
+            <div class="spinner">
+              <div class="double-bounce1"></div>
+              <div class="double-bounce2"></div>
+            </div>
+          </div>
+        </div>
         <CourseCard v-for="(course, key) in courses" :key="key" :course="course"/>
       </div>
     </div>
@@ -29,17 +37,20 @@ export default {
   },
   data() {
     return {
+      searching: false,
       courses: [],
     }
   },
   methods: {
     doSearch: function() {
       this.courses = [];
+      this.searching = true;
       let data = {
         name: $(this.$refs.name).val(),
       }
       axios.post(route.api('/search/courses'), data)
       .then(res=> {
+        this.searching = false;
         this.courses = res.data;
       })
     }

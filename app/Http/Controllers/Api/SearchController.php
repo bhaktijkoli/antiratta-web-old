@@ -27,6 +27,7 @@ class SearchController extends Controller
     foreach ($query as $q) {
       array_push($courses, $q->format());
     }
+    sleep(1);
     return $courses;
   }
 }
