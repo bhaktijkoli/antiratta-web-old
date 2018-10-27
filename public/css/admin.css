@@ -21943,6 +21943,10 @@ Copyright (c) 2015 Daniel Eden
   color: #FFFFFF !important;
 }
 
+.card-body .card-title {
+  color: #212529;
+}
+
 .space {
   height: 500px;
 }

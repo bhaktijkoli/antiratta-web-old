@@ -21305,6 +21305,10 @@ footer .pull-center {
   color: #FFFFFF !important;
 }
 
+.card-body .card-title {
+  color: #212529;
+}
+
 .space {
   height: 500px;
 }
@@ -21759,6 +21763,10 @@ footer .pull-center {
 
 #course-header .green {
   background-color: #0080008f;
+}
+
+#course-description .card-body {
+  margin-bottom: 50px;
 }
 
 .jq-stars {

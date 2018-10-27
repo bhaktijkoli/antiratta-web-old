@@ -55081,6 +55081,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Layout_Navbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CourseHeader__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__CourseHeader__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CourseDescription__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CourseDescription___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__CourseDescription__);
 //
 //
 //
@@ -55089,6 +55091,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -55097,7 +55101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, CourseHeader: __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default.a
+    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, CourseHeader: __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default.a, CourseDescription: __WEBPACK_IMPORTED_MODULE_3__CourseDescription___default.a
   },
   mounted: function mounted() {
     var _this = this;
@@ -55146,7 +55150,9 @@ var render = function() {
       _vm._v(" "),
       _c("Navbar", { attrs: { transparent: "" } }),
       _vm._v(" "),
-      _c("CourseHeader", { attrs: { course: _vm.course } })
+      _c("CourseHeader", { attrs: { course: _vm.course } }),
+      _vm._v(" "),
+      _c("CourseDescription", { attrs: { course: _vm.course } })
     ],
     1
   )
@@ -55370,7 +55376,7 @@ var staticRenderFns = [
               staticClass: "fa fa-clock-o",
               attrs: { "aria-hidden": "true" }
             }),
-            _vm._v(" 14 hours")
+            _vm._v(" 34 hours")
           ]),
           _vm._v(" "),
           _c("span", [
@@ -55403,6 +55409,241 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-572aae90", module.exports)
+  }
+}
+
+/***/ }),
+/* 196 */,
+/* 197 */,
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(199)
+/* template */
+var __vue_template__ = __webpack_require__(200)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/CourseDetails/CourseDescription.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6d1028ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-6d1028ee", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 199 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.$root.$on('course-loaded', function () {});
+  },
+
+  props: ['course'],
+  computed: {
+    description: function description() {
+      if (this.course == null) return "";
+      return this.course.description;
+    }
+  }
+});
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { attrs: { id: "course-description" } }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("About this course")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n              Does your team use Cloud Foundry to deploy applications? Or would you like to use Cloud Foundry, but haven't had time to learn the lingo? Then this course is just what you need! Cloud Foundry makes it simple for developers to deliver business value more quickly, without wasting time getting their app to the cloud -- it's already there.\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n              This course is an introduction to Cloud Foundry, including distributions available to end users, an overview of the platform's components, and what it means to be Cloud Foundry certified. The course also includes technical instructions on how to use the command line interface, how applications are deployed, what services are within the context of the system and basic debugging practices.\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n              Finally, the workshop will take you on a tour through what it means to build cloud-native applications architecturally and ideologically. In doing so, we'll review the 12-factor method of composing modern distributed web systems.\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("What you'll learn")
+                ]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", [
+                    _vm._v(
+                      "Explore the runtime, security and network of Cloud Foundry."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "How to build runtime and framework support with buildpacks."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      'Learn "The Twelve Factor app" design patterns for resiliency and scalability.'
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      'Get the steps needed to make your app "cloud-native".'
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Understand how each component of Cloud Foundry combine to provide a cloud-native platform."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Study techniques and examples for locating problems in distributed systems."
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("Prerequisites")
+                ]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", [
+                    _vm._v(
+                      "Explore the runtime, security and network of Cloud Foundry."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "How to build runtime and framework support with buildpacks."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      'Learn "The Twelve Factor app" design patterns for resiliency and scalability.'
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6d1028ee", module.exports)
   }
 }
 

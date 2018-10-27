@@ -3,6 +3,7 @@
     <Loading v-show="$store.state.loading && course==null"/>
     <Navbar transparent/>
     <CourseHeader :course="course"/>
+    <CourseDescription :course="course"/>
   </div>
 </template>
 
@@ -11,10 +12,11 @@ import Loading from './../Layout/Loading'
 import Navbar from './../Layout/Navbar'
 
 import CourseHeader from './CourseHeader'
+import CourseDescription from './CourseDescription'
 
 export default {
   components: {
-    Loading, Navbar, CourseHeader
+    Loading, Navbar, CourseHeader, CourseDescription
   },
   mounted() {
     $(window).scrollTop(0);

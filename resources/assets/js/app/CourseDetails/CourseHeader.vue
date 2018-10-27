@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="course-hours">
-            <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;14 hours</span>
+            <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;34 hours</span>
             <span><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;512 Students enrolled</span>
           </div>
         </div>
