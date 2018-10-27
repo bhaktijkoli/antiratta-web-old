@@ -1,0 +1,59 @@
+#course-header {
+  .container {
+    color: #FFFFFF;
+    margin-top: 120px;
+  }
+  .row {
+    margin-bottom: 10px;
+  }
+  .course-title {
+    font-weight: 500;
+  }
+
+  .course-subtitle {
+    font-weight: 600;
+  }
+  .course-hours span {
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .course-price span{
+    font-size: 1.4em;
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .path-backdrop {
+    position: absolute;
+    top: 0px;
+    min-height: 620px;
+    height: 100vh;
+    width: 100%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+    z-index: 0;
+  }
+  .path-backdrop-image {
+    position: absolute;
+    top: 0px;
+    min-height: 620px;
+    height: 100vh;
+    width: 100%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+    z-index: -1;
+  }
+  .red {
+    background-color: #ff00008f;
+  }
+  .yellow {
+    background-color: #ffff008f;
+  }
+  .blue {
+    background-color: #0000ff8f;
+  }
+  .green {
+    background-color: #0080008f;
+  }
+}

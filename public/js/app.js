@@ -47463,7 +47463,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
   }, {
     path: '/course/:university/:branch/:course',
     name: 'course-details',
-    component: __webpack_require__(76)
+    component: __webpack_require__(190)
   }, {
     path: '/jfk',
     name: 'jfk',
@@ -55019,6 +55019,390 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-4caecfbc", module.exports)
+  }
+}
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(191)
+/* template */
+var __vue_template__ = __webpack_require__(192)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/CourseDetails/CourseDetailsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5d09ffc4", Component.options)
+  } else {
+    hotAPI.reload("data-v-5d09ffc4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Layout_Loading__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Layout_Loading__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Layout_Navbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CourseHeader__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__CourseHeader__);
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, CourseHeader: __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default.a
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    $(window).scrollTop(0);
+    var university = this.$route.params.university;
+    var branch = this.$route.params.branch;
+    var course = this.$route.params.course;
+    axios.post(route.api('courses/get/details'), { university: university, branch: branch, course: course }).then(function (res) {
+      _this.course = res.data;
+      document.title = res.data.name;
+      _this.$root.$emit('course-loaded');
+    });
+  },
+  data: function data() {
+    return {
+      course: null
+    };
+  },
+
+  methods: {}
+});
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "wrapper" },
+    [
+      _c("Loading", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.$store.state.loading && _vm.course == null,
+            expression: "$store.state.loading && course==null"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("Navbar", { attrs: { transparent: "" } }),
+      _vm._v(" "),
+      _c("CourseHeader", { attrs: { course: _vm.course } })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5d09ffc4", module.exports)
+  }
+}
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(194)
+/* template */
+var __vue_template__ = __webpack_require__(195)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/CourseDetails/CourseHeader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-572aae90", Component.options)
+  } else {
+    hotAPI.reload("data-v-572aae90", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.$root.$on('course-loaded', function () {
+      $('#rating').starRating({
+        initialRating: 2,
+        strokeColor: '#894A00',
+        strokeWidth: 0,
+        starSize: 25,
+        readOnly: true
+      });
+    });
+  },
+
+  props: ['course'],
+  computed: {
+    name: function name() {
+      if (this.course == null) return "";
+      return this.course.name;
+    },
+    university: function university() {
+      if (this.course == null) return "";
+      return this.course.university.name;
+    },
+    branch: function branch() {
+      if (this.course == null) return "";
+      return this.course.branch.name;
+    },
+    sem: function sem() {
+      if (this.course == null) return "";
+      return "Semester " + this.course.sem;
+    },
+    price: function price() {
+      if (this.course == null) return "";
+      return this.course.price;
+    },
+    color: function color() {
+      if (this.course == null) return "";
+      return this.course.color;
+    }
+  }
+});
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { attrs: { id: "course-header" } }, [
+    _c("div", { class: "path-backdrop " + _vm.color }),
+    _vm._v(" "),
+    _c("img", {
+      staticClass: "path-backdrop-image",
+      attrs: { src: "/images/course.jpg" }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12" }, [
+          _c("h1", { staticClass: "course-title" }, [_vm._v(_vm._s(_vm.name))]),
+          _vm._v(" "),
+          _c("span", { staticClass: "course-subtitle" }, [
+            _vm._v(
+              "• " +
+                _vm._s(_vm.university) +
+                " • " +
+                _vm._s(_vm.branch) +
+                " • " +
+                _vm._s(_vm.sem)
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12" }, [
+          _c("div", { staticClass: "course-price" }, [
+            _c("span", [_vm._v("₹ " + _vm._s(_vm.price))])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { attrs: { id: "rating" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "course-hours" }, [
+          _c("span", [
+            _c("i", {
+              staticClass: "fa fa-clock-o",
+              attrs: { "aria-hidden": "true" }
+            }),
+            _vm._v(" 14 hours")
+          ]),
+          _vm._v(" "),
+          _c("span", [
+            _c("i", {
+              staticClass: "fa fa-user-o",
+              attrs: { "aria-hidden": "true" }
+            }),
+            _vm._v(" 512 Students enrolled")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _vm._v("Add to chart")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-572aae90", module.exports)
   }
 }
 

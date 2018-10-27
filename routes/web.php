@@ -27,6 +27,7 @@ Route::get('/authenticate', 'Auth\LoginController@getAuthenticate')->name('authe
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
 Route::get('/courses', 'IndexController@getIndex')->name('courses');
+Route::get('/course/{university}/{branch}/{course}', 'IndexController@getIndex')->name('course-details');
 Route::get('/jfk', 'IndexController@getIndex')->name('jfk');
 Route::get('/aboutus', 'IndexController@getIndex')->name('aboutus');
 
@@ -44,6 +45,7 @@ Route::prefix('api')->group(function () {
   Route::get('universities/get', 'Api\UniversityController@getUniversities');
   Route::get('branches/get', 'Api\UniversityController@getBranches');
   Route::get('courses/get', 'Api\CourseController@getCourses');
+  Route::post('courses/get/details', 'Api\CourseController@getCourseDetails');
   Route::get('courses/get/{id}', 'Api\CourseController@getCourseByID');
   Route::get('modules/get/{id}', 'Api\ModulesController@getModuleByID');
   Route::get('topics/get/{id}', 'Api\TopicsController@getTopicByID');

@@ -21693,6 +21693,74 @@ footer .pull-center {
   background-color: #0080008f;
 }
 
+#course-header .container {
+  color: #FFFFFF;
+  margin-top: 120px;
+}
+
+#course-header .row {
+  margin-bottom: 10px;
+}
+
+#course-header .course-title {
+  font-weight: 500;
+}
+
+#course-header .course-subtitle {
+  font-weight: 600;
+}
+
+#course-header .course-hours span {
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#course-header .course-price span {
+  font-size: 1.4em;
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#course-header .path-backdrop {
+  position: absolute;
+  top: 0px;
+  min-height: 620px;
+  height: 100vh;
+  width: 100%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+  z-index: 0;
+}
+
+#course-header .path-backdrop-image {
+  position: absolute;
+  top: 0px;
+  min-height: 620px;
+  height: 100vh;
+  width: 100%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
+  z-index: -1;
+}
+
+#course-header .red {
+  background-color: #ff00008f;
+}
+
+#course-header .yellow {
+  background-color: #ffff008f;
+}
+
+#course-header .blue {
+  background-color: #0000ff8f;
+}
+
+#course-header .green {
+  background-color: #0080008f;
+}
+
 .jq-stars {
   display: inline-block;
 }
