@@ -55087,6 +55087,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__CourseHeader__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CourseDescription__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CourseDescription___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__CourseDescription__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CourseContents__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CourseContents___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__CourseContents__);
 //
 //
 //
@@ -55096,6 +55098,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -55105,7 +55109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, CourseHeader: __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default.a, CourseDescription: __WEBPACK_IMPORTED_MODULE_3__CourseDescription___default.a
+    Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, CourseHeader: __WEBPACK_IMPORTED_MODULE_2__CourseHeader___default.a, CourseDescription: __WEBPACK_IMPORTED_MODULE_3__CourseDescription___default.a, CourseContents: __WEBPACK_IMPORTED_MODULE_4__CourseContents___default.a
   },
   mounted: function mounted() {
     var _this = this;
@@ -55156,7 +55160,9 @@ var render = function() {
       _vm._v(" "),
       _c("CourseHeader", { attrs: { course: _vm.course } }),
       _vm._v(" "),
-      _c("CourseDescription", { attrs: { course: _vm.course } })
+      _c("CourseDescription", { attrs: { course: _vm.course } }),
+      _vm._v(" "),
+      _c("CourseContents", { attrs: { course: _vm.course } })
     ],
     1
   )
@@ -55648,6 +55654,131 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-6d1028ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(202)
+/* template */
+var __vue_template__ = __webpack_require__(203)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/CourseDetails/CourseContents.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3141c9dd", Component.options)
+  } else {
+    hotAPI.reload("data-v-3141c9dd", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.$root.$on('course-loaded', function () {});
+  },
+
+  props: ['course'],
+  computed: {
+    description: function description() {
+      if (this.course == null) return "";
+      return this.course.description;
+    }
+  }
+});
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { attrs: { id: "course-content" } }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("Course Content")
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3141c9dd", module.exports)
   }
 }
 

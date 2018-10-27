@@ -4,6 +4,7 @@
     <Navbar transparent/>
     <CourseHeader :course="course"/>
     <CourseDescription :course="course"/>
+    <CourseContents :course="course"/>
   </div>
 </template>
 
@@ -13,10 +14,11 @@ import Navbar from './../Layout/Navbar'
 
 import CourseHeader from './CourseHeader'
 import CourseDescription from './CourseDescription'
+import CourseContents from './CourseContents'
 
 export default {
   components: {
-    Loading, Navbar, CourseHeader, CourseDescription
+    Loading, Navbar, CourseHeader, CourseDescription, CourseContents
   },
   mounted() {
     $(window).scrollTop(0);
