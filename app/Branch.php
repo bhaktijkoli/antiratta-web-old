@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Auth;
+
 class Branch extends Model
 {
   protected $table = "branches";
@@ -12,9 +14,11 @@ class Branch extends Model
   public function format() {
     $data['id'] = $this->id;
     $data['name'] = $this->name;
-    $data['shortname'] = $this->shortname;
-    $data['created_by'] = User::where("id", $this->user)->first()->firstname;
-    $data['created_at'] = $this->created_at->diffForHumans();
+    $data['shortname'] = strtoupper($this->shortname);
+    if(Auth::check()) {
+      $data['created_by'] = User::where("id", $this->user)->first()->firstname;
+      $data['created_at'] = $this->created_at->diffForHumans();
+    }
     return $data;
   }
 

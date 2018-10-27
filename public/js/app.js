@@ -47461,6 +47461,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     name: 'courses',
     component: __webpack_require__(76)
   }, {
+    path: '/course/:university/:branch/:course',
+    name: 'course-details',
+    component: __webpack_require__(76)
+  }, {
     path: '/jfk',
     name: 'jfk',
     component: __webpack_require__(84)
@@ -54885,7 +54889,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54932,6 +54936,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
   },
 
+  methods: {
+    onCardClick: function onCardClick() {
+      var params = {
+        university: this.course.university.shortname.toLowerCase(),
+        branch: this.course.branch.shortname.toLowerCase(),
+        course: this.course.url.toLowerCase()
+      };
+      this.$router.push({ name: 'course-details', params: params });
+    }
+  },
   props: ['course']
 });
 
@@ -54944,34 +54958,45 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-sm-3 col-course" }, [
-    _c("div", { staticClass: "course-card" }, [
-      _c("div", { staticClass: "course-card-top" }, [
-        _c("img", {
-          staticClass: "course-card-image",
-          attrs: { src: "/images/course.jpg" }
-        }),
-        _vm._v(" "),
-        _c("div", { class: "course-card-overlay " + _vm.course.color }),
-        _vm._v(" "),
-        _c("h3", { staticClass: "course-card-title" }, [
-          _vm._v(_vm._s(_vm.course.name))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "course-card-body" }, [
-        _c("div", { staticClass: "course-card-information" }, [
-          _c("p", [_vm._v(_vm._s(_vm.course.branch))])
+    _c(
+      "div",
+      {
+        staticClass: "course-card",
+        on: {
+          click: function($event) {
+            _vm.onCardClick()
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "course-card-top" }, [
+          _c("img", {
+            staticClass: "course-card-image",
+            attrs: { src: "/images/course.jpg" }
+          }),
+          _vm._v(" "),
+          _c("div", { class: "course-card-overlay " + _vm.course.color }),
+          _vm._v(" "),
+          _c("h3", { staticClass: "course-card-title" }, [
+            _vm._v(_vm._s(_vm.course.name))
+          ])
         ]),
         _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "my-rating" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "course-card-price" }, [
-          _c("span", [_vm._v("₹" + _vm._s(_vm.course.price))])
+        _c("div", { staticClass: "course-card-body" }, [
+          _c("div", { staticClass: "course-card-information" }, [
+            _c("p", [_vm._v(_vm._s(_vm.course.branch.name))])
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "my-rating" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "course-card-price" }, [
+            _c("span", [_vm._v("₹" + _vm._s(_vm.course.price))])
+          ])
         ])
-      ])
-    ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [

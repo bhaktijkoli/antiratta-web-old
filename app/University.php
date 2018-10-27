@@ -12,4 +12,9 @@ class University
   public static function getScs() {
     return Self::universities_sc;
   }
+  public static function getFormat($index) {
+    $data['name'] = Self::universities_name[$index];
+    $data['shortname'] = Self::universities_sc[$index];
+    return $data;
+  }
 }

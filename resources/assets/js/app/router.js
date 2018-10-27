@@ -14,6 +14,11 @@ export default new VueRouter({
       component: require('./Courses/CoursesComponent.vue')
     },
     {
+      path: '/course/:university/:branch/:course',
+      name: 'course-details',
+      component: require('./Courses/CoursesComponent.vue')
+    },
+    {
       path: '/jfk',
       name: 'jfk',
       component: require('./JFK/JFKComponent.vue')

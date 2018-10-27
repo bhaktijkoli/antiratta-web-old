@@ -18,14 +18,16 @@ class Course extends Model
   public function format() {
     $data['id'] = $this->id;
     $data['name'] = $this->name;
-    $data['shortname'] = $this->shortname;
+    $data['url'] = str_replace(" ", "-" ,strtolower($this->name));
+    $data['shortname'] = strtoupper($this->shortname);
     $data['price'] = $this->price;
     $data['sem'] = $this->sem;
     $data['image'] = $this->getImage();
     $data['color'] = $this->color;
     $data['description'] = $this->description;
     $data['rating'] = $this->rating;
-    $data['branch'] = Branch::where('id', $this->branch)->first()->name;
+    $data['branch'] = Branch::where('id', $this->branch)->first()->format();
+    $data['university'] = University::getFormat(1);
     if(Auth::check()) {
         $data['created_by'] = User::where('id', $this->created_by)->first()->firstname;
         $data['created_at'] = $this->created_at->diffForHumans();
