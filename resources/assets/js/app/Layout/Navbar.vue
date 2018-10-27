@@ -2,7 +2,7 @@
   <nav ref="nav" class="navbar fixed-top navbar-expand-lg bg-dark">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="/">AntiRatta</a>
+        <a class="navbar-brand" href="/"><img src="/images/logo.png" height="38" style="margin-top: -10px;"/>&nbsp;AntiRatta</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>

@@ -50551,7 +50551,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "navbar-translate" }, [
       _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-        _vm._v("AntiRatta")
+        _c("img", {
+          staticStyle: { "margin-top": "-10px" },
+          attrs: { src: "/images/logo.png", height: "38" }
+        }),
+        _vm._v(" AntiRatta")
       ]),
       _vm._v(" "),
       _c(
