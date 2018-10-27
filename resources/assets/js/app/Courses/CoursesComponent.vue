@@ -17,7 +17,8 @@ export default {
     Loading, Navbar, SearchCourses
   },
   mounted() {
-    document.title = "Courses";
+    document.title = "Search for Courses";
+    $(window).scrollTop(0);
   },
   methods: {
   },

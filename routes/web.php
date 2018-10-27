@@ -47,6 +47,7 @@ Route::prefix('api')->group(function () {
   Route::get('courses/get/{id}', 'Api\CourseController@getCourseByID');
   Route::get('modules/get/{id}', 'Api\ModulesController@getModuleByID');
   Route::get('topics/get/{id}', 'Api\TopicsController@getTopicByID');
+  Route::post('search/courses', 'Api\SearchController@postCourses');
 });
 
 // Admin Api

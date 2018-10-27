@@ -4,7 +4,7 @@
       <div class="row justify-content-md-center search-box">
         <div class="col-sm-6">
           <div class="input-group">
-            <input type="text" class="form-control form-control-lg" placeholder="Search for Courses">
+            <input ref="name" type="text" class="form-control form-control-lg" placeholder="Search for Courses" @keyup.enter="doSearch()">
             <div class="search-icon">
               <i class="fa fa-search" aria-hidden="true"></i>
             </div>
@@ -12,10 +12,7 @@
         </div>
       </div>
       <div class="row">
-        <CourseCard title="Applied Mathematics 3" color="blue"/>
-        <CourseCard title="Applied Mathematics 4" color="yellow"/>
-        <CourseCard title="Data Structures" color="green"/>
-        <CourseCard title="Basic Electronics" color="red"/>
+        <CourseCard v-for="(course, key) in courses" :key="key" :course="course"/>
       </div>
     </div>
   </section>
@@ -28,8 +25,24 @@ export default {
     CourseCard,
   },
   mounted() {
+    this.doSearch();
+  },
+  data() {
+    return {
+      courses: [],
+    }
   },
   methods: {
+    doSearch: function() {
+      this.courses = [];
+      let data = {
+        name: $(this.$refs.name).val(),
+      }
+      axios.post(route.api('/search/courses'), data)
+      .then(res=> {
+        this.courses = res.data;
+      })
+    }
   },
 }
 </script>

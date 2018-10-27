@@ -24,6 +24,8 @@ class Course extends Model
     $data['image'] = $this->getImage();
     $data['color'] = $this->color;
     $data['description'] = $this->description;
+    $data['rating'] = $this->rating;
+    $data['branch'] = Branch::where('id', $this->branch)->first()->name;
     if(Auth::check()) {
         $data['created_by'] = User::where('id', $this->created_by)->first()->firstname;
         $data['created_at'] = $this->created_at->diffForHumans();
