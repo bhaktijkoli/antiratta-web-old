@@ -25,6 +25,9 @@
             <router-link class="nav-link" :to="{ name: 'aboutus' }">About Us</router-link>
           </li>
           <li class="nav-divider"></li>
+          <li class="nav-item" v-show="$store.state.cart.length > 0 || auth!=null">
+            <router-link class="nav-link" :to="{ name: 'login' }"><i class="fa fa-shopping-cart" aria-hidden="true"><span class="badge badge-pill badge-primary badge-cart">{{$store.state.cart.length}}</span></i></router-link>
+          </li>
           <li class="nav-item" v-if="auth==null">
             <router-link class="nav-link" :to="{ name: 'login' }">Login</router-link>
           </li>
@@ -41,7 +44,7 @@
                 <a href="" class="dropdown-item">My Courses</a>
                 <router-link class="dropdown-item" :to="{name: 'personal-info'}">Settings</router-link>
                 <div class="dropdown-divider"></div>
-                <a href="" class="dropdown-item">Sign out</a>
+                <a href="/logout" class="dropdown-item">Sign out</a>
               </div>
             </li>
           </ul>

@@ -50327,6 +50327,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -50434,6 +50437,47 @@ var render = function() {
             _vm._v(" "),
             _c("li", { staticClass: "nav-divider" }),
             _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.$store.state.cart.length > 0 || _vm.auth != null,
+                    expression: "$store.state.cart.length > 0 || auth!=null"
+                  }
+                ],
+                staticClass: "nav-item"
+              },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: { name: "login" } } },
+                  [
+                    _c(
+                      "i",
+                      {
+                        staticClass: "fa fa-shopping-cart",
+                        attrs: { "aria-hidden": "true" }
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "badge badge-pill badge-primary badge-cart"
+                          },
+                          [_vm._v(_vm._s(_vm.$store.state.cart.length))]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
             _vm.auth == null
               ? _c(
                   "li",
@@ -50497,7 +50541,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "a",
-                        { staticClass: "dropdown-item", attrs: { href: "" } },
+                        {
+                          staticClass: "dropdown-item",
+                          attrs: { href: "/logout" }
+                        },
                         [_vm._v("Sign out")]
                       )
                     ],
