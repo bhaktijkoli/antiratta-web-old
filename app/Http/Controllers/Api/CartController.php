@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use Cookie;
-
+use App\Course;
 use App\ResponseBuilder;
 
 class CartController extends Controller
@@ -29,6 +29,14 @@ class CartController extends Controller
   public function getCart(Request $request) {
     $cart = Cookie::get('cart', "[]");
     $cart = json_decode($cart);
+    if($request->input('details') == '1') {
+      $list = [];
+      foreach ($cart as $c) {
+        $course = Course::find($c);
+        array_push($list, $course->format());
+      }
+      return $list;
+    }
     return $cart;
   }
 }

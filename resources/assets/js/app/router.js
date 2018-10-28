@@ -19,6 +19,11 @@ export default new VueRouter({
       component: require('./CourseDetails/CourseDetailsComponent.vue')
     },
     {
+      path: '/cart',
+      name: 'cart',
+      component: require('./Cart/CartComponent.vue')
+    },
+    {
       path: '/jfk',
       name: 'jfk',
       component: require('./JFK/JFKComponent.vue')
