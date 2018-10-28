@@ -26,7 +26,7 @@
           </li>
           <li class="nav-divider"></li>
           <li class="nav-item" v-show="$store.state.cart.length > 0 || auth!=null">
-            <router-link class="nav-link" :to="{ name: 'cart' }"><i class="fa fa-shopping-cart" aria-hidden="true"><span class="badge badge-pill badge-primary badge-cart">{{$store.state.cart.length}}</span></i></router-link>
+            <router-link class="nav-link" :to="{ name: 'cart' }"><i class="fa fa-shopping-cart" aria-hidden="true"><span v-show="$store.state.cart.length" class="badge badge-pill badge-primary badge-cart">{{$store.state.cart.length}}</span></i></router-link>
           </li>
           <li class="nav-item" v-if="auth==null">
             <router-link class="nav-link" :to="{ name: 'login' }">Login</router-link>

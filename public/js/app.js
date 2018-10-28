@@ -50478,6 +50478,14 @@ var render = function() {
                         _c(
                           "span",
                           {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.$store.state.cart.length,
+                                expression: "$store.state.cart.length"
+                              }
+                            ],
                             staticClass:
                               "badge badge-pill badge-primary badge-cart"
                           },
@@ -56150,6 +56158,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (res) {
         return fh.show_errorpage(res);
       });
+    },
+    onCheckoutClick: function onCheckoutClick() {
+      if (!this.$store.state.auth) this.$router.push({ name: 'login' });
     }
   }
 });
@@ -56257,7 +56268,9 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary cart-checkout-btn btn-block"
+                      staticClass:
+                        "btn btn-primary cart-checkout-btn btn-block",
+                      on: { click: _vm.onCheckoutClick }
                     },
                     [_vm._v("Checkout")]
                   )

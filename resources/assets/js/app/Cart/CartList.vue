@@ -23,7 +23,7 @@
             <div class="card-body">
               <h3 class="card-title">Total</h3>
               <span class="cart-total-price">&#x20B9; {{total}}</span>
-              <button class="btn btn-primary cart-checkout-btn btn-block">Checkout</button>
+              <button class="btn btn-primary cart-checkout-btn btn-block" @click="onCheckoutClick">Checkout</button>
             </div>
           </div>
         </div>
@@ -57,6 +57,9 @@ export default {
         this.total = res.data.total;
       }).catch(res=>fh.show_errorpage(res))
     },
+    onCheckoutClick: function() {
+      if(!this.$store.state.auth) this.$router.push({name:'login'})
+    }
   },
 }
 </script>
