@@ -31,7 +31,9 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <button class="btn btn-primary">Add to chart</button>
+          <a ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Buy Now</a>
+          <router-link v-if="isInCart" class="btn btn-primary" :to="{ name: 'cart', params: {} }">View cart</router-link>
+          <button v-else ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Add to chart</button>
         </div>
       </div>
     </div>
@@ -50,6 +52,14 @@ export default {
         readOnly: true,
       });
     });
+  },
+  methods: {
+    onAddToCart: function() {
+      axios.post(route.api('/cart/toggle'),{course:this.course.id})
+      .then(res=> {
+        this.$store.dispatch('getcart');
+      })
+    }
   },
   props: ['course'],
   computed: {
@@ -76,6 +86,11 @@ export default {
     color() {
       if(this.course == null) return "";
       return this.course.color;
+    },
+    isInCart() {
+      if(this.course == null) return false;
+      if(this.$store.state.cart.includes(this.course.id)) return true;
+      return false;
     }
   }
 }

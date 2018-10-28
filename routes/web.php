@@ -50,6 +50,9 @@ Route::prefix('api')->group(function () {
   Route::get('modules/get/{id}', 'Api\ModulesController@getModuleByID');
   Route::get('topics/get/{id}', 'Api\TopicsController@getTopicByID');
   Route::post('search/courses', 'Api\SearchController@postCourses');
+
+  Route::post('cart/toggle', 'Api\CartController@postToggleCart');
+  Route::get('cart/get', 'Api\CartController@getCart');
 });
 
 // Admin Api

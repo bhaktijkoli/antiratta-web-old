@@ -60,6 +60,7 @@ const app = new Vue({
   store: store,
   mounted() {
     this.$store.dispatch('getauth');
+    this.$store.dispatch('getcart');
   }
 });
 

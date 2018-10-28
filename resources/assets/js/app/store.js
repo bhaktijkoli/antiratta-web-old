@@ -5,6 +5,7 @@ export default new Vuex.Store({
   state: {
     loading: true,
     auth: null,
+    cart: [],
   },
   mutations: {
     loading: (state, val) => {
@@ -12,6 +13,9 @@ export default new Vuex.Store({
     },
     auth: (state, auth) => {
       state.auth = auth;
+    },
+    cart: (state, cart) => {
+      state.cart = cart;
     },
   },
   actions: {
@@ -21,5 +25,10 @@ export default new Vuex.Store({
         context.commit('loading', false);
       })
     },
+    getcart: (context) => {
+      axios.get(route.api('/cart/get')).then(res=>{
+        context.commit('cart', res.data);
+      })
+    }
   }
 });
