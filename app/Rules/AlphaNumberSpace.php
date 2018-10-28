@@ -25,7 +25,7 @@ class AlphaNumberSpace implements Rule
   */
   public function passes($attribute, $value)
   {
-    return preg_match('/^[\pL\s]+$/u', $value);
+    return preg_match('^(?:[a-zA-Z0-9]+)?$', $value);
   }
 
   /**
