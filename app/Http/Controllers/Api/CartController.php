@@ -28,11 +28,12 @@ class CartController extends Controller
     $course = $request->input('course', '-1');
     $cart = Cookie::get('cart', "[]");
     $cart = json_decode($cart);
-    if(in_array($course, $cart)) {
-      unset($cart[array_search($course, $cart)]);
+    $newcart = [];
+    foreach ($cart as $c) {
+      if($c != $course) array_push($newcart, $c);
     }
-    $cart = json_encode($cart);
-    Cookie::queue(Cookie::forever('cart', $cart));
+    $newcart = json_encode($newcart);
+    Cookie::queue(Cookie::forever('cart', $newcart));
     return ResponseBuilder::send(true, '', '');
   }
 
@@ -40,13 +41,18 @@ class CartController extends Controller
     $cart = Cookie::get('cart', "[]");
     $cart = json_decode($cart);
     if($request->input('details') == '1') {
+      $total = 0;
       $list = [];
       foreach ($cart as $c) {
         $course = Course::find($c);
         array_push($list, $course->format());
+        $total += $course->price;
       }
-      return $list;
+      $data['courses'] = $list;
+      $data['total'] = number_format($total);
+      return $data;
     }
+    $cart = json_encode($cart);
     return $cart;
   }
 }

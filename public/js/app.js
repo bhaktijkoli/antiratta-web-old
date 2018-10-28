@@ -56093,6 +56093,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56102,14 +56111,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
-    axios.get(route.api('/cart/get?details=1')).then(function (res) {
-      _this.courses = res.data;
+    this.$root.$on('cart-refresh', function () {
+      _this.getCoursesDetails();
     });
+    this.getCoursesDetails();
   },
   data: function data() {
     return {
-      courses: []
+      courses: [],
+      total: 0
     };
+  },
+
+  methods: {
+    getCoursesDetails: function getCoursesDetails() {
+      var _this2 = this;
+
+      axios.get(route.api('/cart/get?details=1')).then(function (res) {
+        _this2.courses = res.data.courses;
+        _this2.total = res.data.total;
+      });
+    }
   }
 });
 
@@ -56189,7 +56211,41 @@ var render = function() {
                 )
               ])
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.$store.state.cart.length,
+                  expression: "$store.state.cart.length"
+                }
+              ],
+              staticClass: "col-sm-3"
+            },
+            [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h3", { staticClass: "card-title" }, [_vm._v("Total")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "cart-total-price" }, [
+                    _vm._v("₹ " + _vm._s(_vm.total))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary cart-checkout-btn btn-block"
+                    },
+                    [_vm._v("Checkout")]
+                  )
+                ])
+              ])
+            ]
+          )
         ])
       ]
     )
@@ -56288,8 +56344,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       axios.post(route.api('/cart/remove'), { course: course }).then(function (res) {
-        $(_this.$refs.item).hide(100);
-        $(_this.$refs.item).remove();
+        _this.$root.$emit('cart-refresh');
         _this.$store.dispatch('getcart');
       });
     }
@@ -56452,7 +56507,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n.cart-list {\n  margin-top: 20px;\n}\n.cart-list-empty {\n  text-align: center;\n}\n.cart-list-empty .fa {\n  color: #dcdcdc;\n}\n", ""]);
+exports.push([module.i, "\n.cart-list {\n  margin-top: 20px;\n}\n.cart-list-empty {\n  text-align: center;\n}\n.cart-list-empty .fa {\n  color: #dcdcdc;\n}\n.cart-total-price {\n  font-weight: 500;\n  font-size: 1.8em;\n}\n.cart-checkout-btn {\n  margin-top: 20px;\n}\n", ""]);
 
 // exports
 

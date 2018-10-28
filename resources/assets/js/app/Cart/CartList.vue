@@ -18,6 +18,15 @@
             </div>
           </div>
         </div>
+        <div class="col-sm-3" v-show="$store.state.cart.length">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Total</h3>
+              <span class="cart-total-price">&#x20B9; {{total}}</span>
+              <button class="btn btn-primary cart-checkout-btn btn-block">Checkout</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -27,17 +36,27 @@
 import CartItem from './CartItem'
 export default {
   components: {
-    CartItem,
+    CartItem
   },
   mounted() {
-    axios.get(route.api('/cart/get?details=1')).then(res=>{
-      this.courses = res.data;
+    this.$root.$on('cart-refresh', ()=>{
+      this.getCoursesDetails();
     })
+    this.getCoursesDetails();
   },
   data() {
     return {
       courses: [],
+      total: 0,
     }
+  },
+  methods: {
+    getCoursesDetails: function() {
+      axios.get(route.api('/cart/get?details=1')).then(res=>{
+        this.courses = res.data.courses;
+        this.total = res.data.total;
+      })
+    },
   },
 }
 </script>
@@ -51,5 +70,12 @@ export default {
 }
 .cart-list-empty .fa {
   color: #dcdcdc;
+}
+.cart-total-price {
+  font-weight: 500;
+  font-size: 1.8em;
+}
+.cart-checkout-btn {
+  margin-top: 20px;
 }
 </style>

@@ -24,8 +24,7 @@ export default {
     onClickRemove: function(course) {
       axios.post(route.api('/cart/remove'),{course})
       .then(res=> {
-        $(this.$refs.item).hide(100);
-        $(this.$refs.item).remove();
+        this.$root.$emit('cart-refresh');
         this.$store.dispatch('getcart');
       })
     }
