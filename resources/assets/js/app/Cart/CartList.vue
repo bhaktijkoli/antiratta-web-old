@@ -60,22 +60,3 @@ export default {
   },
 }
 </script>
-
-<style media="screen">
-.cart-list {
-  margin-top: 20px;
-}
-.cart-list-empty {
-  text-align: center;
-}
-.cart-list-empty .fa {
-  color: #dcdcdc;
-}
-.cart-total-price {
-  font-weight: 500;
-  font-size: 1.8em;
-}
-.cart-checkout-btn {
-  margin-top: 20px;
-}
-</style>

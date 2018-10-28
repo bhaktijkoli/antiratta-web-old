@@ -21782,6 +21782,45 @@ footer .pull-center {
   margin-bottom: 50px;
 }
 
+.cart-list {
+  margin-top: 20px;
+}
+
+.cart-list-empty {
+  text-align: center;
+}
+
+.cart-list-empty .fa {
+  color: #dcdcdc;
+}
+
+.cart-total-price {
+  font-weight: 500;
+  font-size: 1.8em;
+}
+
+.cart-checkout-btn {
+  margin-top: 20px;
+}
+
+.cart-item {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dcdada;
+}
+
+.cart-item .cart-item-title {
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.cart-item .cart-item-price {
+  font-weight: 600;
+}
+
 .jq-stars {
   display: inline-block;
 }

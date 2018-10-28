@@ -32,23 +32,3 @@ export default {
   props: ['course']
 }
 </script>
-
-<style media="screen">
-.cart-item {
-  width: 100%;
-  min-height: 100px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #dcdada;
-}
-.cart-item-title {
-  font-weight: 500;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.cart-item-subtitle {
-}
-.cart-item-price {
-  font-weight: 600;
-}
-</style>
