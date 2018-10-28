@@ -44703,11 +44703,11 @@ window.fh = {
   show_errorpage: function show_errorpage(error) {
     if (error.response.status == 404) {
       document.title = "404 Page Not Found";
-      $('#app').html(error404);
+      $('.wrapper').html(error404);
     }
     if (error.response.status == 500) {
       document.title = "An Error Occurred";
-      $('#app').html(error500);
+      $('.wrapper').html(error500);
     }
   }
 };
