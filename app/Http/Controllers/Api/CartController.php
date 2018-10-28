@@ -12,14 +12,24 @@ use App\ResponseBuilder;
 
 class CartController extends Controller
 {
-  public function postToggleCart(Request $request) {
+  public function postAddCart(Request $request) {
+    $course = $request->input('course', '-1');
+    $cart = Cookie::get('cart', "[]");
+    $cart = json_decode($cart);
+    if(!in_array($course, $cart)) {
+      array_push($cart, $course);
+    }
+    $cart = json_encode($cart);
+    Cookie::queue(Cookie::forever('cart', $cart));
+    return ResponseBuilder::send(true, '', '');
+  }
+
+  public function postRemoveCart(Request $request) {
     $course = $request->input('course', '-1');
     $cart = Cookie::get('cart', "[]");
     $cart = json_decode($cart);
     if(in_array($course, $cart)) {
       unset($cart[array_search($course, $cart)]);
-    } else {
-      array_push($cart, $course);
     }
     $cart = json_encode($cart);
     Cookie::queue(Cookie::forever('cart', $cart));

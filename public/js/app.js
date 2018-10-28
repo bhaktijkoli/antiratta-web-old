@@ -52149,7 +52149,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onAddToCart: function onAddToCart() {
       var _this = this;
 
-      axios.post(route.api('/cart/toggle'), { course: this.course.id }).then(function (res) {
+      axios.post(route.api('/cart/add'), { course: this.course.id }).then(function (res) {
         _this.$store.dispatch('getcart');
       });
     }
@@ -56287,7 +56287,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onClickRemove: function onClickRemove(course) {
       var _this = this;
 
-      axios.post(route.api('/cart/toggle'), { course: course }).then(function (res) {
+      axios.post(route.api('/cart/remove'), { course: course }).then(function (res) {
         $(_this.$refs.item).hide(100);
         $(_this.$refs.item).remove();
         _this.$store.dispatch('getcart');

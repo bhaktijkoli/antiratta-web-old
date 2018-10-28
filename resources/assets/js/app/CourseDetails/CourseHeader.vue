@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     onAddToCart: function() {
-      axios.post(route.api('/cart/toggle'),{course:this.course.id})
+      axios.post(route.api('/cart/add'),{course:this.course.id})
       .then(res=> {
         this.$store.dispatch('getcart');
       })

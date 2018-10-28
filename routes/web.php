@@ -52,7 +52,8 @@ Route::prefix('api')->group(function () {
   Route::get('topics/get/{id}', 'Api\TopicsController@getTopicByID');
   Route::post('search/courses', 'Api\SearchController@postCourses');
 
-  Route::post('cart/toggle', 'Api\CartController@postToggleCart');
+  Route::post('cart/add', 'Api\CartController@postAddCart');
+  Route::post('cart/remove', 'Api\CartController@postRemoveCart');
   Route::get('cart/get', 'Api\CartController@getCart');
 });
 

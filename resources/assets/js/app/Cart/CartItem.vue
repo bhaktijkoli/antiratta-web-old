@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     onClickRemove: function(course) {
-      axios.post(route.api('/cart/toggle'),{course})
+      axios.post(route.api('/cart/remove'),{course})
       .then(res=> {
         $(this.$refs.item).hide(100);
         $(this.$refs.item).remove();
