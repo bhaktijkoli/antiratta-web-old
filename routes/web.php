@@ -76,8 +76,3 @@ Route::get('/update', function() {
   $res = $res . '<br />' . exec('git pull origin master 2>&1', $output);
   return $res;
 });
-Route::get('/dbreset', function() {
-  chdir(base_path());
-  $res = exec('php artisan migrate:refresh', $output);
-  return implode("<br />", $output);;
-});
