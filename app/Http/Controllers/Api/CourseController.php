@@ -88,9 +88,9 @@ class CourseController extends Controller
   // Get Course Details by Query
   public function getCourseDetails(Request $request) {
     $branch = Branch::where('university','1')->where('shortname', $request->input('branch'))->first();
-    if(!$branch) abort(404);
+    if(!$branch) abort(404, "Branch not found");
     $course = Course::where('branch', $branch->id)->where('name', str_replace("-", " ", $request->input('course')))->first();
-    if(!$course) abort(404);
+    if(!$course) abort(404, "Course not found");
     return $course->formatDetails();
   }
 }

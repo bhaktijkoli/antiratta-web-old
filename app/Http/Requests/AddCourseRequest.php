@@ -5,8 +5,10 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
-use App\ResponseBuilder;
 
+use App\Rules\AlphaNumberSpace;
+
+use App\ResponseBuilder;
 use Auth;
 
 class AddCourseRequest extends FormRequest
@@ -29,12 +31,12 @@ class AddCourseRequest extends FormRequest
   public function rules()
   {
     return [
-      'course_name' => 'required',
-      'course_price' => 'required',
-      'course_university' => 'required',
-      'course_branch' => 'required',
-      'course_shortname' => 'required',
-      'course_sem' => 'required',
+      'course_name' => ['required', new AlphaNumberSpace],
+      'course_shortname' => ['required', 'alpha_num'],
+      'course_price' => ['required'],
+      'course_university' => ['required'],
+      'course_branch' => ['required'],
+      'course_sem' => ['required'],
     ];
   }
 
