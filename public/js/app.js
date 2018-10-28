@@ -52222,7 +52222,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Add to chart")]
+                  [_vm._v("Add to cart")]
                 )
           ],
           1

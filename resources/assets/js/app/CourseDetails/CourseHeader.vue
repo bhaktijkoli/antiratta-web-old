@@ -33,7 +33,7 @@
         <div class="col-sm-12">
           <a ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Buy Now</a>
           <router-link v-if="isInCart" class="btn btn-primary" :to="{ name: 'cart', params: {} }">View cart</router-link>
-          <button v-else ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Add to chart</button>
+          <button v-else ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Add to cart</button>
         </div>
       </div>
     </div>
