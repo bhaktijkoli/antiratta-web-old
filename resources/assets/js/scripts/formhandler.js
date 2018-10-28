@@ -75,7 +75,58 @@ window.fh = {
   },
 
   show_errorpage: function(error) {
-    console.log(error);
-    this.show_button(); // Remove This
+    if(error.response.status == 404) {
+      document.title = "404 Page Not Found"
+      $('#app').html(error404);
+    }
+    if(error.response.status == 500) {
+      document.title = "An Error Occurred"
+      $('#app').html(error500);
+    }
   }
 }
+
+let error404 = `
+<section id="error">
+  <div class="backdrop-path"></div>
+  <div class="container" style="margin-top:100px">
+    <div class="col-sm-6 ml-auto mr-auto">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center error-text">
+            <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>
+            <h1>404</h1>
+            <h3>Page not found</h3>
+            <p>
+              The Page you are looking for doesn't exist or an other error occurred.
+            </p>
+            <a href="/" class="btn btn-info btn-wide"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`
+let error500 = `
+<section id="error">
+  <div class="backdrop-path"></div>
+  <div class="container" style="margin-top:100px">
+    <div class="col-sm-6 ml-auto mr-auto">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center error-text">
+            <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>
+            <h1>500</h1>
+            <h3>There was an error</h3>
+            <p>
+            An error occurred and we're working to fix the problem!
+            </p>
+            <a href="/" class="btn btn-info btn-wide"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`

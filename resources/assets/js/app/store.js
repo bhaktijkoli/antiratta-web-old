@@ -23,12 +23,12 @@ export default new Vuex.Store({
       axios.get(route.api('/auth')).then(res=>{
         if(res.data != '') context.commit('auth', res.data);
         context.commit('loading', false);
-      })
+      }).catch(res=>fh.show_errorpage(res))
     },
     getcart: (context) => {
       axios.get(route.api('/cart/get')).then(res=>{
         context.commit('cart', res.data);
-      })
+      }).catch(res=>fh.show_errorpage(res))
     }
   }
 });

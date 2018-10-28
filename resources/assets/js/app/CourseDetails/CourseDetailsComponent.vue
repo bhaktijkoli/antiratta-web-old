@@ -31,6 +31,7 @@ export default {
       document.title = res.data.name;
       this.$root.$emit('course-loaded');
     })
+    .catch(res=>fh.show_errorpage(res))
   },
   data() {
     return {

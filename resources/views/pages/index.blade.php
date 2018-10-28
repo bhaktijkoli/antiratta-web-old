@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('pre')
-@php
-$title = config('app.name');
+  @php
+  $title = config('app.name');
 @endphp
 @endsection
 @section('content')

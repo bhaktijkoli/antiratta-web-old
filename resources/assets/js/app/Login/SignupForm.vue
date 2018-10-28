@@ -65,9 +65,7 @@ export default {
           fh.set_multierrors(data);
           fh.show_button();
         }
-      }).catch(res=>{
-
-      })
+      }).catch(res=>fh.show_errorpage(res))
     }
   }
 }

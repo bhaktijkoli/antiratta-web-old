@@ -44701,10 +44701,19 @@ window.fh = {
   },
 
   show_errorpage: function show_errorpage(error) {
-    console.log(error);
-    this.show_button(); // Remove This
+    if (error.response.status == 404) {
+      document.title = "404 Page Not Found";
+      $('#app').html(error404);
+    }
+    if (error.response.status == 500) {
+      document.title = "An Error Occurred";
+      $('#app').html(error500);
+    }
   }
 };
+
+var error404 = '\n<section id="error">\n  <div class="backdrop-path"></div>\n  <div class="container" style="margin-top:100px">\n    <div class="col-sm-6 ml-auto mr-auto">\n      <div class="card">\n        <div class="card-body">\n          <div class="text-center error-text">\n            <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>\n            <h1>404</h1>\n            <h3>Page not found</h3>\n            <p>\n              The Page you are looking for doesn\'t exist or an other error occurred.\n            </p>\n            <a href="/" class="btn btn-info btn-wide"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go home</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n';
+var error500 = '\n<section id="error">\n  <div class="backdrop-path"></div>\n  <div class="container" style="margin-top:100px">\n    <div class="col-sm-6 ml-auto mr-auto">\n      <div class="card">\n        <div class="card-body">\n          <div class="text-center error-text">\n            <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>\n            <h1>500</h1>\n            <h3>There was an error</h3>\n            <p>\n            An error occurred and we\'re working to fix the problem!\n            </p>\n            <a href="/" class="btn btn-info btn-wide"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go home</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n';
 
 /***/ }),
 /* 38 */
@@ -51570,6 +51579,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post(route.api('/search/courses'), data).then(function (res) {
         _this.searching = false;
         _this.courses = res.data;
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
       });
     }
   }
@@ -52025,6 +52036,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.course = res.data;
       document.title = res.data.name;
       _this.$root.$emit('course-loaded');
+    }).catch(function (res) {
+      return fh.show_errorpage(res);
     });
   },
   data: function data() {
@@ -52151,6 +52164,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.post(route.api('/cart/add'), { course: this.course.id }).then(function (res) {
         _this.$store.dispatch('getcart');
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
       });
     }
   },
@@ -54483,7 +54498,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           fh.set_multierrors(data);
           fh.show_button();
         }
-      }).catch(function (res) {});
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
+      });
     }
   }
 });
@@ -54828,11 +54845,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
       axios.get(route.api('/auth')).then(function (res) {
         if (res.data != '') context.commit('auth', res.data);
         context.commit('loading', false);
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
       });
     },
     getcart: function getcart(context) {
       axios.get(route.api('/cart/get')).then(function (res) {
         context.commit('cart', res.data);
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
       });
     }
   }
@@ -56126,6 +56147,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.get(route.api('/cart/get?details=1')).then(function (res) {
         _this2.courses = res.data.courses;
         _this2.total = res.data.total;
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
       });
     }
   }
@@ -56338,6 +56361,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post(route.api('/cart/remove'), { course: course }).then(function (res) {
         _this.$root.$emit('cart-refresh');
         _this.$store.dispatch('getcart');
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
       });
     }
   },

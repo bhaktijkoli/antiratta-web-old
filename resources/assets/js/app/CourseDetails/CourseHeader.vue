@@ -58,7 +58,7 @@ export default {
       axios.post(route.api('/cart/add'),{course:this.course.id})
       .then(res=> {
         this.$store.dispatch('getcart');
-      })
+      }).catch(res=>fh.show_errorpage(res))
     }
   },
   props: ['course'],

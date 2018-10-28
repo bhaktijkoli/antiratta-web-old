@@ -26,7 +26,7 @@ export default {
       .then(res=> {
         this.$root.$emit('cart-refresh');
         this.$store.dispatch('getcart');
-      })
+      }).catch(res=>fh.show_errorpage(res))
     }
   },
   props: ['course']

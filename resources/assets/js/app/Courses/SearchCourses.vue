@@ -52,7 +52,7 @@ export default {
       .then(res=> {
         this.searching = false;
         this.courses = res.data;
-      })
+      }).catch(res=>fh.show_errorpage(res))
     }
   },
 }

@@ -44609,10 +44609,19 @@ window.fh = {
   },
 
   show_errorpage: function show_errorpage(error) {
-    console.log(error);
-    this.show_button(); // Remove This
+    if (error.response.status == 404) {
+      document.title = "404 Page Not Found";
+      $('#app').html(error404);
+    }
+    if (error.response.status == 500) {
+      document.title = "An Error Occurred";
+      $('#app').html(error500);
+    }
   }
 };
+
+var error404 = '\n<section id="error">\n  <div class="backdrop-path"></div>\n  <div class="container" style="margin-top:100px">\n    <div class="col-sm-6 ml-auto mr-auto">\n      <div class="card">\n        <div class="card-body">\n          <div class="text-center error-text">\n            <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>\n            <h1>404</h1>\n            <h3>Page not found</h3>\n            <p>\n              The Page you are looking for doesn\'t exist or an other error occurred.\n            </p>\n            <a href="/" class="btn btn-info btn-wide"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go home</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n';
+var error500 = '\n<section id="error">\n  <div class="backdrop-path"></div>\n  <div class="container" style="margin-top:100px">\n    <div class="col-sm-6 ml-auto mr-auto">\n      <div class="card">\n        <div class="card-body">\n          <div class="text-center error-text">\n            <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>\n            <h1>500</h1>\n            <h3>There was an error</h3>\n            <p>\n            An error occurred and we\'re working to fix the problem!\n            </p>\n            <a href="/" class="btn btn-info btn-wide"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go home</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n';
 
 /***/ }),
 /* 38 */

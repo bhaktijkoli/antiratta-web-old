@@ -55,7 +55,7 @@ export default {
       axios.get(route.api('/cart/get?details=1')).then(res=>{
         this.courses = res.data.courses;
         this.total = res.data.total;
-      })
+      }).catch(res=>fh.show_errorpage(res))
     },
   },
 }
