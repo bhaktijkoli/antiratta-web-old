@@ -81,7 +81,7 @@ export default {
     },
     price() {
       if(this.course == null) return "";
-      return this.course.price;
+      return this.course.price_format;
     },
     color() {
       if(this.course == null) return "";

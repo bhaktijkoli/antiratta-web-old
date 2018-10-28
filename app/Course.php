@@ -20,7 +20,8 @@ class Course extends Model
     $data['name'] = $this->name;
     $data['url'] = str_replace(" ", "-" ,strtolower($this->name));
     $data['shortname'] = strtoupper($this->shortname);
-    $data['price'] = number_format($this->price);
+    $data['price'] = $this->price;
+    $data['price_format'] = number_format($this->price);
     $data['sem'] = $this->sem;
     $data['image'] = $this->getImage();
     $data['color'] = $this->color;

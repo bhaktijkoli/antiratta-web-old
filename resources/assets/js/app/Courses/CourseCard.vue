@@ -15,7 +15,7 @@
         </div>
         <div class="my-rating"></div>
         <div class="course-card-price">
-          <span>₹{{course.price}}</span>
+          <span>₹{{course.price_format}}</span>
         </div>
       </div>
     </div>

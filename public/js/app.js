@@ -51713,7 +51713,7 @@ var render = function() {
           _c("div", { staticClass: "my-rating" }),
           _vm._v(" "),
           _c("div", { staticClass: "course-card-price" }, [
-            _c("span", [_vm._v("₹" + _vm._s(_vm.course.price))])
+            _c("span", [_vm._v("₹" + _vm._s(_vm.course.price_format))])
           ])
         ])
       ]
@@ -52123,7 +52123,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     price: function price() {
       if (this.course == null) return "";
-      return this.course.price;
+      return this.course.price_format;
     },
     color: function color() {
       if (this.course == null) return "";
