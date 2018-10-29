@@ -15,6 +15,7 @@
         </div>
         <div class="col-sm-8">
           <PersonalInfo v-if="$route.name=='personal-info'" :auth="$store.state.auth"/>
+          <EmailSettings v-if="$route.name=='email'" :auth="$store.state.auth"/>
         </div>
       </div>
     </div>
@@ -23,9 +24,10 @@
 
 <script>
 import PersonalInfo from './PersonalInfo'
+import EmailSettings from './EmailSettings'
 export default {
   components: {
-    PersonalInfo,
+    PersonalInfo, EmailSettings
   },
   mounted() {
     document.title = this.names[this.links.indexOf(this.$route.name)];

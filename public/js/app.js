@@ -53435,6 +53435,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PersonalInfo__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PersonalInfo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PersonalInfo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EmailSettings__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EmailSettings___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__EmailSettings__);
 //
 //
 //
@@ -53458,11 +53460,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    PersonalInfo: __WEBPACK_IMPORTED_MODULE_0__PersonalInfo___default.a
+    PersonalInfo: __WEBPACK_IMPORTED_MODULE_0__PersonalInfo___default.a, EmailSettings: __WEBPACK_IMPORTED_MODULE_1__EmailSettings___default.a
   },
   mounted: function mounted() {
     document.title = this.names[this.links.indexOf(this.$route.name)];
@@ -53872,6 +53876,10 @@ var render = function() {
           [
             _vm.$route.name == "personal-info"
               ? _c("PersonalInfo", { attrs: { auth: _vm.$store.state.auth } })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.$route.name == "email"
+              ? _c("EmailSettings", { attrs: { auth: _vm.$store.state.auth } })
               : _vm._e()
           ],
           1
@@ -56523,6 +56531,269 @@ window.modal = {
     });
   }
 };
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(220)
+/* template */
+var __vue_template__ = __webpack_require__(221)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/app/Settings/EmailSettings.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-25c8cc5a", Component.options)
+  } else {
+    hotAPI.reload("data-v-25c8cc5a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.auth) {
+      this.email = this.auth.email;
+    }
+  },
+  data: function data() {
+    return {
+      email: '',
+      new_email: ''
+    };
+  },
+
+  methods: {
+    onChangeEmail: function onChangeEmail() {
+      fh.hide_button();
+      fh.remove_all_errros(this.$refs.email_form);
+      var data = { new_email: this.new_email };
+      axios.post(route.api('/user/change/email'), data).then(function (res) {
+        var data = res.data;
+        if (fh.is_success(data)) {} else {
+          fh.set_multierrors(data);
+          fh.show_button();
+        }
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
+      });
+    }
+  },
+  watch: {
+    auth: function auth(_auth) {
+      if (_auth) {
+        this.email = _auth.email;
+      }
+    }
+  },
+  props: ['auth']
+});
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _c(
+        "form",
+        {
+          ref: "email_form",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onChangeEmail($event)
+            }
+          }
+        },
+        [
+          _c("h5", [_vm._v("Email")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Email")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", disabled: "" },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "new_email" } }, [
+                  _vm._v("New Email")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.new_email,
+                      expression: "new_email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "email",
+                    id: "new_email",
+                    name: "new_email",
+                    placeholder: "Enter your new email here"
+                  },
+                  domProps: { value: _vm.new_email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.new_email = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "help-block" })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.new_email.length > 3,
+                    expression: "new_email.length > 3"
+                  }
+                ],
+                staticClass: "col-sm-3"
+              },
+              [_vm._m(0)]
+            )
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
+        [_vm._v("Change")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-25c8cc5a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
