@@ -46,6 +46,7 @@ require('./../scripts/formhandler');
 require('./../scripts/route');
 require('./../scripts/tubular');
 require('./../scripts/star-rating-svg');
+require('./../scripts/modal');
 
 // Vue
 window.Vue = require('vue');

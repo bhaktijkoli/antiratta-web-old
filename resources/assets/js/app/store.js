@@ -21,7 +21,12 @@ export default new Vuex.Store({
   actions: {
     getauth: (context) => {
       axios.get(route.api('/auth')).then(res=>{
-        if(res.data != '') context.commit('auth', res.data);
+        if(res.data != '') {
+          context.commit('auth', res.data);
+          if(res.data.verified == 0) {
+            modal.showModalDefault("Verify your Email Address", "An email has been send to you plz verify it", "ok");
+          }
+        }
         context.commit('loading', false);
       }).catch(res=>fh.show_errorpage(res))
     },

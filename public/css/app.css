@@ -18194,10 +18194,6 @@ h2.title {
   padding-top: 0;
 }
 
-.modal-backdrop {
-  background: rgba(0, 0, 0, 0.3);
-}
-
 .modal .modal-dialog {
   margin-top: 130px;
 }

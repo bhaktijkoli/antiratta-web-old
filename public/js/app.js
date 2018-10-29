@@ -45422,6 +45422,7 @@ __webpack_require__(37);
 __webpack_require__(38);
 __webpack_require__(50);
 __webpack_require__(51);
+__webpack_require__(218);
 
 // Vue
 window.Vue = __webpack_require__(14);
@@ -54851,7 +54852,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   actions: {
     getauth: function getauth(context) {
       axios.get(route.api('/auth')).then(function (res) {
-        if (res.data != '') context.commit('auth', res.data);
+        if (res.data != '') {
+          context.commit('auth', res.data);
+          if (res.data.verified == 0) {
+            modal.showModalDefault("Verify your Email Address", "An email has been send to you plz verify it", "ok");
+          }
+        }
         context.commit('loading', false);
       }).catch(function (res) {
         return fh.show_errorpage(res);
@@ -56461,6 +56467,46 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-b761f99c", module.exports)
   }
 }
+
+/***/ }),
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */
+/***/ (function(module, exports) {
+
+// Modal JS
+window.modal = {
+  showModalDefault: function showModalDefault(title, message, button) {
+    var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
+
+    $('.wrapper').append('<div class="modal fade" id="dynamicDefaultModal" data-backdrop="static" data-keyboard="false">\n    <div class="modal-dialog">\n    <div class="modal-content">\n    <div class="modal-header">\n    <h4 class="modal-title">' + title + '</h4>\n    <button type="button" class="close" data-dismiss="modal">&times;</button>\n    </div>\n    <div class="modal-body">\n    ' + message + '\n    </div>\n    <div class="modal-footer">\n    <button type="button" class="btn btn-primary" data-dismiss="modal">' + button + '</button>\n    </div>\n    </div>\n    </div>\n    </div>');
+    $('#dynamicDefaultModal').modal();
+    $("#dynamicDefaultModal").on('hidden.bs.modal', function () {
+      $('#dynamicDefaultModal').remove();
+      if (typeof callback == "function") callback();
+    });
+  },
+  showModelYesNo: function showModelYesNo(title, message) {
+    var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+    $("body").append('  <div class="modal fade" id="dynamicDefaultModal" role="dialog">\n    <div class="modal-dialog">\n    <div class="modal-content">\n    <div class="modal-header">\n    <button type="button" class="close" data-dismiss="modal">&times;</button>\n    <h4 class="modal-title">' + title + '</h4>\n    </div>\n    <div class="modal-body">\n    ' + message + '\n    </div>\n    <div class="modal-footer">\n    <button type="button" class="btn btn-primary" id="modalYes">Yes</button>\n    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>\n    </div>\n    </div>\n    </div>\n    </div>');
+    $('#dynamicDefaultModal').modal();
+    $('#dynamicDefaultModal #modalYes').click(function (event) {
+      $('#dynamicDefaultModal').modal("hide");
+      if (typeof callback == "function") callback();
+    });
+    $("#dynamicDefaultModal").on('hidden.bs.modal', function () {
+      $('#dynamicDefaultModal').remove();
+    });
+  }
+};
 
 /***/ })
 /******/ ]);
