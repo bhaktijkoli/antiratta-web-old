@@ -27,7 +27,7 @@ class AuthController extends Controller
   }
 
   public function postChangeEmail(ChangeEmailRequest $request) {
-    $ev = EmailVerification::createToken($request->input('new_email'));
+    $ev = EmailVerification::createToken(Auth::user(), $request->input('new_email'));
     Mail::to($request->input('new_email'))->send(new VerificationMail(Auth::user(), $ev));
     return ResponseBuilder::send(true, '', '');
   }

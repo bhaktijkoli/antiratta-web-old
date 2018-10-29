@@ -51,7 +51,9 @@ export default {
       axios.post(route.api('/user/change/email'), data).then(res=>{
         let data = res.data;
         if(fh.is_success(data)) {
-          
+          modal.showModalDefault("Verify your email", `An email has been sent to ${this.new_email} with a link to verify the ownership for this email.`, 'Ok', ()=>{
+            this.$router.push({name:'home'});
+          })
         } else {
           fh.set_multierrors(data);
           fh.show_button();

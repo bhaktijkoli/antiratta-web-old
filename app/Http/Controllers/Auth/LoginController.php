@@ -71,22 +71,12 @@ class LoginController extends Controller
     $user->email = $request->input('signup_email');
     $user->password = Hash::make($request->input('signup_password'));
     $user->save();
-    $ev = EmailVerification::createToken($user->email);
+    $ev = EmailVerification::createToken($user, $user->email);
     Mail::to($user)->send(new VerificationMail($user, $ev));
     Auth::login($user, true);
     return ResponseBuilder::send(true, "", '/authenticate');
   }
-
-  // Verify
-  public function getVerify(Request $request) {
-    $token = $request->input('token', '');
-    $user = EmailVerification::verifyToken($token);
-    if(!$user) return redirect('/');
-    Mail::to($user)->send(new WelcomeMail($user));
-    return view('pages.verify');
-  }
-
-
+  
   // Login Functions
   protected function validateLogin(Request $request)
   {

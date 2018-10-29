@@ -8,10 +8,11 @@ class EmailVerification extends Model
 {
   protected $table = "emails_verification";
 
-  public static function createToken($email) {
-    $ev = \App\EmailVerification::where('email', $email)->first();
+  public static function createToken($user, $email) {
+    $ev = EmailVerification::where('email', $email)->where('user', $user->id)->first();
     if($ev) $ev->forceDelete();
-    $ev = new \App\EmailVerification;
+    $ev = new EmailVerification;
+    $ev->user = $user->id;
     $ev->email = $email;
     $ev->token = str_random(60);
     $ev->save();
@@ -19,14 +20,15 @@ class EmailVerification extends Model
   }
 
   public static function verifyToken($token) {
-    $ev = \App\EmailVerification::where('token', $token)->first();
+    $ev = EmailVerification::where('token', $token)->first();
     if($ev) {
-      $user = User::where('email', $ev->email)->first();
+      $user = User::find($ev->user);
+      $user->email = $ev->email;
       $user->verified = '1';
       $user->save();
       $ev->forceDelete();
       return $user;
     }
-    return false;
+    return null;
   }
 }

@@ -56633,12 +56633,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     onChangeEmail: function onChangeEmail() {
+      var _this = this;
+
       fh.hide_button();
       fh.remove_all_errros(this.$refs.email_form);
       var data = { new_email: this.new_email };
       axios.post(route.api('/user/change/email'), data).then(function (res) {
         var data = res.data;
-        if (fh.is_success(data)) {} else {
+        if (fh.is_success(data)) {
+          modal.showModalDefault("Verify your email", 'An email has been sent to ' + _this.new_email + ' with a link to verify the ownership for this email.', 'Ok', function () {
+            _this.$router.push({ name: 'home' });
+          });
+        } else {
           fh.set_multierrors(data);
           fh.show_button();
         }

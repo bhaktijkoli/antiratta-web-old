@@ -21,7 +21,11 @@
               <p>
                 Your email has been verified.
               </p>
-              <a class="btn btn-success btn-block" href="{{route('login')}}">PROCEED TO LOGIN</a>
+              @if (Auth::check())
+                <a class="btn btn-success btn-block" href="{{route('home')}}">CONTINUE LEARNING</a>
+              @else
+                <a class="btn btn-success btn-block" href="{{route('login')}}">PROCEED TO LOGIN</a>
+              @endif
             </div>
           </div>
         </div>

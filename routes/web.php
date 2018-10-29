@@ -25,7 +25,7 @@ Route::get('/', 'IndexController@getIndex')->name('home');
 Route::get('/login', 'IndexController@getIndex')->name('login');
 Route::get('/authenticate', 'Auth\LoginController@getAuthenticate')->name('authenticate');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/user/verify', 'Auth\LoginController@getVerify')->name('email_verify');
+Route::get('/user/verify', 'Auth\VerificationController@getVerify')->name('email_verify');
 Route::get('/courses', 'IndexController@getIndex')->name('courses');
 Route::get('/course/{university}/{branch}/{course}', 'IndexController@getIndex')->name('course-details');
 Route::get('/jfk', 'IndexController@getIndex')->name('jfk');
