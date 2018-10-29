@@ -7,12 +7,14 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
+              <label for="firstname">Firstname</label>
               <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" v-model="firstname">
               <p class="help-block"></p>
             </div>
           </div>
           <div class="col-sm-12">
             <div class="form-group">
+              <label for="lastname">Lastname</label>
               <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" v-model="lastname">
               <p class="help-block"></p>
             </div>
@@ -23,6 +25,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
+              <label for="university">University</label>
               <select class="form-control" id="university" name="university">
                 <option v-for="(u, key) in universities" :value="key+1">{{u.name}}</option>
               </select>
@@ -31,6 +34,7 @@
           </div>
           <div class="col-sm-12">
             <div class="form-group">
+              <label for="branch">Branch</label>
               <select class="form-control" id="branch" name="branch">
                 <option value="0">None</option>
               </select>

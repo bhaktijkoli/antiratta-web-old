@@ -53595,6 +53595,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -53647,6 +53651,10 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12" }, [
             _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "firstname" } }, [
+                _vm._v("Firstname")
+              ]),
+              _vm._v(" "),
               _c("input", {
                 directives: [
                   {
@@ -53680,6 +53688,8 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-12" }, [
             _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "lastname" } }, [_vm._v("Lastname")]),
+              _vm._v(" "),
               _c("input", {
                 directives: [
                   {
@@ -53719,6 +53729,10 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12" }, [
             _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "university" } }, [
+                _vm._v("University")
+              ]),
+              _vm._v(" "),
               _c(
                 "select",
                 {
@@ -53753,6 +53767,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
       _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "branch" } }, [_vm._v("Branch")]),
+        _vm._v(" "),
         _c(
           "select",
           {
