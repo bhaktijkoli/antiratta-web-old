@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\SignupRequest;
 
+use Auth;
 use App\User;
 use App\EmailVerification;
 use App\ResponseBuilder;
@@ -58,6 +59,7 @@ class LoginController extends Controller
 
   // Authenticate
   public function getAuthenticate() {
+    sleep(1);
     return redirect()->route('home');
   }
 
@@ -71,7 +73,8 @@ class LoginController extends Controller
     $user->save();
     $ev = EmailVerification::createToken($user->email);
     Mail::to($user)->send(new VerificationMail($user, $ev));
-    return ResponseBuilder::send(true, "", '/');
+    Auth::login($user, true);
+    return ResponseBuilder::send(true, "", '/authenticate');
   }
 
   // Verify
@@ -98,8 +101,5 @@ class LoginController extends Controller
         'password.required' => 'Email Address and password is required.',
       ]
     );
-  }
-  protected function credentials(Request $request) {
-    return array_merge($request->only('email', 'password'), ['verified' => '1']);
   }
 }
