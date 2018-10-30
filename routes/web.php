@@ -44,6 +44,7 @@ Route::prefix('api')->group(function () {
   Route::post('user/signup', 'Auth\LoginController@postSignup');
   Route::post('user/login', 'Auth\LoginController@postLogin');
   Route::post('user/change/email', 'Api\AuthController@postChangeEmail');
+  Route::post('user/change/password', 'Api\AuthController@postChangePassword');
   Route::get('universities/get', 'Api\UniversityController@getUniversities');
   Route::get('branches/get', 'Api\UniversityController@getBranches');
   Route::get('courses/get', 'Api\CourseController@getCourses');
