@@ -21960,6 +21960,10 @@ Copyright (c) 2015 Daniel Eden
   color: #212529;
 }
 
+label {
+  color: #343a40;
+}
+
 .space {
   height: 500px;
 }

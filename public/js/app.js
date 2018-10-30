@@ -55137,6 +55137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, LoginSignup: __WEBPACK_IMPORTED_MODULE_2__LoginSignup___default.a
   },
   mounted: function mounted() {
+    if (this.$store.state.auth != null) this.$router.push({ name: 'home' });
     window.title = "Login";
   },
 

@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
 
 // Website
 Route::get('/', 'IndexController@getIndex')->name('home');
-Route::get('/login', 'IndexController@getIndex')->name('login');
+Route::get('/login', 'IndexController@getIndexGuest')->name('login');
 Route::get('/authenticate', 'Auth\LoginController@getAuthenticate')->name('authenticate');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user/verify', 'Auth\VerificationController@getVerify')->name('email_verify');
@@ -32,7 +32,7 @@ Route::get('/jfk', 'IndexController@getIndex')->name('jfk');
 Route::get('/aboutus', 'IndexController@getIndex')->name('aboutus');
 Route::get('/cart', 'IndexController@getIndex')->name('cart');
 
-Route::get('/settings/{setting}', 'IndexController@getIndex')->name('setting');
+Route::get('/settings/{setting}', 'IndexController@getIndexAuth')->name('setting');
 
 // OAuth
 Route::get('login/{provider}', 'Auth\SocialLoginController@redirectToProvider')->name('social_login');

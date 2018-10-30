@@ -17,6 +17,7 @@ export default {
     Loading, Navbar, LoginSignup
   },
   mounted() {
+    if(this.$store.state.auth != null) this.$router.push({name:'home'});
     window.title = "Login";
   },
   methods: {
