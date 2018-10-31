@@ -52990,7 +52990,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     onCheckoutClick: function onCheckoutClick() {
+      var _this3 = this;
+
       if (!this.$store.state.auth) this.$router.push({ name: 'login' });
+      axios.post(route.api('/cart/checkout')).then(function (res) {
+        _this3.$router.push({ name: 'home' });
+      }).catch(function (res) {
+        return fh.show_errorpage(res);
+      });
     }
   }
 });

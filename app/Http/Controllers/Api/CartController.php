@@ -8,7 +8,10 @@ use Illuminate\Http\Response;
 
 use Cookie;
 use App\Course;
+use App\UserCourse;
 use App\ResponseBuilder;
+
+use Auth;
 
 class CartController extends Controller
 {
@@ -54,5 +57,20 @@ class CartController extends Controller
     }
     $cart = json_encode($cart);
     return $cart;
+  }
+
+  public function postCheckout() {
+    $cart = Cookie::get('cart', "[]");
+    $cart = json_decode($cart);
+    foreach ($cart as $c) {
+      $course = Course::find($c);
+      if(!$course) continue;
+      $usercousre = new UserCourse();
+      $usercousre->user = Auth::user()->id;
+      $usercousre->course = $course->id;
+      $usercousre->save();
+    }
+    Cookie::queue(Cookie::forever('cart', "[]"));
+    return ResponseBuilder::send(true, '', '');
   }
 }

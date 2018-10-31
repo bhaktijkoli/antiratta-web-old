@@ -57,6 +57,7 @@ Route::prefix('api')->group(function () {
   Route::post('cart/add', 'Api\CartController@postAddCart');
   Route::post('cart/remove', 'Api\CartController@postRemoveCart');
   Route::get('cart/get', 'Api\CartController@getCart');
+  Route::post('cart/checkout', 'Api\CartController@postCheckout');
 });
 
 // Admin Api

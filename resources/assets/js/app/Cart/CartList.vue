@@ -59,6 +59,9 @@ export default {
     },
     onCheckoutClick: function() {
       if(!this.$store.state.auth) this.$router.push({name:'login'})
+      axios.post(route.api('/cart/checkout')).then(res=>{
+        this.$router.push({name:'home'});
+      }).catch(res=>fh.show_errorpage(res))
     }
   },
 }
