@@ -29,6 +29,7 @@ class Course extends Model
     $data['rating'] = $this->rating;
     $data['branch'] = Branch::where('id', $this->branch)->first()->format();
     $data['university'] = University::getFormat(1);
+    $data['enrolled'] = $this->getUserEnrollment();
     if(Auth::check()) {
         $data['created_by'] = User::where('id', $this->created_by)->first()->firstname;
         $data['created_at'] = $this->created_at->diffForHumans();
@@ -66,5 +67,11 @@ class Course extends Model
     $image = ImageUpload::where('id', $this->image)->first();
     if(!$image) return "";
     return $image->getUrl();
+  }
+
+  public function getUserEnrollment() {
+    $uc = UserCourse::where("user", Auth::user()->id)->where('course', $this->id)->first();
+    if($uc) return 1;
+    return 0;
   }
 }

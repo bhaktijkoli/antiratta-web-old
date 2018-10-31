@@ -52184,6 +52184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -52234,6 +52235,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     color: function color() {
       if (this.course == null) return "";
       return this.course.color;
+    },
+    enrolled: function enrolled() {
+      if (this.course == null) return 0;
+      return this.course.enrolled;
     },
     isInCart: function isInCart() {
       if (this.course == null) return false;
@@ -52313,23 +52318,32 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "btn btn-primary",
-                    attrs: { to: { name: "cart", params: {} } }
+                    attrs: { to: { name: "cart" } }
                   },
                   [_vm._v("View cart")]
                 )
-              : _c(
-                  "button",
-                  {
-                    ref: "addToCart",
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        _vm.onAddToCart()
+              : _vm.enrolled
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { to: { name: "continue" } }
+                    },
+                    [_vm._v("Continue Learning")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      ref: "addToCart",
+                      staticClass: "btn btn-primary",
+                      on: {
+                        click: function($event) {
+                          _vm.onAddToCart()
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Add to cart")]
-                )
+                    },
+                    [_vm._v("Add to cart")]
+                  )
           ],
           1
         )

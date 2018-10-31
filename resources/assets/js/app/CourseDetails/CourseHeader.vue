@@ -32,7 +32,8 @@
       <div class="row">
         <div class="col-sm-12">
           <a ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Buy Now</a>
-          <router-link v-if="isInCart" class="btn btn-primary" :to="{ name: 'cart', params: {} }">View cart</router-link>
+          <router-link v-if="isInCart" class="btn btn-primary" :to="{name: 'cart'}">View cart</router-link>
+          <router-link v-else-if="enrolled" class="btn btn-primary" :to="{name: 'continue'}">Continue Learning</router-link>
           <button v-else ref="addToCart" class="btn btn-primary" @click="onAddToCart()">Add to cart</button>
         </div>
       </div>
@@ -86,6 +87,10 @@ export default {
     color() {
       if(this.course == null) return "";
       return this.course.color;
+    },
+    enrolled() {
+      if(this.course == null) return 0;
+      return this.course.enrolled;
     },
     isInCart() {
       if(this.course == null) return false;
