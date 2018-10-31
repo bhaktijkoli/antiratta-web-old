@@ -56,7 +56,7 @@ class Course extends Model
 
   public function getSlug() {
     $branch = Branch::where('id', $this->branch)->first();
-    if(!$branch) abort(505);
+    if(!$branch) abort(404);
     $bn = strtolower($branch->shortname);
     $un = strtolower(University::getScs()[$branch->university]);
     $cn = strtolower($this->shortname);

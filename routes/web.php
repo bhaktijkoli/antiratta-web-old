@@ -32,6 +32,7 @@ Route::get('/jfk', 'IndexController@getIndex')->name('jfk');
 Route::get('/aboutus', 'IndexController@getIndex')->name('aboutus');
 Route::get('/cart', 'IndexController@getIndex')->name('cart');
 
+Route::get('/my-courses', 'IndexController@getIndexAuth')->name('my-courses');
 Route::get('/settings/{setting}', 'IndexController@getIndexAuth')->name('setting');
 
 // OAuth

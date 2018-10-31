@@ -41,7 +41,7 @@
                 <h6 class="dropdown-header">{{auth.firstname + " " + auth.lastname}}</h6>
                 <a href="/admin" class="dropdown-item" v-if="auth.role > 0">Admin Dashboard</a>
                 <div class="dropdown-divider" v-if="auth.role > 0"></div>
-                <a href="" class="dropdown-item">My Courses</a>
+                <router-link class="dropdown-item" :to="{name: 'my-courses'}">My Courses</router-link>
                 <router-link class="dropdown-item" :to="{name: 'personal-info'}">Settings</router-link>
                 <div class="dropdown-divider"></div>
                 <a href="/logout" class="dropdown-item">Sign out</a>

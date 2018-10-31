@@ -21964,6 +21964,24 @@ label {
   color: #343a40;
 }
 
+#header .header-clippath {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 260px;
+  width: 100%;
+  background-color: #fbc02d;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+  z-index: -1;
+}
+
+#header .header-title {
+  color: #FFFFFF;
+  font-weight: 500;
+  margin-top: 100px;
+}
+
 .space {
   height: 500px;
 }
