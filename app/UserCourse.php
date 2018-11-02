@@ -15,6 +15,6 @@ class UserCourse extends Model
   }
   public function course()
   {
-    return $this->hasOne('App\Course');
+    return $this->belongsTo('App\Course');
   }
 }

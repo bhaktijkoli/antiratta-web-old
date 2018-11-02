@@ -1,0 +1,59 @@
+.my-course-card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  min-height: 280px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  .my-course-card-image {
+    height: 120px;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+  }
+
+  .my-course-card-header {
+    overflow: hidden;
+  }
+
+  .my-course-card-body {
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+
+  .my-course-card-title {
+    line-height: 1;
+    font-size: 1.3em;
+    font-weight: 500;
+  }
+
+  .my-course-card-footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }
+  .my-course-card-footer .btn {
+    margin: 0px;
+    border-radius: 0px;
+  }
+}
+
+.my-course-card:hover {
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  .my-course-card-image {
+    transform: scale(1.2);
+  }
+}
