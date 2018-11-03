@@ -70,6 +70,7 @@ class Course extends Model
   }
 
   public function getUserEnrollment() {
+    if(!Auth::check()) return 0;
     $uc = UserCourse::where("user", Auth::user()->id)->where('course', $this->id)->first();
     if($uc) return 1;
     return 0;
