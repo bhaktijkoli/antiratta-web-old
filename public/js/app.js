@@ -50308,7 +50308,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, HomeHero: __WEBPACK_IMPORTED_MODULE_2__HomeHero___default.a, Welcome: __WEBPACK_IMPORTED_MODULE_3__Welcome___default.a, Stutor: __WEBPACK_IMPORTED_MODULE_4__Stutor___default.a, Counter: __WEBPACK_IMPORTED_MODULE_5__Counter___default.a
   },
   mounted: function mounted() {
-    window.title = "Welcome to AntiRatta";
+    document.title = "Welcome to AntiRatta";
   },
 
   methods: {}
@@ -50922,11 +50922,11 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "icons" }, [
             _c("div", { staticClass: "icon" }, [
-              _c("img", { attrs: { src: "/images/google-play-badge.png" } })
+              _c("img", { attrs: { src: "/images/google_play.png" } })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "icon" }, [
-              _c("img", { attrs: { src: "/images/appstore-badge.png" } })
+              _c("img", { attrs: { src: "/images/app_store.png" } })
             ])
           ])
         ])
@@ -53922,7 +53922,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, Splitview: __WEBPACK_IMPORTED_MODULE_2__Splitview___default.a
   },
   mounted: function mounted() {
-    window.title = "JFK";
+    document.title = "JFK";
   },
 
   methods: {}
@@ -54211,7 +54211,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     Loading: __WEBPACK_IMPORTED_MODULE_0__Layout_Loading___default.a, Navbar: __WEBPACK_IMPORTED_MODULE_1__Layout_Navbar___default.a, Team: __WEBPACK_IMPORTED_MODULE_2__Team___default.a
   },
   mounted: function mounted() {
-    window.title = "About US";
+    document.title = "About Us";
   },
 
   methods: {}
@@ -55650,7 +55650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   mounted: function mounted() {
     if (this.$store.state.auth != null) this.$router.push({ name: 'home' });
-    window.title = "Login";
+    document.title = "Login";
   },
 
   methods: {}

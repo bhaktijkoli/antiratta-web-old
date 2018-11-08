@@ -17,7 +17,7 @@ export default {
     Loading, Navbar, Splitview
   },
   mounted() {
-    window.title = "JFK";
+    document.title = "JFK";
   },
   methods: {
   },

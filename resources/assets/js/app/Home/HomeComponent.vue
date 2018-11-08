@@ -22,7 +22,7 @@ export default {
     Loading, Navbar, HomeHero, Welcome, Stutor, Counter
   },
   mounted() {
-    window.title = "Welcome to AntiRatta";
+    document.title = "Welcome to AntiRatta";
   },
   methods: {
   },

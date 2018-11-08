@@ -18,7 +18,7 @@ export default {
   },
   mounted() {
     if(this.$store.state.auth != null) this.$router.push({name:'home'});
-    window.title = "Login";
+    document.title = "Login";
   },
   methods: {
   },

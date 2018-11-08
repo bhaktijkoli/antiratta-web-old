@@ -8,10 +8,10 @@
         </p>
         <div class="icons">
           <div class="icon">
-            <img src="/images/google-play-badge.png"/>
+            <img src="/images/google_play.png"/>
           </div>
           <div class="icon">
-            <img src="/images/appstore-badge.png"/>
+            <img src="/images/app_store.png"/>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default {
     font-weight: 500;
     font-size: 16px;
     text-align: justify;
-  } 
+  }
   #hero .icons .icon {
     display: inline-block;
   }

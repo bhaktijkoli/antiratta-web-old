@@ -17,7 +17,7 @@ export default {
     Loading, Navbar, Team
   },
   mounted() {
-    window.title = "About US";
+    document.title = "About Us";
   },
   methods: {
   },
